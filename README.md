@@ -14,7 +14,7 @@ git clone https://github.com/kiajalali/CMPT-415
 ```
 
 ```
-cd CMPT-415
+cd CMPT-415/server
 ```
 
 Once you're in the boilerplate directory make sure Docker Engine is running to ensure that docker is running run the following command
