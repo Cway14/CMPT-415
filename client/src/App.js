@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFormik } from 'formik';
+import LoginModal from "./components/LoginModal";
 
 const SignupForm = () => {
   const formik = useFormik({
@@ -41,14 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      { (typeof users.users === 'undefined') ? (
-        <p>loading...</p>
-      ) : (
-        users.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-      <SignupForm />
+      <LoginModal />
     </div>
   );
 }
