@@ -34,7 +34,7 @@ h1 {
   color: white;
   background-color: var(--bg-brown);
   border: 4px solid var(--bg-gold);
-  font-size: 3rem;
+  font-size: 64px;
   padding: 1rem 6rem;
   margin: 0.5rem;
   border-radius: 2.25rem;
@@ -48,7 +48,7 @@ h1 {
   cursor: pointer;
   color: white;
   font-family: Macondo;
-  font-size: 2rem;
+  font-size: 40px;
 }
 
 .modal {
