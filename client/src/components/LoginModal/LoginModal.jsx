@@ -8,6 +8,7 @@ const LoginModal = (props) => {
       submitButtonAction={() => console.log("Login button clicked")}
       headerImage="crown"
       showModal={props.showModal}
+      hideModal={props.hideModal}
     />
   );
 };

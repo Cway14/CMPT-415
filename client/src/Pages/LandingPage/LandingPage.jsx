@@ -9,7 +9,11 @@ const LandingPage = () => {
 
   return (
     <div className="landingPageContainer">
-      <div className="modal landingPage">
+      <div
+        className={`modal landingPage ${
+          showLoginModal || showSignUpModal ? "hidden" : ""
+        }`}
+      >
         <h1>
           Prince's <br /> Grand Escape
         </h1>
@@ -25,15 +29,15 @@ const LandingPage = () => {
         >
           Sign up
         </button>
-        <LoginModal
-          showModal={showLoginModal}
-          setShowModal={setShowLoginModal}
-        />
-        <SignUpModal
-          showModal={showSignUpModal}
-          setShowModal={setShowSignUpModal}
-        />
       </div>
+      <LoginModal
+        showModal={showLoginModal}
+        hideModal={() => setShowLoginModal(false)}
+      />
+      <SignUpModal
+        showModal={showSignUpModal}
+        hideModal={() => setShowSignUpModal(false)}
+      />
     </div>
   );
 };

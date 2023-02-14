@@ -10,9 +10,18 @@ const LoginModalTemplate = (props) => {
   if (props.headerImage === "signUp") {
     header = <h2 className="signUpHeader signUp">Sign Up</h2>;
   }
+
+  const hideModal = (e) => {
+    console.log(e);
+    if (e.target.className.includes("loginModalContainer modal")) {
+      props.hideModal();
+    }
+  };
+
   return (
     <div
       className={`loginModalContainer modal ${props.showModal ? "" : "hidden"}`}
+      onClick={(e) => hideModal(e)}
     >
       {header}
       <div className="loginModal">
