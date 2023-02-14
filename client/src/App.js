@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFormik } from 'formik';
-import LoginModal from "./components/LoginModal";
+
+import LandingPage from './Pages/LandingPage/LandingPage';
 
 const SignupForm = () => {
   const formik = useFormik({
@@ -42,7 +43,7 @@ function App() {
 
   return (
     <div className="App">
-      <LoginModal />
+      <LandingPage />
     </div>
   );
 }
