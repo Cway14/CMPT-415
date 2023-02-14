@@ -1,10 +1,12 @@
 import React from "react";
-import crown from "../assets/crown.png";
-import "../styles/LoginModal.css";
 
-const LoginModal = () => {
+import crown from "../../assets/crown.png";
+import "./LoginModal.css";
+
+const LoginModal = (props) => {
+  
   return (
-      <div className="loginModalContainer">
+    <div className={`loginModalContainer modal ${props.showModal ? "" : "hidden"}`} >
         <img src={crown} className="crown" alt="crown" />
         <div className="loginModal">
             <h2>Username:</h2>

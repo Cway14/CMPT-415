@@ -1,8 +1,5 @@
 
 .loginModalContainer {
-    height: 100vh;
-    margin: auto;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
