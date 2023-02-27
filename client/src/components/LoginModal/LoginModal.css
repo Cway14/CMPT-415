@@ -12,9 +12,10 @@
   border-radius: 10px;
   width: 400px;
   background-color: var(--bg-brown);
+  
   color: white;
-
   font-family: "Macondo";
+  text-align: center;
 
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@
   transform: translateY(-128px);
 }
 
-.loginModal h2 {
+.loginModal label {
   margin: 0;
   padding: 0;
   font-size: 36px;

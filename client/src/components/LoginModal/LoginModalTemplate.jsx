@@ -1,38 +1,68 @@
 // USED AS TEMPLATE BY BOTH LOGIN AND SIGNUP MODALS
-import React from "react";
+import React, {useEffect} from "react";
+
+import { useFormik } from 'formik';
 
 import crown from "../../assets/crown.png";
 import "./LoginModal.css";
 
+const Form = (props) => {
+  const { submitButtonText, submitButtonAction } = props;
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: values => submitButtonAction(values)
+  });
+  return (
+    <form onSubmit={formik.handleSubmit} className="loginModal">
+      <label htmlFor="email">Email Address</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        onChange={formik.handleChange}
+        value={formik.values.email}
+      />
+
+      <label htmlFor="password">Password:</label>
+      <input
+        type="password"
+        name="password"
+        onChange={formik.handleChange}
+        value={formik.values.password}
+      />
+
+      <button type="submit">{submitButtonText}</button>
+    </form>
+  );
+};
+  
 const LoginModalTemplate = (props) => {
+  const { headerImage, showModal, hideModal, ...rest } = props;
+
   let header = <img src={crown} className="crown" alt="crown" />;
 
-  if (props.headerImage === "signUp") {
+  if (headerImage === "signUp") {
     header = <h2 className="signUpHeader signUp">Sign Up</h2>;
   }
 
-  const hideModal = (e) => {
-    console.log(e);
+  const closeModal = (e) => { 
     if (e.target.className.includes("loginModalContainer modal")) {
-      props.hideModal();
+
+      hideModal();
     }
   };
 
   return (
     <div
-      className={`loginModalContainer modal ${props.showModal ? "" : "hidden"}`}
-      onClick={(e) => hideModal(e)}
+      className={`loginModalContainer modal ${showModal ? "" : "hidden"}`}
+      onClick={(e) => closeModal(e)} // close modal if user clicks outside of modal
     >
       {header}
-      <div className="loginModal">
-        <h2>Username:</h2>
-        <input type="text" name="username" />
-        <h2>Password:</h2>
-        <input type="password" name="password" />
-        <button onClick={props.submitButtonAction}>
-          {props.submitButtonText}
-        </button>
-      </div>
+      <Form {...rest} />
     </div>
   );
 };

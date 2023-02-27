@@ -1,34 +1,10 @@
 import { useEffect, useState } from "react";
-import { useFormik } from 'formik';
 
 import LandingPage from './Pages/LandingPage/LandingPage';
-
-const SignupForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-    },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-  return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="email">Email Address</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-      />
-
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
+import { initializeFirebase } from './auth/firebase';
 
 function App() {
+  initializeFirebase();
   const [users, setUsers] = useState([{}])
 
   useEffect(() => {
