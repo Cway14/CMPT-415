@@ -1,5 +1,5 @@
 // USED AS TEMPLATE BY BOTH LOGIN AND SIGNUP MODALS
-import React, {useEffect} from "react";
+import React from "react";
 
 import { useFormik } from 'formik';
 
@@ -51,7 +51,6 @@ const LoginModalTemplate = (props) => {
 
   const closeModal = (e) => { 
     if (e.target.className.includes("loginModalContainer modal")) {
-
       hideModal();
     }
   };
