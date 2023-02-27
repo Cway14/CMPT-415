@@ -1,8 +1,10 @@
 import React from "react";
-import LoginModalTemplate from "../LoginModalTemplate";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import LoginModalTemplate from "../LoginModalTemplate";
 
-const SignUpModal = (props) => {
+const SignUpModal = ({showModal, hideModal, setUser}) => {
+  const navigate = useNavigate();
 
 
   const auth = getAuth();
@@ -12,12 +14,12 @@ const SignUpModal = (props) => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      // ...
+      setUser(user)
+      navigate("/play")
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
     });
   }
   
@@ -26,8 +28,8 @@ const SignUpModal = (props) => {
       submitButtonText="Sign up"
       submitButtonAction={(credentials) => createUser(credentials)}
       headerImage="signUp"
-      showModal={props.showModal}
-      hideModal={props.hideModal}
+      showModal={showModal}
+      hideModal={hideModal}
     />
   );
 };

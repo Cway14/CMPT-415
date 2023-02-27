@@ -3,7 +3,8 @@ import LoginModal from "../../components/LoginModal/LoginModal";
 import SignUpModal from "../../components/LoginModal/SignUpModal/SignUpModal";
 import "./LandingPage.css";
 
-const LandingPage = () => {
+const LandingPage = ({setUser}) => {
+
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
@@ -33,10 +34,12 @@ const LandingPage = () => {
       <LoginModal
         showModal={showLoginModal}
         hideModal={() => setShowLoginModal(false)}
+        setUser={setUser}
       />
       <SignUpModal
         showModal={showSignUpModal}
         hideModal={() => setShowSignUpModal(false)}
+        setUser={setUser}
       />
     </div>
   );
