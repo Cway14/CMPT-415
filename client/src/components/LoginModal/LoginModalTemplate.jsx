@@ -22,7 +22,7 @@ const LoginModalTemplate = (props) => {
 
   return (
     <div
-      className={`loginModalContainer modal ${showModal ? "" : "hidden"}`}
+      className={`loginModalContainer modal`}
       onClick={(e) => closeModal(e)} // close modal if user clicks outside of modal
     >
       {header}
