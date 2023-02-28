@@ -8,9 +8,21 @@
 
 
 .landingPageContainer {
-    background-image: url("../../assets/landing_page_bg.png");
     width: 100%;
     height: 100vh;
-    background-position: center; 
+}
+
+.landingPageContainer:before {
+    background-image: url("../../assets/landing_page_bg.png");
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
     background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
 }
