@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import LoginModalTemplate from "../../components/LoginModal/LoginModalTemplate";
 import "./LandingPage.css";
 
-const LandingPage = ({setUser}) => {
+const LandingPage = ({user, setUser}) => {
 
   const [modal, setModal] = useState();
 
@@ -73,18 +73,21 @@ const LandingPage = ({setUser}) => {
         <h1>
           Prince's <br /> Grand Escape
         </h1>
-        <button
-          className="button-large"
-          onClick={() => showLoginModal()}
-        >
-          Login
-        </button>
-        <button
-          className="button-link"
-          onClick={() => showSignUpModal()}
-        >
-          Sign up
-        </button>
+        {!user &&
+          <>
+            <button className="button-large" onClick={() => showLoginModal()}>
+              Login
+            </button>
+            <button className="button-link" onClick={() => showSignUpModal()}>
+              Sign up
+            </button>
+          </>
+        }
+        {user &&
+          <button className="button-large" onClick={() => navigate("/play")}>
+            Play
+          </button>
+        }
       </div>
       {modal}
     </div>
