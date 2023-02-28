@@ -1,54 +1,37 @@
 import { useEffect, useState } from "react";
-import { useFormik } from 'formik';
 
-const SignupForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-    },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-  return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="email">Email Address</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        onChange={formik.handleChange}
-        value={formik.values.email}
-      />
+import { Routes, Route, Navigate } from "react-router-dom";
 
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
+import { initializeFirebase } from './auth/firebase';
+import LandingPage from './Pages/LandingPage/LandingPage';
+import GameView from './Pages/GameView/GameView';
+
+
+function RequireAuth({ user, children }) {
+  if (!user) return <Navigate to="/" replace />;
+  return children;
+}
 
 function App() {
-  const [users, setUsers] = useState([{}])
+  initializeFirebase();
+  const [user, setUser] = useState()
 
   useEffect(() => {
     fetch('/api').then(
       res => res.json()
     ).then(
       data => {
-        setUsers(data)
+        setUser(data)
       }
     )
   }, [])
-
+  
   return (
     <div className="App">
-      { (typeof users.users === 'undefined') ? (
-        <p>loading...</p>
-      ) : (
-        users.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-      <SignupForm />
+      <Routes>
+        <Route path="/" element={<LandingPage setUser={setUser} />} />
+        <Route path="/play" element={<RequireAuth user={user}><GameView /></RequireAuth>} />
+      </Routes>
     </div>
   );
 }

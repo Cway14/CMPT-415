@@ -1,0 +1,16 @@
+
+.landingPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.landingPageContainer {
+    background-image: url("../../assets/landing_page_bg.png");
+    width: 100%;
+    height: 100vh;
+    background-position: center; 
+    background-repeat: no-repeat;
+}
