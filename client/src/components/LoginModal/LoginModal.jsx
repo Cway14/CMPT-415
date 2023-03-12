@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
+import { useNotification } from "../../context/NotificationContext";
 
 import ForgotPasswordModal from "../LoginModal/ForgotPasswordModal";
 import LoginForm from "../LoginModal/LoginForm";
@@ -12,6 +13,7 @@ const LoginModal = (props) => {
   const [form, setForm] = useState();
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     setForm(
@@ -42,6 +44,7 @@ const LoginModal = (props) => {
       .catch((error) => {
         const errorMessage = error.message;
         console.error("ERROR: ", errorMessage);
+        showNotification("An error occurred. Please try again.", "error");
       });
   }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
+import { useNotification } from "../../context/NotificationContext";
 
 import LoginForm from "../LoginModal/LoginForm";
 import DisplayNameModal from "../SignUpModal/DisplayNameModal";
@@ -11,6 +12,7 @@ const SignUpModal = (props) => {
   const [form, setForm] = useState();
   const navigate = useNavigate();
   const { signup } = useAuth();
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     setForm(
@@ -51,6 +53,7 @@ const SignUpModal = (props) => {
       navigate("/play");
     } catch (error) {
       console.log(error);
+      showNotification("An error occurred. Please try again.", "error");
     }
   }
 

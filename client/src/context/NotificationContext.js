@@ -9,17 +9,20 @@ export function useNotification() {
 
 export function NotificationProvider({ children }) {
   const [notification, setNotification] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
   function showNotification(message, type = "success") {
+    setIsOpen(true);
     setNotification({ message, type });
   }
 
   function hideNotification() {
-    setNotification(null);
+    setIsOpen(false);
   }
 
   const value = {
     notification,
+    isOpen,
     showNotification,
     hideNotification,
   };

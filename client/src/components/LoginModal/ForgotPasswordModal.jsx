@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 
 import { useAuth } from "../../auth/AuthContext";
+import { useNotification } from "../../context/NotificationContext";
 import "./LoginModal.css";
 
 const DisplayNameModal = ({ setModal }) => {
   const [submitted, setSubmitted] = useState(false);
   const { resetPassword } = useAuth();
+  const { showNotification } = useNotification();
 
   const formik = useFormik({
     initialValues: {
@@ -21,6 +23,7 @@ const DisplayNameModal = ({ setModal }) => {
       setSubmitted(true);
     } catch (error) {
       console.log(error);
+      showNotification("An error occurred. Please try again.", "error");
     }
   };
 

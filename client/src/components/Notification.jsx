@@ -4,10 +4,10 @@ import Alert from "@mui/material/Alert";
 import { useNotification } from "../context/NotificationContext";
 
 const Notification = (props) => {
-  const { notification, hideNotification } = useNotification();
+  const { notification, hideNotification, isOpen } = useNotification();
   return (
     <Snackbar
-      open={notification}
+      open={isOpen}
       autoHideDuration={3000}
       onClose={() => hideNotification()}
       message={notification?.message}
