@@ -7,7 +7,7 @@ import Sprite, { SpriteRef } from '../@core/Sprite';
 import useGameObject from '../@core/useGameObject';
 import useGameObjectEvent from '../@core/useGameObjectEvent';
 import soundData from '../soundData';
-import spriteData from '../spriteData';
+import spriteData from '../spriteData'
 
 function CoffeeScript() {
     const { getComponent } = useGameObject();
