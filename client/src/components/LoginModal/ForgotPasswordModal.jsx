@@ -26,7 +26,7 @@ const DisplayNameModal = ({ setModal }) => {
 
   if (submitted) {
     return (
-      <div className="center">
+      <div className="center-children">
         <h2>Email Sent to {formik.values.email}</h2>
         <button className="modal-button" onClick={() => setModal(null)}>
           Return home
@@ -36,7 +36,7 @@ const DisplayNameModal = ({ setModal }) => {
   }
 
   return (
-    <form onSubmit={formik.handleSubmit} className="center">
+    <form onSubmit={formik.handleSubmit} className="center-children">
       <label htmlFor="displayName">Email</label>
       <input
         id="email"

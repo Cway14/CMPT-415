@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import { useFormik } from 'formik';
-import { createAvatar } from '@dicebear/core';
-import { thumbs } from '@dicebear/collection'
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import { createAvatar } from "@dicebear/core";
+import { thumbs } from "@dicebear/collection";
 
 const DisplayNameModal = (props) => {
   const { submitButtonText, submitButtonAction } = props;
 
   const createProfilePic = (seed) => {
-    const avatar = createAvatar(thumbs, {seed});
-  
+    const avatar = createAvatar(thumbs, { seed });
+
     const svg = avatar.toString();
     formik.setValues({ ...formik.values, profilePic: svg });
   };
@@ -16,21 +16,33 @@ const DisplayNameModal = (props) => {
   useEffect(() => {
     createProfilePic(Date.now());
   }, []);
-  
+
   const formik = useFormik({
     initialValues: {
-      displayName: '',
-      profilePic: ''
+      displayName: "",
+      profilePic: "",
     },
 
-    onSubmit: values => submitButtonAction(values)
+    onSubmit: (values) => submitButtonAction(values),
   });
-return (
-    <form onSubmit={formik.handleSubmit} className='center'>
+  return (
+    <form onSubmit={formik.handleSubmit} className="center-children">
       <label htmlFor="profilePic">Avatar</label>
-      <div className='center'>
-        <svg style={{ "display": "block" }} width="100" height="100" dangerouslySetInnerHTML={{ __html: formik.values.profilePic }} />
-        <button type="button" onClick={() => createProfilePic(formik.values.displayName + Date.now())}>Generate</button>
+      <div className="center-children">
+        <svg
+          style={{ display: "block" }}
+          width="100"
+          height="100"
+          dangerouslySetInnerHTML={{ __html: formik.values.profilePic }}
+        />
+        <button
+          type="button"
+          onClick={() =>
+            createProfilePic(formik.values.displayName + Date.now())
+          }
+        >
+          Generate
+        </button>
       </div>
       <label htmlFor="displayName">Display Name</label>
       <input
@@ -38,10 +50,10 @@ return (
         name="displayName"
         onChange={formik.handleChange}
         value={formik.values.displayName}
-      />  
+      />
       <button type="submit">{submitButtonText}</button>
     </form>
   );
-}
+};
 
-export default DisplayNameModal
+export default DisplayNameModal;

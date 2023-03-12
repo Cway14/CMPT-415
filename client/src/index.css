@@ -1,4 +1,4 @@
-:root{
+:root {
   --bg-brown: #653732;
   --bg-light-brown: #966060;
   --bg-dark-brown: #3c1f1f;
@@ -8,7 +8,7 @@
 
 body {
   margin: 0;
-  font-family: 'Macondo', cursive;
+  font-family: "Macondo", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-grey);
@@ -16,7 +16,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -42,9 +42,9 @@ h1 {
 }
 
 .button-link {
-  background: none!important;
+  background: none !important;
   border: none;
-  padding: 0!important;
+  padding: 0 !important;
   text-decoration: underline;
   cursor: pointer;
   color: white;
@@ -64,9 +64,16 @@ h1 {
   display: none !important;
 }
 
-.center {
+.center-children {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-row {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
