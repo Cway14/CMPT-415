@@ -13,18 +13,27 @@ const LandingPage = ({user, setUser}) => {
   const auth = getAuth();
   const navigate = useNavigate();
 
-  function createUser(credentials){
+  async function createUser(credentials){
     const { email, password } = credentials;
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
+    try {
+      // create user in firebase
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       setUser(user)
-      navigate("/play")
-    })
-    .catch((error) => {
 
-    });
+      // create user in database with corresponding firebase_uid
+      const response = await fetch(process.env.REACT_APP_API + "/new-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "name": user.displayName, "firebase_uid": user.uid }),
+      });
+
+      navigate("/play")
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function signIn(credentials) {
