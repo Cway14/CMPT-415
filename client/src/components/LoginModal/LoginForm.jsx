@@ -12,7 +12,7 @@ const LoginForm = (props) => {
       onSubmit: values => submitButtonAction(values)
     });
     return (
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className="center">
         <label htmlFor="email">Email Address</label>
         <input
           id="email"
