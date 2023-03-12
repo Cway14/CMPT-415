@@ -21,16 +21,16 @@ app.get('/leaderboard', async (req, res) => {
 })
 
 app.post('/new-user', async (req, res) => {
-    console.log("req.body: ", req.body)
-    const { name, firebase_uid } = req.body;
+    const { name, firebase_uid, profile_pic} = req.body;
     try {
         const query = {
-            text: 'insert into players (create_time, name, score, firebase_uid) values (now(), $1, 0, $2)',
-            values: [name, firebase_uid]
+            text: 'insert into players (create_time, name, score, firebase_uid, profile_picture) values (now(), $1, 0, $2, $3)',
+            values: [name, firebase_uid, profile_pic]
         }
         const response = await db.query(query)
         res.json(response)
     } catch (err) {
+        console.error("ERROR: ", err)
         res.sendStatus(500)
     }
 })
