@@ -44,7 +44,7 @@ const LoginModal = (props) => {
       .catch((error) => {
         const errorMessage = error.message;
         console.error("ERROR: ", errorMessage);
-        showNotification("An error occurred. Please try again.", "error");
+        showNotification(errorMessage, "error");
       });
   }
 

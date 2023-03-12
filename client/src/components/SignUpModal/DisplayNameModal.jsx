@@ -4,7 +4,7 @@ import { createAvatar } from "@dicebear/core";
 import { thumbs } from "@dicebear/collection";
 
 const DisplayNameModal = (props) => {
-  const { submitButtonText, submitButtonAction } = props;
+  const { submitButtonAction } = props;
 
   const createProfilePic = (seed) => {
     const avatar = createAvatar(thumbs, { seed });
@@ -25,6 +25,7 @@ const DisplayNameModal = (props) => {
 
     onSubmit: (values) => submitButtonAction(values),
   });
+
   return (
     <form onSubmit={formik.handleSubmit} className="center-children">
       <label htmlFor="profilePic">Avatar</label>
@@ -53,7 +54,7 @@ const DisplayNameModal = (props) => {
         value={formik.values.displayName}
       />
       <button type="submit" className="modal-button">
-        {submitButtonText}
+        Finish Sign up
       </button>
     </form>
   );

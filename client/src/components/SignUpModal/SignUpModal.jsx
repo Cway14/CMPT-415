@@ -53,8 +53,8 @@ const SignUpModal = (props) => {
 
       navigate("/play");
     } catch (error) {
-      console.log(error);
-      showNotification("An error occurred. Please try again.", "error");
+      console.log(error.message);
+      showNotification(error.message, "error");
       // go back to login form
       setForm(signUpForm);
     }
@@ -63,7 +63,6 @@ const SignUpModal = (props) => {
   function showDisplayNameModal(credentials) {
     setForm(
       <DisplayNameModal
-        submitButtonText="Finish Sign up"
         submitButtonAction={(values) =>
           createUser({ ...credentials, ...values })
         }
