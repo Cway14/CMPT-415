@@ -58,6 +58,23 @@
   cursor: pointer;
 }
 
+.loginModal .modal-button-small {
+  font-size: 1rem;
+  display: block;
+  height: 32px;
+  background: var(--bg-light-brown);
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding: 0 0.75rem;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.loginModal .modal-button-small:hover {
+  background: var(--bg-gold);
+  color: var(--bg-brown);
+  cursor: pointer;
+}
+
 .loginModal .button-link {
   font-size: 1rem;
   display: block;

@@ -14,13 +14,14 @@ const SignUpModal = (props) => {
   const { signup } = useAuth();
   const { showNotification } = useNotification();
 
+  const signUpForm = (
+    <LoginForm
+      submitButtonText="Sign up"
+      submitButtonAction={(credentials) => showDisplayNameModal(credentials)}
+    />
+  );
   useEffect(() => {
-    setForm(
-      <LoginForm
-        submitButtonText="Sign up"
-        submitButtonAction={(credentials) => showDisplayNameModal(credentials)}
-      />
-    );
+    setForm(signUpForm);
   }, []);
 
   const closeModal = (e) => {
@@ -54,6 +55,8 @@ const SignUpModal = (props) => {
     } catch (error) {
       console.log(error);
       showNotification("An error occurred. Please try again.", "error");
+      // go back to login form
+      setForm(signUpForm);
     }
   }
 

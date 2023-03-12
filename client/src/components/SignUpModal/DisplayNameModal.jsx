@@ -37,11 +37,12 @@ const DisplayNameModal = (props) => {
         />
         <button
           type="button"
+          className="modal-button-small"
           onClick={() =>
             createProfilePic(formik.values.displayName + Date.now())
           }
         >
-          Generate
+          Generate New Avatar
         </button>
       </div>
       <label htmlFor="displayName">Display Name</label>
@@ -51,7 +52,9 @@ const DisplayNameModal = (props) => {
         onChange={formik.handleChange}
         value={formik.values.displayName}
       />
-      <button type="submit">{submitButtonText}</button>
+      <button type="submit" className="modal-button">
+        {submitButtonText}
+      </button>
     </form>
   );
 };

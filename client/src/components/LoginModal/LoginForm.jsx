@@ -1,16 +1,30 @@
 import React from "react";
 import { useFormik } from "formik";
 
+import { useNotification } from "../../context/NotificationContext";
+
 const LoginForm = (props) => {
   const { submitButtonText, submitButtonAction, forgotPasswordAction } = props;
+  const { showNotification } = useNotification();
+
+  const submitAction = (values) => {
+    // validate values
+    if (!values.email || !values.password) {
+      showNotification("Please fill out all fields.", "error");
+      return;
+    }
+
+    submitButtonAction(values);
+  };
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => submitButtonAction(values),
+    onSubmit: (values) => submitAction(values),
   });
+
   return (
     <form onSubmit={formik.handleSubmit} className="center-children">
       <label htmlFor="email">Email Address</label>
@@ -28,6 +42,7 @@ const LoginForm = (props) => {
         name="password"
         onChange={formik.handleChange}
         value={formik.values.password}
+        minLength="6"
       />
       {forgotPasswordAction && (
         <button className="button-link" onClick={forgotPasswordAction}>
