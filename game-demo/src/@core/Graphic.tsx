@@ -62,11 +62,11 @@ export default memo(
         }
 
         const image = useAsset(src) as HTMLImageElement;
-        const textureRef = useRef<any>()
+        const textureRef = useRef<THREE.Texture>()
         
-        // useLayoutEffect(texture => {
-        //     texture.needsUpdate = true;
-        // }, []);
+        useLayoutEffect(() => {
+            textureRef.current.needsUpdate = true;
+        }, []);
         const mounted = useRef(true);
         const interval = useRef<number>();
         const prevFrame = useRef<number>(-1);
