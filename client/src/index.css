@@ -63,3 +63,10 @@ h1 {
 .hidden {
   display: none !important;
 }
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

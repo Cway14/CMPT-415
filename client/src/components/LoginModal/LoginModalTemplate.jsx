@@ -2,11 +2,10 @@
 import React from "react";
 
 import crown from "../../assets/crown.png";
-import LoginForm from "./LoginForm";
 import "./LoginModal.css";
   
 const LoginModalTemplate = (props) => {
-  const { headerImage, showModal, hideModal, ...rest } = props;
+  const { headerImage, hideModal, form } = props;
 
   let header = <img src={crown} className="crown" alt="crown" />;
 
@@ -26,7 +25,9 @@ const LoginModalTemplate = (props) => {
       onClick={(e) => closeModal(e)} // close modal if user clicks outside of modal
     >
       {header}
-      <LoginForm {...rest} />
+      <div className="loginModal">
+        {form}
+      </div>
     </div>
   );
 };
