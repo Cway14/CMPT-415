@@ -7,6 +7,7 @@ import SceneManager from '../../@core/SceneManager';
 import useWindowSize from '../../@core/useWindowSize';
 import OfficeScene from '../../scenes/OfficeScene';
 import OtherScene from '../../scenes/OtherScene';
+import RoomScene from '../../scenes/RoomScene';
 import soundData from '../../soundData';
 import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
@@ -26,12 +27,15 @@ export default function GameView() {
             <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
                 <Game cameraZoom={80}>
                     <AssetLoader urls={urls} placeholder="Loading assets ...">
-                        <SceneManager defaultScene="office">
+                        <SceneManager defaultScene="room">
                             <Scene id="office">
                                 <OfficeScene />
                             </Scene>
                             <Scene id="other">
                                 <OtherScene />
+                            </Scene>
+                            <Scene id="room">
+                                <RoomScene />
                             </Scene>
                         </SceneManager>
                     </AssetLoader>

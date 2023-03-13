@@ -15,18 +15,18 @@ const spriteData: { [index: string]: SpriteProps } = {
     },
     player: {
         src: './assets/player.png',
-        frameWidth: 20,
-        frameHeight: 20,
+        frameWidth: 40,
+        frameHeight: 40,
         frameTime: 300,
         sheet: {
-            default: [[0, 2]],
+            default: [[0, 0]],
             walk: [
-                [1, 2],
-                [2, 2],
+                [0, 0],
+                [0, 0],
             ],
             action: [
-                [0, 1],
-                [2, 1],
+                [0, 0],
+                [0, 0],
             ],
         },
     },
@@ -56,6 +56,26 @@ const spriteData: { [index: string]: SpriteProps } = {
         opacity: 0.75,
         frameTime: 150,
     },
+    map: {
+        src: './assets/walls.png',
+        frameWidth: 32,
+        frameHeight: 32,
+        sheet: {
+            floor1: [[0, 10]], 
+            floor2: [[0, 11]], 
+            wall_right: [[0, 14]], 
+            wall_left: [[2, 14]], 
+            wall_left_top_lower: [[4, 14]], 
+            wall_left_top_upper: [[4, 15]], 
+            wall_right_top_lower: [[6, 14]], 
+            wall_right_top_upper: [[6, 15]], 
+            wall_top_lower: [[5, 14]], 
+            wall_top_upper: [[5, 15]], 
+            wall_left_bottom: [[4, 12]], 
+            wall_right_bottom: [[6, 12]],
+            wall_bottom: [[5, 12]], 
+        }
+    }
 };
 
 export default spriteData;
