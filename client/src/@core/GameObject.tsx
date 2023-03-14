@@ -174,6 +174,7 @@ export default function GameObject({
     // TODO: add constants for z indices
     let offsetZ = 0;
     if (layer === 'ground') offsetZ = -1;
+    if (layer === 'wall') offsetZ = -1;
     if (layer === 'ground-decal') offsetZ = 0.1;
     if (layer === 'obstacle') offsetZ = 0.2;
     if (layer === 'item') offsetZ = 0.3;
