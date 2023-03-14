@@ -39,7 +39,7 @@ const SignUpModal = (props) => {
       const user = userCredential.user;
 
       // create user in database with corresponding firebase_uid
-      await fetch(process.env.REACT_APP_API + "/new-user", {
+      await fetch(process.env.REACT_APP_API + "/users/new-user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
