@@ -1,5 +1,5 @@
 import React from "react";
-import { Snackbar } from "@material-ui/core";
+import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useNotification } from "../context/NotificationContext";
 
