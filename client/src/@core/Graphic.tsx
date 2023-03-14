@@ -43,7 +43,7 @@ export default memo(
             frameTime = 200,
             scale = 1,
             flipX = 1,
-            color = '#fff',
+            color = '#999',
             opacity = 1,
             offset = { x: 0, y: 0 },
             basic,
@@ -63,7 +63,7 @@ export default memo(
 
         const image = useAsset(src) as HTMLImageElement;
         const textureRef = useRef<THREE.Texture>()
-        
+
         useLayoutEffect(() => {
             textureRef.current.needsUpdate = true;
         }, []);
@@ -141,25 +141,21 @@ export default memo(
                 repeat: new THREE.Vector2(1 / size.x, 1 / size.y),
                 magFilter,
                 minFilter: THREE.LinearMipMapLinearFilter,
+                color: "#999"
             };
         }, [frameHeight, frameWidth, image, magFilter]);
 
         return (
             <mesh
-                // ref={ref}
+                //@ts-ignore
+                ref={ref}
                 position={[offset.x, offset.y, -offset.y / 100]}
                 scale={[flipX * scale, scale, 1]}
                 geometry={geometry}
             >
-                {basic ? (
-                    <meshBasicMaterial attach="material" {...materialProps}>
-                        <texture ref={textureRef} attach="map" {...textureProps} />
-                    </meshBasicMaterial>
-                ) : (
-                    <meshLambertMaterial attach="material" {...materialProps}>
-                        <texture ref={textureRef} attach="map" {...textureProps} />
-                    </meshLambertMaterial>
-                )}
+                <meshBasicMaterial attach="material" {...materialProps}>
+                    <texture ref={textureRef} attach="map" {...textureProps} />
+                </meshBasicMaterial>
             </mesh>
         );
     })
