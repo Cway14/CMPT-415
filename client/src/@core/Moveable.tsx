@@ -98,7 +98,6 @@ export default function Moveable({ isStatic = false }: Props) {
             const toY = targetPosition.y;
 
             anime.remove(nodeRef.current.position);
-
             await anime({
                 targets: nodeRef.current.position,
                 x: [fromX, toX],
@@ -106,8 +105,14 @@ export default function Moveable({ isStatic = false }: Props) {
                 duration: movementDuration,
                 easing: 'linear',
                 begin() {
-                    if (dirX) transform.setX(targetPosition.x);
-                    if (dirY) transform.setY(targetPosition.y);
+                    if (dirX) {
+                        setTimeout(() => { transform.setX(targetPosition.x); }, 200);
+                        ;
+                    }
+                    if (dirY) {
+                        setTimeout(() => {  transform.setY(targetPosition.y); }, 200);
+                        
+                    }
                 },
                 update() {
                     !isForced &&
@@ -119,7 +124,6 @@ export default function Moveable({ isStatic = false }: Props) {
                         });
                 },
             }).finished;
-
             canMove.current = true;
 
             publish<DidChangePositionEvent>('did-change-position', targetPosition);
