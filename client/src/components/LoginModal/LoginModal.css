@@ -11,7 +11,7 @@
   border-radius: 10px;
   width: 400px;
   background-color: var(--bg-brown);
-  
+
   color: white;
   font-family: "Macondo";
   text-align: center;
@@ -41,7 +41,7 @@
   font-size: 16px;
 }
 
-.loginModal button {
+.loginModal .modal-button {
   font-size: 1.25rem;
   display: block;
   width: 180px;
@@ -52,10 +52,37 @@
   margin: 1rem 1rem 0rem 1rem;
 }
 
-.loginModal button:hover {
+.loginModal .modal-button:hover {
   background: var(--bg-gold);
   color: var(--bg-brown);
   cursor: pointer;
+}
+
+.loginModal .modal-button-small {
+  font-size: 1rem;
+  display: block;
+  height: 32px;
+  background: var(--bg-light-brown);
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding: 0 0.75rem;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.loginModal .modal-button-small:hover {
+  background: var(--bg-gold);
+  color: var(--bg-brown);
+  cursor: pointer;
+}
+
+.loginModal .button-link {
+  font-size: 1rem;
+  display: block;
+  background: light-grey;
+}
+
+.loginModal .button-link:hover {
+  color: var(--bg-dark-brown);
 }
 
 .crown {
@@ -78,4 +105,3 @@
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: #363636;
 }
-
