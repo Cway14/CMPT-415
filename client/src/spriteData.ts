@@ -75,6 +75,36 @@ const spriteData: { [index: string]: SpriteProps } = {
             wall_right_bottom: [[6, 12]],
             wall_bottom: [[5, 12]], 
         }
+    },
+    items: {
+        src: './assets/items.png',
+        frameWidth: 32,
+        frameHeight: 32,
+        sheet: {
+            bed_top: [[0, 5]], 
+            bed_bot: [[0, 4]], 
+        }
+    },
+    items2: {
+        src: './assets/items2.png',
+        frameWidth: 32,
+        frameHeight: 32,
+        sheet: {
+            shelf: [[5, 1]], 
+            book_bot: [[7, 2]], 
+            book_top: [[7, 3]], 
+            box: [[8,15]],
+            table: [[3,9]],
+            chair: [[2, 15]]
+        }
+    },
+    book: {
+        src: './assets/magicbook.png',
+        frameWidth: 32,
+        frameHeight: 32,
+        sheet: {
+            book: [[0, 0]], 
+        }
     }
 };
 
