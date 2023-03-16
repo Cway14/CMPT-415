@@ -19,18 +19,25 @@ import Chair from '../entities/Chair';
 import MagicBook from '../entities/MagicBook';
 
 const mapData = mapDataString(`
-E E { ^ ^ ^ ^ ^ } E E { ^ ^ ^ ^ ^ }
-E E [ - S - 1 1 ] E E [ - S - 1 1 ]
-E E L B · · 2 2 R E E L B · · 2 2 R
-E E L b · · · · R E E L b · · · · R
-E E L · · · · C R E E L · · · · C R
-E E L O · · · T R E E L O · · · T R
-E E > # # # # # < E E > # # # # # <
-E E E E { ^ } E E E E E E { ^ } E E
-E E E E L D R E E E E E E L D R E E
-E E { ^ ( · ) ^ ^ ^ ^ ^ ^ ( · ) ^ ^
-E E [ - X · Y - - - - - - X · Y - -  
-E E L · · · · · · · · · · · · · · ·
+E E { ^ ^ ^ ^ ^ } E E { ^ ^ ^ ^ ^ } E E E E E E E
+E E [ - S - 1 1 ] E E [ - S - 1 1 ] E E E E E E E
+E E L B · · 2 2 R E E L B · · 2 2 R E E E E E E E
+E E L b · · · · R E E L b · · · · R E E E E E E E
+E E L · · · · C R E E L · · · · C R { ^ ^ ^ ^ ^ }
+E E L O · · · T R E E L O · · · T R [ - S - 1 1 ]
+E E > # # # # # < E E > # # # # # < L · · · · · R
+E E E E { ^ } E E E E E E { ^ } E E L · · · · · R
+E E E E L D R E E E E E E L D R E E L · · · · · R
+E E { ^ ( · ) ^ ^ ^ ^ ^ ^ ( · ) ^ ^ ( · · · · · R
+E E [ - X · Y - - - - - - X · Y - - X · · · · · R
+E E L · · · · · · · · · · · · · · · · · · · · · R
+E E L · · · · · · · · · · · · · · · · · · · · · R
+E E L · · · · · · · · · · · · · · · · · K # # # <
+E E L · · · · · · · · · · · · · · · · · R E E E E
+E E L · · · · · · · · · · · · · · · · · R E E E E
+E E L · · · · · · · · · · · · · · · · · R E E E E
+E E L · · · · · · · · · · · · · · · · · R E E E E
+E E > # # # # # # # # # # # # # # # # # < E E E E
 `);
 
 const resolveMapTile: TileMapResolver = (type, x, y) => {
@@ -68,42 +75,42 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                    <Sprite {...spriteData.map} state="wall_bottom" />
+                        <Sprite {...spriteData.map} state="wall_bottom" />
                 </GameObject>
             );
         case 'R':
             return (
                  <GameObject key={key} {...position} layer="wall">
                      <Collider />
-                    <Sprite {...spriteData.map} state="wall_right" />
+                        <Sprite {...spriteData.map} state="wall_right" />
                 </GameObject>
             );
         case 'L':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                    <Sprite {...spriteData.map} state="wall_left" />
+                        <Sprite {...spriteData.map} state="wall_left" />
                 </GameObject>
             );
         case '[':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                    <Sprite {...spriteData.map} state="wall_left_top_lower" />
+                        <Sprite {...spriteData.map} state="wall_left_top_lower" />
                 </GameObject>
             );     
         case ']':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                    <Sprite {...spriteData.map} state="wall_right_top_lower" />
-                    </GameObject>
+                        <Sprite {...spriteData.map} state="wall_right_top_lower" />
+                </GameObject>
                  );     
         case '{':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                    <Sprite {...spriteData.map} state="wall_left_top_upper" />
+                        <Sprite {...spriteData.map} state="wall_left_top_upper" />
                 </GameObject>
             );   
         case '}':
@@ -116,25 +123,36 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
         case '(':
             return (
                 <GameObject key={key} {...position} layer="wall">
-                    <Sprite {...spriteData.map} state="wall_upper_corner_left" />
+                    <Collider />
+                        <Sprite {...spriteData.map} state="wall_upper_corner_left" />
                 </GameObject>
             );  
         case ')':
             return (
                 <GameObject key={key} {...position} layer="wall">
-                    <Sprite {...spriteData.map} state="wall_upper_corner_right" />
+                    <Collider />
+                        <Sprite {...spriteData.map} state="wall_upper_corner_right" />
+                </GameObject>
+            );
+        case 'K':
+            return (
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
+                        <Sprite {...spriteData.map} state="left_corner" />
                 </GameObject>
             ); 
         case 'X':
             return (
                 <GameObject key={key} {...position} layer="wall">
+                    <Collider />
                     <Sprite {...spriteData.map} state="wall_lower_corner_left" />
                 </GameObject>
             );  
         case 'Y':
             return (
                 <GameObject key={key} {...position} layer="wall">
-                    <Sprite {...spriteData.map} state="wall_lower_corner_right" />
+                    <Collider />
+                        <Sprite {...spriteData.map} state="wall_lower_corner_right" />
                 </GameObject>
             );   
         case '-':
@@ -239,19 +257,19 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
-export default function BedroomScene() {
+export default function HallOfLeversScene() {
     return (
         <>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>
-            <GameObject x={5} y={5}>
+            <GameObject x={5} y={10}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" />
             </GameObject>
-            <Player x={5} y={7} />
+            <Player x={5} y={10} />
         </>
     );
 }

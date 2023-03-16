@@ -8,6 +8,7 @@ import useWindowSize from '../../@core/useWindowSize';
 import OfficeScene from '../../scenes/OfficeScene';
 import OtherScene from '../../scenes/OtherScene';
 import BedroomScene from '../../scenes/BedroomScene';
+import HallOfLeversScene from '../../scenes/HallOfLeversScene';
 import soundData from '../../soundData';
 import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
@@ -36,6 +37,9 @@ export default function GameView() {
                             </Scene>
                             <Scene id="bedroom">
                                 <BedroomScene />
+                            </Scene>
+                            <Scene id="halloflevers">
+                                <HallOfLeversScene />
                             </Scene>
                         </SceneManager>
                     </AssetLoader>

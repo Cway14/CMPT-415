@@ -74,6 +74,12 @@ const spriteData: { [index: string]: SpriteProps } = {
             wall_left_bottom: [[4, 12]], 
             wall_right_bottom: [[6, 12]],
             wall_bottom: [[5, 12]], 
+            door: [[12,6]],
+            wall_upper_corner_right: [[0, 13]], 
+            wall_upper_corner_left: [[2, 13]], 
+            wall_lower_corner_right: [[0, 12]], 
+            wall_lower_corner_left: [[2, 12]], 
+            left_corner: [[0,15]]
         }
     },
     items: {
@@ -95,7 +101,8 @@ const spriteData: { [index: string]: SpriteProps } = {
             book_top: [[7, 3]], 
             box: [[8,15]],
             table: [[3,9]],
-            chair: [[2, 15]]
+            chair: [[2, 15]],
+            space: [[6,8]]
         }
     },
     book: {
