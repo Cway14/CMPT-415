@@ -19,18 +19,18 @@ import Chair from '../entities/Chair';
 import MagicBook from '../entities/MagicBook';
 
 const mapData = mapDataString(`
-E E { ^ ^ ^ ^ ^ } E E { ^ ^ ^ ^ ^ }
-E E [ - S - 1 1 ] E E [ - S - 1 1 ]
-E E L B · · 2 2 R E E L B · · 2 2 R
-E E L b · · · · R E E L b · · · · R
-E E L · · · · C R E E L · · · · C R
-E E L O · · · T R E E L O · · · T R
-E E > # # # # # < E E > # # # # # <
-E E E E { ^ } E E E E E E { ^ } E E
-E E E E L D R E E E E E E L D R E E
-E E { ^ ( · ) ^ ^ ^ ^ ^ ^ ( · ) ^ ^
-E E [ - X · Y - - - - - - X · Y - -  
-E E L · · · · · · · · · · · · · · ·
+E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ }
+E E [ - S - 1 1 ] E [ - S - 1 1 ]
+E E L B · · 2 2 R E L B · · 2 2 R
+E E L b · · · · R E L b · · · · R
+E E L · · · · C R E L · · · · C R
+E E L O · · · T R E L O · · · T R
+E E > # # # # # < E > # # # # # <
+E E E E { ^ } E E E E E { ^ } E E
+E E E E L D R E E E E E L D R E E
+E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^
+E E [ - X · Y - - - - - X · Y - -  
+E E L · · · · V · · · V · · · · ·
 `);
 
 const resolveMapTile: TileMapResolver = (type, x, y) => {
@@ -234,6 +234,36 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Sprite {...spriteData.map} state="door" />
                 </GameObject>
             ); 
+        case '_':
+            return (
+                <Fragment key={key}>
+                    {top_wall}
+                    <GameObject layer="obstacle" {...position}>
+                        <Collider />
+                        <Sprite {...spriteData.map} state={"shelfB"} />
+                    </GameObject>
+                </Fragment>
+            );
+        case '=':
+            return (
+                <Fragment key={key}>
+                    {top_wall}
+                    <GameObject layer="obstacle" {...position}>
+                        <Collider />
+                        <Sprite {...spriteData.map} state={"shelfC"} />
+                    </GameObject>
+                </Fragment>
+            );
+        case 'V':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <GameObject layer="obstacle" {...position}>
+                        <Collider />
+                        <Sprite {...spriteData.items2} state={"left_table3"} />
+                    </GameObject>
+                </Fragment>
+            );
         default:
             return null;
     }

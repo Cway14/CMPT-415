@@ -79,7 +79,9 @@ const spriteData: { [index: string]: SpriteProps } = {
             wall_upper_corner_left: [[2, 13]], 
             wall_lower_corner_right: [[0, 12]], 
             wall_lower_corner_left: [[2, 12]], 
-            left_corner: [[0,15]]
+            left_corner: [[0,15]],
+            shelfB: [[5, 7]], 
+            shelfC: [[4, 5]], 
         }
     },
     items: {
@@ -89,6 +91,8 @@ const spriteData: { [index: string]: SpriteProps } = {
         sheet: {
             bed_top: [[0, 5]], 
             bed_bot: [[0, 4]], 
+            table: [[8,12]],
+            up_table: [[12,11]],
         }
     },
     items2: {
@@ -102,7 +106,27 @@ const spriteData: { [index: string]: SpriteProps } = {
             box: [[8,15]],
             table: [[3,9]],
             chair: [[2, 15]],
-            space: [[6,8]]
+            chair2: [[3, 15]],
+            chair3: [[4, 15]],
+            chair4: [[5, 15]],
+            space: [[6,8]],
+            barrels1: [[12,13]],
+            barrels2: [[13,13]],
+            barrels3: [[12,12]],
+            barrels4: [[13,12]],
+            dtable1: [[4,12]],
+            dtable2: [[5,12]],
+            cabinet_bot: [[8,6]],
+            cabinet_top: [[8,7]],
+            small_cabinet: [[0,8]],
+            left_table1: [[0,11]],
+            left_table2: [[0,12]],
+            left_table3: [[0,13]],
+            cent_table: [[7,9]],
+            table_3: [[4,13]],
+            table_4: [[5,13]],
+            table_1: [[4,14]],
+            table_2: [[5,14]],
         }
     },
     book: {
