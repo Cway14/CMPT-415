@@ -136,7 +136,16 @@ const spriteData: { [index: string]: SpriteProps } = {
         sheet: {
             book: [[0, 0]], 
         }
-    }
+    },
+    lever: {
+        src: './assets/levers.png',
+        frameWidth: 32,
+        frameHeight: 32,
+        sheet: {
+            lever1: [[0, 0]], 
+            lever2: [[1, 0]], 
+        }
+    },
 };
 
 export default spriteData;

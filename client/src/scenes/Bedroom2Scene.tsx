@@ -17,19 +17,20 @@ import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import MagicBook from '../entities/MagicBook';
+import Lever from '../entities/Lever';
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
 E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E
 E E L B · · 2 2 R E L B · · 2 2 R E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E
-E E L · · · · C R E L · · · · C R E E E E E E
+E E L · · · · C R E L & · · · C R E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ }
 E E > # # # # # < E > # # # # # < [ - - 7 - ]
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R
 E E E E L D R E E E E E L D R E E L · · · · R
 E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R
-E E [ - X · Y - - - - - X · Y - - X · · · · R
+E E [ - X · Y - - - - - X · Y - - X · · · & R
 E E L · · · · V · · · V · · · · · · · · 3 4 R
 `);
 
@@ -484,6 +485,13 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                 <GameObject key={key} {...position} layer="ground">
                     <Sprite {...spriteData.map} state="door" />
                 </GameObject>
+            ); 
+        case '&':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} />
+                </Fragment>
             ); 
         default:
             return null;

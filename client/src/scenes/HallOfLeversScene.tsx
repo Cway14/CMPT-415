@@ -17,26 +17,27 @@ import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import MagicBook from '../entities/MagicBook';
+import Lever from '../entities/Lever';
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
 E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E
 E E L B · · 2 2 R E L B · · 2 2 R E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E
-E E L · · · · C R E L · · · · C R E E E E E E
+E E L · · · · C R E L & · · · C R E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ }
 E E > # # # # # < E > # # # # # < [ - - 7 - ]
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R
 E E E E L D R E E E E E L D R E E L · · · · R
 E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R
-E E [ - X · Y - - - - - X · Y - - X · · · · R
+E E [ - X · Y - - - - - X · Y - - X · · · & R
 E E L · · · · V · · · V · · · · · · · · 3 4 R
 E E L · · · · F · · · F · · · · · · · · 5 6 R
 E E L · · · · f c u · f · · · · · · · K # # <
 E E L · C C · · · · · · · · · · C C · R E E E
 E E L v q w y · · · · · · · · v q w y R E E E
 E E L v a s y · · · · · · · · v a s y R E E E
-E E L · g g · · · · · · · · · · g g · R E E E
+E E L · g g · · · · · · & · · · g g · R E E E
 E E > # # # # # # # # # # # # # # # # < E E E
 `);
 
@@ -478,6 +479,13 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                 <Fragment key={key}>
                     {floor}
                     <Chair {...position} />
+                </Fragment>
+            ); 
+        case '&':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} />
                 </Fragment>
             ); 
         case 'E':
