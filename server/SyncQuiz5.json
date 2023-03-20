@@ -1,0 +1,142 @@
+[
+    {
+      "question": "The sequence of instructions that, if executed simultaneously, may give incorrect values is known as the ______________.",
+      "options": [
+        "critical section",
+        "non-critical section",
+        "execution code",
+        "main program"
+      ],
+      "answers": [
+        "critical section"
+      ]
+    },
+    {
+      "question": "Which of the following conditions must be satisfied to solve the critical section problem?",
+      "options": [
+        "Bounded Wating",
+        "Mutual Exclusion",
+        "None of the above",
+        "Guaranteed Ordering",
+        "Progress"
+      ],
+      "answers": [
+        "Bounded Wating",
+        "Mutual Exclusion",
+        "Progress"
+      ]
+    },
+    {
+      "question": "Bounded waiting implies that there exists a bound on the number of times a process is allowed to enter its critical section ____________",
+      "options": [
+        "before a process has made a request to enter its critical section",
+        "after a process has made a request to enter its critical section and before the request is granted",
+        "none of the mentioned",
+        "when another process is in its critical section"
+      ],
+      "answers": [
+        "after a process has made a request to enter its critical section and before the request is granted",
+        "none of the mentioned"
+      ]
+    },
+    {
+      "question": "Which of the following Critical Section properties is NOT sure to be satisfied by test_and_set() atomic hardware instruction?",
+      "options": [
+        "Mutual Exclusion",
+        "Progress",
+        "None of the above",
+        "Bounded Wating"
+      ],
+      "answers": [
+        "Bounded Wating"
+      ]
+    },
+    {
+      "question": "What are the two atomic operations permissible on semaphores?",
+      "options": [
+        "wait()",
+        "stop()",
+        "none of the above",
+        "signal()",
+        "sleep()"
+      ],
+      "answers": [
+        "wait()",
+        "signal()"
+      ]
+    },
+    {
+      "question": "What is the main disadvantage of spinlocks?",
+      "options": [
+        "they can be unreliable sometimes",
+        "they are complex to code",
+        "they require busy waiting",
+        "they are not sufficient for small critical section"
+      ],
+      "answers": [
+        "they require busy waiting"
+      ]
+    },
+    {
+      "question": "To ensure difficulties do not arise in the readers - writers problem _______ are given exclusive access to",
+      "options": [
+        "readers",
+        "none of the mentioned",
+        "writers",
+        "readers and writers"
+      ],
+      "answers": [
+        "readers"
+      ]
+    },
+    {
+      "question": "&lt;div&gt;&lt;p&gt;The following program use a shared binary semaphore T:&lt;/p&gt;\n&lt;div class=\"hk1_style-wrap5\"&gt;\n&lt;div class=\"hk1_style-wrap4\"&gt;\n&lt;div class=\"hk1_style-wrap3\"&gt;\n&lt;div class=\"hk1_style-wrap2\"&gt;\n&lt;div class=\"hk1_style-wrap\"&gt;\n&lt;div class=\"hk1_style\"&gt;\n&lt;div class=\"txt\"&gt;\n&lt;pre class=\"de1\"&gt;Process A  \nint Y;            \nA1: Y = X*2;      \nA2: X = Y;        \nsignal(T);        \n&amp;nbsp;\nProcess B\nint Z;\nB1: wait(T);\nB2: Z = X+1;\nX = Z;&lt;/pre&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;p&gt;T is set to 0 before either process begins execution and, as before, X is set to 5.&lt;br&gt;Now, how many different values of X are possible after both processes finish executing?&lt;/p&gt;&lt;/div&gt;",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "none of the above"
+      ],
+      "answers": [
+        "2"
+      ]
+    },
+    {
+      "question": "At a particular time of computation the value of a counting semaphore is 7. Then 18 wait() operations and 15 signal() operations were completed on this semaphore. The resulting value of the semaphore is?",
+      "options": [
+        "5",
+        "26",
+        "45",
+        "4"
+      ],
+      "answers": [
+        "4"
+      ]
+    },
+    {
+      "question": "In bounded buffer problem which of the following assumptions stand TRUE",
+      "options": [
+        "The empty and full semaphores count the number of empty and full buffers. The semaphore empty is initialised to the value n; the semaphore full is initialised to the value 0",
+        "The mutex semaphore provides mutual exclusion for accesses to the buffer pool and is initialised to the value 0",
+        "The empty and full semaphores count the number of empty and full buffers. The semaphore empty is initialised to the value 0; the semaphore full is initialised to the value n",
+        "The mutex semaphore provides mutual exclusion for accesses to the buffer pool and is initialised to the value 1",
+        "We assume that the pool consists of n buffers, each capable of holding one item"
+      ],
+      "answers": [
+        "The empty and full semaphores count the number of empty and full buffers. The semaphore empty is initialised to the value n; the semaphore full is initialised to the value 0",
+        "We assume that the pool consists of n buffers, each capable of holding one item"
+      ]
+    },
+    {
+      "question": "The dining - philosophers problem will occur in case of ____________",
+      "options": [
+        "4 philosophers and 5 chopsticks",
+        "5 philosophers and 4 chopsticks",
+        "3 philosophers and 5 chopsticks",
+        "5 philosophers and 5 chopsticks"
+      ],
+      "answers": [
+        "5 philosophers and 5 chopsticks"
+      ]
+    }
+  ]
