@@ -340,5 +340,84 @@
         "answers": [
           "3"
         ]
-      }
+      },
+      {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "Two threads executing the following operations simultaneously: lock(m1) lock(m2) unlock(m1) unlock(m2) Will there be a deadlock?",
+        "options": ["Yes", "No"],
+        "answers": ["No"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "Two threads executing the following operations simultaneously: lock(m1) lock(m2) unlock(m1) lock(m1) unlock(m2) unlock(m1) Will there be a deadlock? Exaplin why.",
+        "options": ["Yes", "No"],
+        "answers": ["Yes"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "Assume T1 finishes execution of lock(m1), lock(m2) and unlock(m1), and is about to execute lock(m1). Assume T2 finishese execution of lock(m1), and is about to execute lock(m2). T1 is requesting m1, but holding the lock for m2. T2 is requesting m2, but holding the lock for m1. A deadlock occurred.",
+        "options": ["Mutual exclusion", "Resource utilization is poor", "CPU scheduling is unreasonable", "Circular wait"],
+        "answers": ["Mutual exclusion", "Circular wait"]
+    }, 
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "Which of the followings are correct about deadlock?",
+        "options": ["Imposing a total ordering on all resource can prevent the deadlock", "Dynamically making allocation decisions can avoid the deadlock", "A deadlock can be resolved by releasing all the resources held by the current process"],
+        "answers": ["Imposing a total ordering on all resource can prevent the deadlock", "Dynamically making allocation decisions can avoid the deadlock", "A deadlock can be resolved by releasing all the resources held by the current process"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "There are 5 available resources of the same type, shared by 4 processes. Each process can request at most ____ resources so that there is no deadlock?",
+        "options": ["2", "4", "3", "1"],
+        "answers": ["2"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "A cycle in a resource allocation graph guarantees a deadlock.",
+        "options": ["True", "False"],
+        "answers": ["False"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "Which of the following is NOT true of deadlock prevention and deadlock avoidance schemes?",
+        "options": ["In deadlock prevention, the request for resources is always granted if the resulting state is safe", "In deadlock avoidance, the request for resources is always granted if the result state is safe", "Deadlock avoidance is less restrictive than deadlock prevention", "Deadlock avoidance requires knowledge of resource requirements a priority"],
+        "answers": ["In deadlock prevention, the request for resources is always granted if the resulting state is safe"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "Which of the following is NOT a valid deadlock prevention scheme?",
+        "options": ["Never request a resource after releasing any resource", "Release all resources before requesting a new resource", "Number the resources uniquely and never request a lower numbered resource than the last one requested.", "Request and all required resources be allocated before execution"],
+        "answers": ["Never request a resource after releasing any resource"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "With single resource, deadlock occurs",
+        "options": ["none of the above", "if there are more than two processes competing for that resources", "if there are only two processes competing for that resources", "if there is a single process competing for that resources"],
+        "answers": ["none of the above"]
+    },
+
+    {
+        "topic": "Deadlock",
+        "chapter": "8",
+        "question": "A problem encountered in multitasking when a process is perpetually denied necessary resources is called ___",
+        "options": ["starvation", "deadlock", "aging"],
+        "answers": ["starvation"]
+    }
 ]
