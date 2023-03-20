@@ -1,7 +1,7 @@
 [
     {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "The sequence of instructions that, if executed simultaneously, may give incorrect values is known as the ______________.",
         "options": [
           "critical section",
@@ -15,7 +15,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "Which of the following conditions must be satisfied to solve the critical section problem?",
         "options": [
           "Bounded Wating",
@@ -32,7 +32,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "Bounded waiting implies that there exists a bound on the number of times a process is allowed to enter its critical section ____________",
         "options": [
           "before a process has made a request to enter its critical section",
@@ -47,7 +47,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "Which of the following Critical Section properties is NOT sure to be satisfied by test_and_set() atomic hardware instruction?",
         "options": [
           "Mutual Exclusion",
@@ -61,7 +61,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "What are the two atomic operations permissible on semaphores?",
         "options": [
           "wait()",
@@ -77,7 +77,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "What is the main disadvantage of spinlocks?",
         "options": [
           "they can be unreliable sometimes",
@@ -91,7 +91,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "To ensure difficulties do not arise in the readers - writers problem _______ are given exclusive access to",
         "options": [
           "readers",
@@ -105,7 +105,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "&lt;div&gt;&lt;p&gt;The following program use a shared binary semaphore T:&lt;/p&gt;\n&lt;div class=\"hk1_style-wrap5\"&gt;\n&lt;div class=\"hk1_style-wrap4\"&gt;\n&lt;div class=\"hk1_style-wrap3\"&gt;\n&lt;div class=\"hk1_style-wrap2\"&gt;\n&lt;div class=\"hk1_style-wrap\"&gt;\n&lt;div class=\"hk1_style\"&gt;\n&lt;div class=\"txt\"&gt;\n&lt;pre class=\"de1\"&gt;Process A  \nint Y;            \nA1: Y = X*2;      \nA2: X = Y;        \nsignal(T);        \n&amp;nbsp;\nProcess B\nint Z;\nB1: wait(T);\nB2: Z = X+1;\nX = Z;&lt;/pre&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;p&gt;T is set to 0 before either process begins execution and, as before, X is set to 5.&lt;br&gt;Now, how many different values of X are possible after both processes finish executing?&lt;/p&gt;&lt;/div&gt;",
         "options": [
           "1",
@@ -119,7 +119,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "At a particular time of computation the value of a counting semaphore is 7. Then 18 wait() operations and 15 signal() operations were completed on this semaphore. The resulting value of the semaphore is?",
         "options": [
           "5",
@@ -133,7 +133,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "In bounded buffer problem which of the following assumptions stand TRUE",
         "options": [
           "The empty and full semaphores count the number of empty and full buffers. The semaphore empty is initialised to the value n; the semaphore full is initialised to the value 0",
@@ -149,7 +149,7 @@
       },
       {
         "topic": "Sync and Sync Prob",
-        "quiz": "5",
+        "chapter": "5",
         "question": "The dining - philosophers problem will occur in case of ____________",
         "options": [
           "4 philosophers and 5 chopsticks",
@@ -159,6 +159,186 @@
         ],
         "answers": [
           "5 philosophers and 5 chopsticks"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "Assume the semaphore S has an initial value 1. When there are k processes waiting on S, what is the value for S?",
+        "options": [
+          "1-k",
+          "k",
+          "k-1",
+          "-k"
+        ],
+        "answers": [
+          "1-k"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "&lt;div&gt;&lt;p&gt;Which of the following statements are correct about the Producer-Consumer Problem.&lt;/p&gt;\n&lt;p&gt;Below is the structure of the Producer-Consumer Problem.&lt;/p&gt;\n&lt;p&gt;&lt;img src=\"https://canvas.sfu.ca/assessment_questions/4046689/files/18477665/download?verifier=Gitsr8hpowq8SXnhNdfwFhOEz22sNVLl4tXURBa5\" alt=\"11.png\"&gt;&lt;/p&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;",
+        "options": [
+          "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) can cause deadlock",
+          "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) will not affect the execution",
+          "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) will not affect the execution",
+          "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) can cause deadlock"
+        ],
+        "answers": [
+          "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) can cause deadlock",
+          "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) will not affect the execution"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "&lt;div&gt;&lt;p&gt;Which of the following statement is correct about the proposed algorithm&lt;/p&gt;\n&lt;div&gt;flag0=false, flag1=false;&lt;/div&gt;\n&lt;div&gt;P0()&amp;nbsp;{&lt;/div&gt;\n&lt;div&gt;while(flag1);&lt;/div&gt;\n&lt;div&gt;flag0 = true;&lt;/div&gt;\n&lt;div&gt;/* Critical Section */&lt;/div&gt;\n&lt;div&gt;flag0 = false;&lt;/div&gt;\n&lt;div&gt;/* Remainder Section */&lt;/div&gt;\n&lt;div&gt;}&lt;/div&gt;\n&lt;div&gt;P1()&amp;nbsp;{&lt;/div&gt;\n&lt;div&gt;while(flag0);&lt;/div&gt;\n&lt;div&gt;flag1 = true;&lt;/div&gt;\n&lt;div&gt;/* Critical Section */&lt;/div&gt;\n&lt;div&gt;flag1 = false;&lt;/div&gt;\n&lt;div&gt;/* Remainder Section */&lt;/div&gt;\n&lt;div&gt;}&lt;/div&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;",
+        "options": [
+          "It does not satisfy the Bounded Waiting rquirement",
+          "It does not satisfy the Progress requirement",
+          "It does not satisfy the Mutual Exclusion requirement",
+          "It is correct"
+        ],
+        "answers": [
+          "It does not satisfy the Mutual Exclusion requirement"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "&lt;div&gt;&lt;p&gt;Which of the following statements are correct about the proposed algorithm&lt;/p&gt;\n&lt;div&gt;flag0=false, flag1=false;&lt;/div&gt;\n&lt;div&gt;P0()&amp;nbsp;{&lt;/div&gt;\n&lt;div&gt;flag0 = true;&lt;/div&gt;\n&lt;div&gt;while(flag1);&lt;/div&gt;\n&lt;div&gt;/* Critical Section */&lt;/div&gt;\n&lt;div&gt;flag0 = false;&lt;/div&gt;\n&lt;div&gt;/* Remainder Section */&lt;/div&gt;\n&lt;div&gt;}&lt;/div&gt;\n&lt;div&gt;P1()&amp;nbsp;{&lt;/div&gt;\n&lt;div&gt;flag1 = true;&lt;/div&gt;\n&lt;div&gt;while(flag0);&lt;/div&gt;\n&lt;div&gt;/* Critical Section */&lt;/div&gt;\n&lt;div&gt;flag1 = false;&lt;/div&gt;\n&lt;div&gt;/* Remainder Section */&lt;/div&gt;\n&lt;div&gt;}&lt;/div&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;",
+        "options": [
+          "It does not satisfy the Progress requirement",
+          "It is correct",
+          "It does not satisfy the Mutual Exclusion requirement",
+          "It does not satisfy the Bounded Waiting rquirement"
+        ],
+        "answers": [
+          "It does not satisfy the Progress requirement",
+          "It does not satisfy the Bounded Waiting rquirement"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "Which of the following operations is an atomic operation",
+        "options": [
+          "x++",
+          "x=1",
+          "++x"
+        ],
+        "answers": [
+          "x=1"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "A critical section in a program",
+        "options": [
+          "avoids deadlocks",
+          "Accesses shared resources",
+          "should run within a certain amount of time"
+        ],
+        "answers": [
+          "Accesses shared resources"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "A counting semaphore S is initialized to 6. Post, 8 waits ()  operations and 10 signal() operations performed on S. What is the final value of S?",
+        "options": [
+          "8",
+          "18",
+          "-2",
+          "10"
+        ],
+        "answers": [
+          "8"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "An operating system implements a policy that requires a process to release all resources before making a request for another resource. Select the TRUE statement from the following:",
+        "options": [
+          "Starvation can occur but deadlock cannot occur",
+          "Both starvation and deadlock can occur",
+          "Starvation cannot occur but deadlock can occur",
+          "Neither starvation nor deadlock can occur"
+        ],
+        "answers": [
+          "Starvation can occur but deadlock cannot occur"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "If one thread of a process is holding the lock on a mutex, and another thread of the process attempts to lock the mutex, the whole process is blocked.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answers": [
+          "False"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "If processes P1, P2, and P3 are all requesting resource R, but the operating system allows P1 and P2 to access R repeatedly while P3 continues to wait for R, that is called",
+        "options": [
+          "Starvation",
+          "Deadlock",
+          "None of the above",
+          "Busy Waiting"
+        ],
+        "answers": [
+          "Starvation"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "When several processes access and manipulate the same data concurrently and the outcome of the execution is non-deterministic i.e it depends on the particular order in which access takes place is called ____________",
+        "options": [
+          "starvation",
+          "race condition",
+          "aging",
+          "data consistency"
+        ],
+        "answers": [
+          "race condition"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "A negative value for a counting semaphore denotes that ____________",
+        "options": [
+          "it is invalid",
+          "none of the mentioned",
+          "no operation can be further performed on it until the signal operation is performed on it",
+          "its magnitude is the number of processes waiting on that semaphore"
+        ],
+        "answers": [
+          "its magnitude is the number of processes waiting on that semaphore"
+        ]
+      },
+      {
+        "topic": "Synchro and Classical",
+        "chapter": "6 and 7",
+        "question": "&lt;div&gt;&lt;p&gt;For a set of 5 processes P1-P4, is pseudo-coded as follows&lt;/p&gt;\n&lt;div class=\"hk1_style-wrap5\"&gt;\n&lt;div class=\"hk1_style-wrap4\"&gt;\n&lt;div class=\"hk1_style-wrap3\"&gt;\n&lt;div class=\"hk1_style-wrap2\"&gt;\n&lt;div class=\"hk1_style-wrap\"&gt;\n&lt;div class=\"hk1_style\"&gt;\n&lt;div class=\"txt\"&gt;\n&lt;pre class=\"de1\"&gt;&lt;code&gt;while(true_condition) {\n wait(mutex);\n //critical section\n signal(mutex)&lt;/code&gt; }&lt;/pre&gt;\n&lt;p&gt;P5, however, has the following pseudo-code:&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;while(true_condition) {\n signal(mutex);\n //critical section\n signal(mutex)&lt;/code&gt; &lt;br&gt;}&lt;/pre&gt;\n&lt;p&gt;&lt;span&gt;What is the maximum number of processes that can be inside the critical section at any given moment (the mutex is initialised to 1)?&lt;/span&gt;&lt;/p&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;&lt;/div&gt;",
+        "options": [
+          "3",
+          "2",
+          "None of the above",
+          "1"
+        ],
+        "answers": [
+          "3"
         ]
       }
 ]
