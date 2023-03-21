@@ -278,12 +278,12 @@ export default function GreatHallScene() {
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>
-            <GameObject x={11} y={11}>
+            <GameObject x={11} y={13}>
                 <Collider />
                 <Interactable />
                 <ScenePortal name="entrance" enterDirection={[0, -1]} target="halloflevers/exit" />
             </GameObject>
-            <Player x={11} y={11} />
+            <Player x={11} y={13} />
         </>
     );
 }
