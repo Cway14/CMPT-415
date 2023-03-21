@@ -32,13 +32,6 @@ E E E E L D R E E E E E L D R E E L · · · · R
 E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R
 E E [ - X · Y - - - - - X · Y - - X · · · & R
 E E L · · · · V · · · V · · · · · · · · 3 4 R
-E E L · · · · F · · · F · · · · · · · · 5 6 R
-E E L · · · · f c u · f · · · · · · · K # # <
-E E L · C C · · · · · · · · · · C C · R E E E
-E E L v q w y · · · · · · · · v q w y R E E E
-E E L v a s y · · · · · · · · v a s y R E E E
-E E L · g g · · · · · · & · · · g g · R E E E
-E E > # # # # # # # # # # # # # # # # < E E E
 `);
 
 const resolveMapTile: TileMapResolver = (type, x, y) => {
@@ -481,13 +474,6 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Chair {...position} />
                 </Fragment>
             ); 
-        case '&':
-            return (
-                <Fragment key={key}>
-                    {floor}
-                    <Lever {...position} />
-                </Fragment>
-            ); 
         case 'E':
             return (
                 <GameObject key={key} {...position} layer="ground">
@@ -500,29 +486,31 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Sprite {...spriteData.map} state="door" />
                 </GameObject>
             ); 
+        case '&':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} />
+                </Fragment>
+            ); 
         default:
             return null;
     }
 };
 
-export default function HallOfLeversScene() {
+export default function Bedroom2Scene() {
     return (
         <>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>
-            <GameObject x={5} y={10}>
+            <GameObject x={13} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance2" />
             </GameObject>
-            <GameObject x={13} y={10}>
-                <Collider />
-                <Interactable />
-                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" />
-            </GameObject>
-            <Player x={5} y={10} />
+            <Player x={13} y={5} />
         </>
     );
 }
