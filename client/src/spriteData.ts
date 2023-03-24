@@ -80,6 +80,7 @@ const spriteData: { [index: string]: SpriteProps } = {
             wall_lower_corner_right: [[0, 12]], 
             wall_lower_corner_left: [[2, 12]], 
             left_corner: [[0,15]],
+            right_corner: [[2,15]],
             shelfB: [[5, 7]], 
             shelfC: [[4, 5]], 
         }

@@ -11,6 +11,7 @@ import BedroomScene from '../../scenes/BedroomScene';
 import Bedroom2Scene from '../../scenes/Bedroom2Scene';
 import HallOfLeversScene from '../../scenes/HallOfLeversScene';
 import GreatHallScene from '../../scenes/GreatHallScene';
+import KeyRoomScene from '../../scenes/KeyRoomScene';
 import soundData from '../../soundData';
 import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
@@ -48,6 +49,9 @@ export default function GameView() {
                             </Scene>
                             <Scene id="greathall">
                                 <GreatHallScene />
+                            </Scene>
+                            <Scene id="keyroom">
+                                <KeyRoomScene />
                             </Scene>
                         </SceneManager>
                     </AssetLoader>
