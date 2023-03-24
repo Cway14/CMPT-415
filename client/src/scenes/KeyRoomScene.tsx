@@ -12,26 +12,28 @@ import Lever from '../entities/Lever';
 import Chair from '../entities/Chair';
 
 const mapData = mapDataString(`
-E E L · C C · · · · · · · · · · C C · R E E E E E E E E E E E E E
-E E L v q w y · · · · · · · · v q w y R E E E E E E E E E E E E E
-E E L v a s y · · · · · · · · v a s y R E E E E E E E E E E E E E
-E E L · g g · · · · · · & · · · g g · R E E E E E E E E E E E E E
-E E > # # # # # # # # # # # # # # # # < E E E E E E E E E E E E E
-E E E E E E E E E E { ^ } E E E E E E E E E E E E E E E E E E E E
-E E E E E E E E E E L D R E E E E E E E E E E E E E E E E E E E E
-E E E E E E E { ^ ^ ( · ) ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ }
-E E E E E E E [ - - X · Y - - - - - - - - - - - - - - - - - - - ]
-E E E E E E E L · · · · · · · · · · · · · C · · & · · · · · · · R
-E E E E E E E L · · · · · · C C · · · · C · · · · · C C · · · · R
-E E E E E E E L · · · · · v q w · y · v q w y · · v q w y · · · R
-E E E E E E E L · · · · · v a s y · · v a s y · v · a s · y · · R
-E E E E E E E L · · · · · · · g & · · · g g · · · · g · · · · · R
-E E E E E E E L · · · & · · g · · · · · · · · · · · · g · · · & R
-E E E E E E E > # # # # # # # # # # # # # # # # # # # # # # # # <
-E E E E E E E E E { ^ } E E E E E E E E E E E E E E E E E E E E E
-E E E E E E E E E L D R E E E E E E E E E E E E E E E E E E E E E
-^ ^ ^ ^ ^ ^ ^ ^ ^ ( · ) ^ } E E E E E E E E E E E E E E E E E E E
-- - - - - - - - - X · Y - ] E E E E E E E E E E E E E E E E E E E
+E E E E E E E E E E E E E E E E E E E E E L · · · · · v q w · y · v q w y · · v q w y · · · R E E E E E E
+E E E E E E E E E E E E E E E E E E E E E L · · · · · v a s y · · v a s y · v · a s · y · · R E E E E E E
+E E E E E E E E E E E E E E E E E E E E E L · · · · · · · g & · · · g g · · · · g · · · · · R E E E E E E
+E E E E E E E E E E E E E E E E E E E E E L · · · & · · g · · · · · · · · · · · · g · · · & R E E E E E E
+E E E E E E E E E E E E E E E E E E E E E > # # # # # # # # # # # # # # # # # # # # # # # # < E E E E E E
+E E E E E E E E E E E E E E E E E E E E E E E { ^ } E E E E E E E E E E E E E E E E E E E E E E E E E E E
+E E E E E E E E E E E E E E E E E E E E E E E L D R E E E E E E E E E E E E E E E E E E E E E E E E E E E
+E E { ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ( · ) ^ ^ ^ ^ ^ ^ ^ } E E E E E E E E E E E E E E E E E E E
+E E [ - - - - - - - - - - - - - - - - - - - - X · Y - - - - - - - ] E E E E E E E E E E E E E E E E E E E
+^ ^ ( · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
+- - X · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
+· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
+# # H · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
+E E > # # H · K # # # # # H · K # # # # # H · K # # # # # H · K # < E E E E E E E E E E E E E E E E E E E
+E E E E E L · R E E E E E L · R E E E E E L · R E E E E E L · R E E E E E E E E E E E E E E E E E E E E E 
+E E E { ^ ( · ) ^ } E { ^ ( · ) ^ } E { ^ ( · ) ^ } E { ^ ( · ) ^ } E E E E E E E E E E E E E E E E E E E
+E E E L - X · Y - R E L - X · Y - R E L - X · Y - R E L - X · Y - R E E E E E E E E E E E E E E E E E E E
+E E E L V · · · · R E L V · · · · R E L V · · · · R E L V · · · · R E E E E E E E E E E E E E E E E E E E
+E E E L F · · · · R E L F · · · · R E L F · · · · R E L F · · · · R E E E E E E E E E E E E E E E E E E E
+E E E L F · · · · R E L F · · · · R E L F · · · · R E L F · · · · R E E E E E E E E E E E E E E E E E E E
+E E E L f · · · & R E L f · · · & R E L f · · · & R E L f · · · & R E E E E E E E E E E E E E E E E E E E
+E E E > # # # # # < E > # # # # # < E > # # # # # < E > # # # # # < E E E E E E E E E E E E E E E E E E E
 `);
 
 const resolveMapTile: TileMapResolver = (type, x, y) => {
@@ -266,29 +268,68 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.map} state="wall_lower_corner_right" />
                 </GameObject>
             );   
+        case 'K':
+            return (
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
+                        <Sprite {...spriteData.map} state="left_corner" />
+                </GameObject>
+            ); 
+        case 'H':
+            return (
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
+                        <Sprite {...spriteData.map} state="right_corner" />
+                </GameObject>
+            ); 
+        case 'V':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <GameObject layer="obstacle" {...position}>
+                        <Collider />
+                        <Sprite {...spriteData.items2} state={"left_table3"} />
+                    </GameObject>
+                </Fragment>
+            );
+        case 'F':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <GameObject layer="obstacle" {...position}>
+                        <Collider />
+                        <Sprite {...spriteData.items2} state={"left_table2"} />
+                    </GameObject>
+                </Fragment>
+        );
+        case 'f':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <GameObject layer="obstacle" {...position}>
+                        <Collider />
+                        <Sprite {...spriteData.items2} state={"left_table1"} />
+                    </GameObject>
+                </Fragment>
+        );
         default:
             return null;
     }
 };
 
-export default function GreatHallScene() {
+export default function KeyRoomScene() {
     return (
         <>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>
-            <GameObject x={11} y={13}>
+            <GameObject x={24} y={14}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="halloflevers/exit" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="greathall/exit" />
             </GameObject>
-            <GameObject x={10} y={4}>
-                <Collider />
-                <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="keyroom/entrance" />
-            </GameObject>
-            <Player x={11} y={13} />
+            <Player x={24} y={14} />
         </>
     );
 }
