@@ -20,25 +20,30 @@ import MagicBook from '../entities/MagicBook';
 import Lever from '../entities/Lever';
 
 const mapData = mapDataString(`
-E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
-E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E
-E E L B · · 2 2 R E L B · · 2 2 R E E E E E E
-E E L b · · · · R E L b · · · · R E E E E E E
-E E L · · · · C R E L & · · · C R E E E E E E
-E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ }
-E E > # # # # # < E > # # # # # < [ - - 7 - ]
-E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R
-E E E E L D R E E E E E L D R E E L · · · · R
-E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R
-E E [ - X · Y - - - - - X · Y - - X · · · & R
-E E L · · · · V · · · V · · · · · · · · 3 4 R
-E E L · · · · F · · · F · · · · · · · · 5 6 R
-E E L · · · · f c u · f · · · · · · · K # # <
-E E L · C C · · · · · · · · · · C C · R E E E
-E E L v q w y · · · · · · · · v q w y R E E E
-E E L v a s y · · · · · · · · v a s y R E E E
-E E L · g g · · · · · · & · · · g g · R E E E
-E E > # # # # # # # # # # # # # # # # < E E E
+E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E E E E E
+E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E E E E E
+E E L B · · 2 2 R E L B · · 2 2 R E E E E E E E E E E
+E E L b · · · · R E L b · · · · R E E E E E E E E E E
+E E L · · · · C R E L & · · · C R E E E E E E E E E E
+E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ } E E E E
+E E > # # # # # < E > # # # # # < [ - - 7 - ] E E E E
+E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R E E E E
+E E E E L D R E E E E E L D R E E L · · · · R E E E E
+E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R E E E E
+E E [ - X · Y - - - - - X · Y - - X · · · & R E E E E
+E E L · · · · V · · · V · · · · · · · · 3 4 R E E E E
+E E L · · · · F · · · F · · · · · · · · 5 6 R E E E E
+E E L · · · · f c u · f · · · · · · · K # # < E E E E
+E E L · C C · · · · · · · · · · C C · R E E E E E E E
+E E L v q w y · · · · · · · · v q w y R E E E E E E E
+E E L v a s y · · · · · · · · v a s y R E E E E E E E
+E E L · g g · · · · · · & · · · g g · R E E E E E E E
+E E > # # # # # # # # # # # # # # # # < E E E E E E E
+E E E E E E E E E E { ^ } E E E E E E E E E E E E E E
+E E E E E E E E E E L D R E E E E E E E E E E E E E E
+E E E E E E E { ^ ^ ( · ) ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+E E E E E E E [ - - X · Y - - - - - - - - - - - - - -
+E E E E E E E L · · · · · · · · · · · · · · · · · · ·   
 `);
 
 const resolveMapTile: TileMapResolver = (type, x, y) => {
@@ -512,17 +517,22 @@ export default function HallOfLeversScene() {
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>
-            <GameObject x={5} y={10}>
+            <GameObject x={5} y={15}>
                 <Collider />
                 <Interactable />
                 <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" />
             </GameObject>
-            <GameObject x={13} y={10}>
+            <GameObject x={13} y={15}>
                 <Collider />
                 <Interactable />
                 <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" />
             </GameObject>
-            <Player x={5} y={10} />
+            <GameObject x={11} y={5}>
+                <Collider />
+                <Interactable />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" />
+            </GameObject>
+            <Player x={5} y={15} />
         </>
     );
 }
