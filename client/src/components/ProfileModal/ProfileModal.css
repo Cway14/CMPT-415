@@ -36,7 +36,7 @@
     width: 60%;
     background-color: var(--bg-brown);
     border: 2px solid var(--bg-gold);
-    padding: 2rem;
+    padding: 1.5rem;
     position: relative;
     max-height: 80vh;
 }
@@ -57,29 +57,30 @@
 }
 
 .profileModalHeaderIcon {
-    width: 10rem;
-    height: 10rem;
+    width: 9rem;
+    height: 9rem;
     border-radius: 100%;
     object-fit: cover;
     margin: 0 1rem;
 }
 
-.profileModalBody {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 0;
+.profileModalHeaderIcon svg {
+    width: 8rem;
+    height: 8rem;
 }
 
-.statbar {
-    height: 2rem;
+.profileModalBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
 }
 
 .profileModal input {
     width: 300px;
     height: 30px;
-    margin: 10px 0;
+    margin: 10px;
     border-radius: 5px;
     border: none;
     padding: 5px;
@@ -107,15 +108,17 @@
     border-radius: 20px;
 }
 
-.profileModal button[type="submit"] {
+.profileModal .settings-submit {
     display: block;
-}
-
-.profileModal button:hover {
-    background: var(--bg-gold);
-    color: var(--bg-brown);
     border: 1px solid #000000;
     border-radius: 20px;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+}
+
+.profileModal .settings-submit:hover {
+    background: var(--bg-gold);
+    color: var(--bg-brown);
 }
 
 .profileModalSettings button {
@@ -139,4 +142,16 @@
 
 .logout-button svg {
     padding: 0 0.1rem;
+}
+
+.profileModalFooter button {
+    border: none;
+    font-size: 1rem;
+}
+
+.settings-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
 }
