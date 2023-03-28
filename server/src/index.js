@@ -5,18 +5,18 @@ const express = require("express");
 const cors = require("cors");
 const leaderboardRoutes = require("./routes/leaderboard");
 const userRoutes = require("./routes/user");
+const questionRoutes = require("./routes/question");
 
 const app = express();
 const accessTokenSecret = "lol";
 const activeTokens = [];
-
-app.use(bodyParser.json());
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/leaderboard", leaderboardRoutes);
 app.use("/users", userRoutes);
+app.use("/questions", questionRoutes);
 
 app.post("/signup", async (req, res) => {
   const { email, username, password } = req.body;

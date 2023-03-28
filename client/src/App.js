@@ -5,6 +5,7 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import GameView from "./Pages/GameView/GameView";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 import { useAuth } from "./auth/AuthContext";
+import QuestionForm from "components/Question/QuestionForm";
 
 function RequireAuth({ user, children }) {
   const { currentUser } = useAuth();
@@ -26,6 +27,7 @@ function App() {
           }
         />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/createQuestion" element={<QuestionForm />} />
       </Routes>
     </div>
   );

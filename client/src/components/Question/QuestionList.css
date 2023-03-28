@@ -1,0 +1,51 @@
+.question-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.question-card {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  padding: 16px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.question-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.question-card p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.question-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.question-card li {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.question-card .answer {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.question-card .answer-label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
