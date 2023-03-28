@@ -43,7 +43,7 @@ The default username and password is `root` <br />
 ![image](https://user-images.githubusercontent.com/72360378/153683971-5045bb2c-ee71-427b-9f0c-c44ea34c9aa9.png)
 
 curl -i -H "Content-Type: application/json" -X POST -d '{
-    "emai": "test@gmail.com",
+    "email": "test@gmail.com",
     "username": "test",
     "password": "test"
     }' localhost:5000/signup
