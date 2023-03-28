@@ -1,0 +1,30 @@
+.dialog-modal {
+  background-color: var(--bg-brown);
+  position: fixed;
+  bottom: 0;
+  height: 200px;
+  width: calc(100% - 6rem);
+  border: 1px solid var(--bg-gold);
+  font-size: 3rem;
+  margin: 2rem;
+  padding: 1rem;
+  z-index: 100;
+}
+
+.dialog-modal button {
+  background: none;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+}
+
+.dialog-modal button {
+  fill: var(--bg-gold);
+}
+
+.dialog-modal button:hover {
+  fill: var(--bg-light-brown);
+}
