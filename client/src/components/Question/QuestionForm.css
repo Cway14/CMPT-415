@@ -1,106 +1,106 @@
 .form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  max-width: 1000px;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1000px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
 }
 
 .form-label {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
 }
 
 .input-text {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 .add-option-button,
 .submit-button {
-  background-color: #0077ff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+    background-color: #0077ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .add-option-button:hover,
 .submit-button:hover {
-  background-color: #005fcc;
+    background-color: #005fcc;
 }
 
 .add-option-button {
-  align-self: flex-start;
-  margin-bottom: 1rem;
+    align-self: flex-start;
+    margin-bottom: 1rem;
 }
 
 .answer-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1rem;
-  color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #333;
 }
 
 .answer-checkbox {
-  margin-right: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .submit-button {
-  align-self: flex-end;
+    align-self: flex-end;
 }
 
 .option-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .option-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 .option-remove-button {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  border-radius: 10%;
-  padding: 0.5rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .option-remove-button:hover {
-  background-color: #c0392b;
+    background-color: #c0392b;
 }
