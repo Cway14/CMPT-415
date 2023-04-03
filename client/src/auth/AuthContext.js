@@ -5,6 +5,9 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
+    updatePassword,
+    reauthenticateWithCredential,
+    EmailAuthProvider,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -42,8 +45,16 @@ export function AuthProvider({ children }) {
         return currentUser.updateEmail(email);
     }
 
-    function updatePassword(password) {
-        return currentUser.updatePassword(password);
+    function reauthenticate(password) {
+        const credential = EmailAuthProvider.credential(
+            currentUser.email,
+            password
+        );
+        return reauthenticateWithCredential(currentUser, credential);
+    }
+
+    function updateUserPassword(password) {
+        return updatePassword(currentUser, password);
     }
 
     async function getUserProfile() {
@@ -84,7 +95,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword,
+        updateUserPassword,
+        reauthenticate,
     };
 
     return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LinearProgress, {
     linearProgressClasses,
@@ -9,12 +9,21 @@ import { styled } from "@mui/material/styles";
 
 import { useAuth } from "../../auth/AuthContext";
 import SettingsForm from "./SettingsForm";
+import useGame from "../../@core/useGame";
+import coin from "../../assets/coin.png";
 
 const ProfileModal = ({ closeModal }) => {
+    const { setPaused } = useGame();
     const { userProfile, logout } = useAuth();
     const totalQuestions = 40; // TODO: get from server
     const progress = (userProfile?.score / totalQuestions) * 100;
     const [showSettings, setShowSettings] = React.useState(false);
+
+    // Pause game when modal is open
+    useEffect(() => {
+        setPaused(true);
+        return () => setPaused(false);
+    });
 
     const onContainerClick = (e) => {
         if (e.target.className.includes("profileModalContainer")) {
@@ -46,10 +55,13 @@ const ProfileModal = ({ closeModal }) => {
                         />
                         <div>
                             <h2>{userProfile.name}</h2>
+                            <div className="center-row">
+                                <img src={coin} alt="coin" height={30} />
+                                <p>{userProfile.score}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="profileModalStats">
-                        <h2>Statistics:</h2>
                         <div>
                             <h4>
                                 Correctly Answered Questions:

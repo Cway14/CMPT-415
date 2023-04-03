@@ -5,33 +5,32 @@ import { useNotification } from "../../context/NotificationContext";
 import { useAuth } from "../../auth/AuthContext";
 
 const SettingsForm = () => {
-    const { updatePassword } = useAuth();
+    const { updateUserPassword, reauthenticate } = useAuth();
     const { showNotification } = useNotification();
 
     const submitAction = async (values) => {
+        console.log(values);
         // validate values
-        if (!formik.newPassword1 || !formik.newPassword2) {
+        if (!values.oldPassword || !values.newPassword) {
             showNotification("Please fill out all fields.", "error");
             return;
         }
 
-        if (formik.newPassword1 !== formik.newPassword2) {
-            showNotification("Passwords do not match.", "error");
-            return;
-        }
-
         try {
-            await updatePassword(formik.newPassword1);
+            console.log("reauthenticating...", values.oldPassword);
+            await reauthenticate(values.oldPassword);
+            await updateUserPassword(values.newPassword);
             showNotification("Password updated successfully.", "success");
         } catch (error) {
+            console.log(error);
             showNotification(error.message, "error");
         }
     };
 
     const formik = useFormik({
         initialValues: {
-            newPassword1: "",
-            newPassword2: "",
+            oldPassword: "",
+            newPassword: "",
         },
         onSubmit: (values) => submitAction(values),
     });
@@ -45,19 +44,19 @@ const SettingsForm = () => {
                 <div className="justify-between">
                     <input
                         type="password"
-                        name="password"
+                        name="oldPassword"
                         onChange={formik.handleChange}
-                        value={formik.values.newPassword1}
+                        value={formik.values.oldPassword}
                         minLength="6"
-                        placeholder="New Password"
+                        placeholder="Old Password"
                     />
                     <input
                         type="password"
-                        name="password"
+                        name="newPassword"
                         onChange={formik.handleChange}
-                        value={formik.values.newPassword2}
+                        value={formik.values.newPassword}
                         minLength="6"
-                        placeholder="Confirm Password"
+                        placeholder="New Password"
                     />
                 </div>
                 <button type="submit" className="modal-button settings-submit">

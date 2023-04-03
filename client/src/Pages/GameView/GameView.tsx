@@ -15,8 +15,6 @@ import KeyRoomScene from '../../scenes/KeyRoomScene';
 import soundData from '../../soundData';
 import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
-import ProfileModal from '../../components/ProfileModal/ProfileModal';
-import ProfileButton from '../../components/ProfileModal/ProfileButton';
 import { useDialog } from "../../context/DialogContext";
 
 
@@ -47,12 +45,9 @@ export default function GameView() {
 
     return (
         <>
-            <ProfileButton onClick={() => setShowProfileModal(!showProfileModal)} />
-            {showProfileModal && <ProfileModal closeModal={() => setShowProfileModal(false)} />}
-
             <Global styles={globalStyles} />
             <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
-                <Game cameraZoom={80}>
+                <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
                     <AssetLoader urls={urls} placeholder="Loading assets ...">
                         <ShowDelayedDialog />
                         <SceneManager defaultScene="bedroom">
