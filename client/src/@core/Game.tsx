@@ -5,6 +5,9 @@ import { GameObjectLayer, GameObjectRef } from './GameObject';
 import { SceneExitEvent } from './Scene';
 import createPubSub, { PubSub } from './utils/createPubSub';
 
+import ProfileModal from '../components/ProfileModal/ProfileModal';
+import ProfileButton from '../components/ProfileModal/ProfileButton';
+
 export type GameObjectRegistry<T = GameObjectRef> = Map<symbol | string, T>;
 
 export interface GameObjectRegistryUtils {
@@ -34,12 +37,16 @@ export const GameContext = React.createContext<GameContextValue>(null);
 
 interface Props extends Partial<GameContextValue['settings']> {
     children: React.ReactNode;
+    showProfileModal: boolean;
+    setShowProfileModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Game({
     movementDuration = 250,
     cameraZoom = 64,
     children,
+    showProfileModal,
+    setShowProfileModal,
 }: Props) {
     const [paused, setPaused] = useState(false);
     const [mapSize, setMapSize] = useState<[number, number]>(() => [1, 1]);
@@ -136,25 +143,28 @@ export default function Game({
     };
 
     return (
-        <div style={{"position": "relative", "userSelect": "none", "width": "100%", "height": "100%"}}>
-            <Canvas
-                camera={{
-                    position: [0, 0, 32],
-                    zoom: cameraZoom,
-                    near: 0.1,
-                    far: 64,
-                }}
-                orthographic
-                // noEvents
-                // gl2
-                // @ts-ignore
-                gl={{ antialias: false }}
-                onContextMenu={e => e.preventDefault()}
-            >
-                <GameContext.Provider value={contextValue}>
+        <div style={{ "position": "relative", "userSelect": "none", "width": "100%", "height": "100%" }}>
+            <GameContext.Provider value={contextValue}>
+                <ProfileButton onClick={() => setShowProfileModal(!showProfileModal)} />
+                {showProfileModal && <ProfileModal closeModal={() => setShowProfileModal(false)} />}
+
+                <Canvas
+                    camera={{
+                        position: [0, 0, 32],
+                        zoom: cameraZoom,
+                        near: 0.1,
+                        far: 64,
+                    }}
+                    orthographic
+                    // noEvents
+                    // gl2
+                    // @ts-ignore
+                    gl={{ antialias: false }}
+                    onContextMenu={e => e.preventDefault()}
+                >
                     {children}
-                </GameContext.Provider>
-            </Canvas>
+                </Canvas>
+            </GameContext.Provider>
         </div>
     );
 }

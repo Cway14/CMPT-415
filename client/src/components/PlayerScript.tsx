@@ -43,7 +43,7 @@ export default function PlayerScript() {
         const canCross =
             direction.x !== 0 && direction.y !== 0
                 ? // test diagonal movement
-                  testCollision(horizontal) && testCollision(vertical)
+                testCollision(horizontal) && testCollision(vertical)
                 : true;
 
         if (canCross) {
