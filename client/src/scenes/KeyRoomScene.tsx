@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject from '../@core/GameObject';
 import Interactable from '../@core/Interactable';
@@ -10,6 +10,7 @@ import Player from '../entities/Player';
 import spriteData from '../spriteData';
 import Lever from '../entities/Lever';
 import Chair from '../entities/Chair';
+import { useDialog } from "../context/DialogContext";
 
 const mapData = mapDataString(`
 E E E E E E E E E E E E E E E E E E E E E L · · · · · v q w · y · v q w y · · v q w y · · · R E E E E E E
@@ -316,6 +317,21 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return null;
     }
 };
+
+const ShowDelayedDialog = () => { // NOTE: only put in its own component so it doesnt show up until after the assets are loaded
+    const messages = [
+        "On to the last room lets go wooo! ",
+        "There are a lot more rooms this time.",
+        "Let get each of these levers."
+    ];
+
+    const { showDialog } = useDialog();
+    useEffect(() => {
+        showDialog(messages);
+    }, []);
+    return <></>
+}
+
 
 export default function KeyRoomScene() {
     return (
