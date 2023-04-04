@@ -97,6 +97,7 @@ export function AuthProvider({ children }) {
         updateEmail,
         updateUserPassword,
         reauthenticate,
+        getUserProfile,
     };
 
     return (

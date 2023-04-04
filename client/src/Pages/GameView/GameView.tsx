@@ -15,6 +15,8 @@ import KeyRoomScene from '../../scenes/KeyRoomScene';
 import soundData from '../../soundData';
 import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
+import { useDialog } from "../../context/DialogContext";
+import { QuestionProvider } from '../../context/QuestionContext';
 
 
 const urls = [
@@ -29,36 +31,39 @@ export default function GameView() {
 
     return (
         <>
-            <Global styles={globalStyles} />
-            <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
-                <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
-                    <AssetLoader urls={urls} placeholder="Loading assets ...">
-                        <SceneManager defaultScene="bedroom">
-                            <Scene id="office">
-                                <OfficeScene />
-                            </Scene>
-                            <Scene id="other">
-                                <OtherScene />
-                            </Scene>
-                            <Scene id="bedroom">
-                                <BedroomScene />
-                            </Scene>
-                            <Scene id="room2">
-                                <Bedroom2Scene />
-                            </Scene>
-                            <Scene id="halloflevers">
-                                <HallOfLeversScene />
-                            </Scene>
-                            <Scene id="greathall">
-                                <GreatHallScene />
-                            </Scene>
-                            <Scene id="keyroom">
-                                <KeyRoomScene />
-                            </Scene>
-                        </SceneManager>
-                    </AssetLoader>
-                </Game>
-            </div>
+            <QuestionProvider >
+                <Global styles={globalStyles} />
+                <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
+                    <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
+                        <AssetLoader urls={urls} placeholder="Loading assets ...">
+                            <ShowDelayedDialog />
+                            <SceneManager defaultScene="bedroom">
+                                <Scene id="office">
+                                    <OfficeScene />
+                                </Scene>
+                                <Scene id="other">
+                                    <OtherScene />
+                                </Scene>
+                                <Scene id="bedroom">
+                                    <BedroomScene />
+                                </Scene>
+                                <Scene id="room2">
+                                    <Bedroom2Scene />
+                                </Scene>
+                                <Scene id="halloflevers">
+                                    <HallOfLeversScene />
+                                </Scene>
+                                <Scene id="greathall">
+                                    <GreatHallScene />
+                                </Scene>
+                                <Scene id="keyroom">
+                                    <KeyRoomScene />
+                                </Scene>
+                            </SceneManager>
+                        </AssetLoader>
+                    </Game>
+                </div>
+            </QuestionProvider>
         </>
     );
 }

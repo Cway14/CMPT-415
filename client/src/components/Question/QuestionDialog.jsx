@@ -1,54 +1,82 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useAuth } from "../../auth/AuthContext";
 import "./QuestionDialog.css";
+import { useQuestion } from "context/QuestionContext";
 
 const QuestionDialog = ({ question }) => {
-  const [selected, setSelected] = useState([]);
-  const [feedback, setFeedback] = useState("");
+    const [selected, setSelected] = useState([]);
+    const [feedback, setFeedback] = useState("");
 
-  const handleSelect = (option) => {
-    const index = selected.indexOf(option);
-    if (index === -1) {
-      setSelected([...selected, option]);
-    } else {
-      const updatedSelected = [...selected];
-      updatedSelected.splice(index, 1);
-      setSelected(updatedSelected);
-    }
-  };
+    const { userProfile, getUserProfile } = useAuth();
+    const { hideQuestion, changeLeverState } = useQuestion();
 
-  const handleSubmit = () => {
-    const isCorrect = selected.sort().toString() === question.answers.sort().toString();
+    const handleSelect = (option) => {
+        const index = selected.indexOf(option);
+        if (index === -1) {
+            setSelected([...selected, option]);
+        } else {
+            const updatedSelected = [...selected];
+            updatedSelected.splice(index, 1);
+            setSelected(updatedSelected);
+        }
+    };
 
-    if (isCorrect) {
-      setFeedback("Correct!");
-    } else {
-      setFeedback("Incorrect.");
-    }
-  };
+    const handleSubmit = async () => {
+        // send the question to the server to update the user's progress
+        const response = await fetch(
+            process.env.REACT_APP_API + "/questions/submit?id=" + question.id,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ uid: userProfile.id, answer: selected }),
+            }
+        );
 
-  return (
-    <div className="question-dialog">
-      <div className="question-container">
-        <h2 className="question">{question.question}</h2>
-        <div className="options-container">
-          {question.options.map((option, index) => (
-            <div
-              key={index}
-              className={`option ${selected.includes(option) ? "selected" : ""}`}
-              onClick={() => handleSelect(option)}
-            >
-              {option}
+        const data = await response.json();
+
+        const { isCorrect } = data;
+
+        if (isCorrect) {
+            setFeedback("Correct!");
+
+            hideQuestion();
+
+            // update coins
+            await getUserProfile();
+
+            // update lever status
+            changeLeverState();
+        } else {
+            setFeedback("Incorrect, try again!");
+        }
+    };
+
+    return (
+        <div className="question-dialog">
+            <div className="question-container">
+                <h2 className="question">{question.question}</h2>
+                <div className="options-container">
+                    {question.options?.map((option, index) => (
+                        <in
+                            key={index}
+                            className={`option ${
+                                selected.includes(option) ? "selected" : ""
+                            }`}
+                            onClick={() => handleSelect(option)}
+                        >
+                            {option}
+                        </in>
+                    ))}
+                </div>
+                <button onClick={handleSubmit}>Submit</button>
+                <div className={`feedback-container ${feedback ? "show" : ""}`}>
+                    {feedback}
+                </div>
             </div>
-          ))}
         </div>
-      </div>
-      <button onClick={handleSubmit}>Submit</button>
-      <div className={`feedback-container ${feedback ? "show" : ""}`}>
-        {feedback}
-      </div>
-    </div>
-  );
+    );
 };
 
 // QuestionDialog.propTypes = {
