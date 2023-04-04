@@ -25,21 +25,6 @@ const urls = [
     // flatten
 ].reduce<string[]>((acc, val) => acc.concat(val), []);
 
-const ShowDelayedDialog = () => { // NOTE: only put in its own component so it doesnt show up until after the assets are loaded
-    const messages = [
-        "Welcome to the game!",
-        "This is an example of a dialog",
-        "This is the third dialog",
-        "This is the fourth dialog",
-    ];
-
-    const { showDialog } = useDialog();
-    useEffect(() => {
-        showDialog(messages);
-    }, []);
-    return <></>
-}
-
 export default function GameView() {
     const [width, height] = useWindowSize();
     const [showProfileModal, setShowProfileModal] = React.useState(false);

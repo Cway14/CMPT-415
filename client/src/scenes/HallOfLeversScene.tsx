@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject from '../@core/GameObject';
 import Interactable from '../@core/Interactable';
@@ -16,16 +16,16 @@ import Shelf from '../entities/Shelf';
 import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
-import MagicBook from '../entities/MagicBook';
 import Lever from '../entities/Lever';
 import { useQuestion } from 'context/QuestionContext';
+import { useDialog } from "../context/DialogContext";
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E E E E E
 E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E E E E E
 E E L B · · 2 2 R E L B · · 2 2 R E E E E E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E E E E E
-E E L · · · · C R E L & · · · C R E E E E E E E E E E
+E E L & · · · C R E L & · · · C R E E E E E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ } E E E E
 E E > # # # # # < E > # # # # # < [ - - 7 - ] E E E E
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R E E E E
@@ -477,7 +477,6 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                 <Fragment key={key}>
                     {floor}
                     <Table {...position} />
-                    <MagicBook{...position} />
                 </Fragment>
             );
         case 'C':
@@ -511,12 +510,27 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
+const ShowDelayedDialog = () => { // NOTE: only put in its own component so it doesnt show up until after the assets are loaded
+    const messages = [
+        "That first room was easy let’s get this over with fast.",
+        "I can see more lever's spread out throughout the room.",
+        "Let's try them and see what happens."
+    ];
+
+    const { showDialog } = useDialog();
+    useEffect(() => {
+        showDialog(messages);
+    }, []);
+    return <></>
+}
+
 export default function HallOfLeversScene() {
     const { setChapter } = useQuestion();
     setChapter("6 and 7");
     return (
         <>
             <GameObject name="map">
+                <ShowDelayedDialog />
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>

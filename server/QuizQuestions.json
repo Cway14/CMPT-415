@@ -11,6 +11,9 @@
       ],
       "answers": [
         "critical section"
+      ],
+      "feedback": [
+        "The critical section refers to the segment of code where processes access shared resources, such as common variables and files, and perform write operations on them. Since processes execute concurrently, any process can be interrupted mid-execution."
       ]
     },
     {
@@ -28,6 +31,9 @@
         "Bounded Wating",
         "Mutual Exclusion",
         "Progress"
+      ],
+      "feedback": [
+        "There should be a boundary on getting chances to enter into the critical section. If bounded waiting is not satisfied then there is a possibility of starvation."
       ]
     },
     {
@@ -41,8 +47,10 @@
         "when another process is in its critical section"
       ],
       "answers": [
-        "after a process has made a request to enter its critical section and before the request is granted",
-        "none of the mentioned"
+        "after a process has made a request to enter its critical section and before the request is granted"
+      ],
+      "feedback": [
+        "Bounded wait insures that there exists a bound, or limit, on the number of times other processes are allowed to enter their critical sections after a process has made request to enter its critical section and before that request is granted. Which implies that there must not be any starvation."
       ]
     },
     {
@@ -57,6 +65,9 @@
       ],
       "answers": [
         "Bounded Wating"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -73,6 +84,9 @@
       "answers": [
         "wait()",
         "signal()"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -87,6 +101,9 @@
       ],
       "answers": [
         "they require busy waiting"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -101,6 +118,9 @@
       ],
       "answers": [
         "readers"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -115,6 +135,9 @@
       ],
       "answers": [
         "2"
+      ],
+      "feedback": [
+        "The semaphore T ensures that all the statements from A finish execution before B begins. So now there is only one way in which statements from A and B can be executed: A1 A2 B1 B2: X = 11"
       ]
     },
     {
@@ -129,6 +152,9 @@
       ],
       "answers": [
         "4"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -145,6 +171,9 @@
       "answers": [
         "The empty and full semaphores count the number of empty and full buffers. The semaphore empty is initialised to the value n; the semaphore full is initialised to the value 0",
         "We assume that the pool consists of n buffers, each capable of holding one item"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -159,6 +188,9 @@
       ],
       "answers": [
         "5 philosophers and 5 chopsticks"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -173,6 +205,9 @@
       ],
       "answers": [
         "1-k"
+      ],
+      "feedback": [
+        "Assume the buffer is full now. If the producer executes wait(mutex) first and gets access to the buffer, then the producer will be blocked on wait(empty) and wait for the consumer to call signal(empty). However, the consumer is now blocked on the mutex. A similar situation can happen when the order of wait(full) and wait(mutex) changes."
       ]
     },
     {
@@ -188,6 +223,9 @@
       "answers": [
         "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) can cause deadlock",
         "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) will not affect the execution"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -202,6 +240,9 @@
       ],
       "answers": [
         "It does not satisfy the Mutual Exclusion requirement"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -217,6 +258,9 @@
       "answers": [
         "It does not satisfy the Progress requirement",
         "It does not satisfy the Bounded Waiting rquirement"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -230,7 +274,9 @@
       ],
       "answers": [
         "x=1"
-      ]
+      ],
+      "feedback": [
+        "x++ is implemented in three instructions: Read X into a register, Increment the value, Store the value (Write it back), The thread can be pre-empted in between any of those."      ]
     },
     {
       "topic": "Synchro and Classical",
@@ -243,6 +289,9 @@
       ],
       "answers": [
         "Accesses shared resources"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -257,6 +306,9 @@
       ],
       "answers": [
         "8"
+      ],
+      "feedback": [
+        "Wait operation decrements the value of the semaphore variable by 1. Signal operation increments the value of the semaphore variable by 1. Final value of semaphore variable S = 6 – (8 x 1) + (10 x 1) = 8"
       ]
     },
     {
@@ -271,6 +323,9 @@
       ],
       "answers": [
         "Starvation can occur but deadlock cannot occur"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -283,6 +338,9 @@
       ],
       "answers": [
         "False"
+      ],
+      "feedback": [
+        "If the mutex is already locked by another thread, the thread waits for the mutex to become available. The thread that has locked a mutex becomes its current owner and remains the owner until the same thread has unlocked it."
       ]
     },
     {
@@ -297,6 +355,9 @@
       ],
       "answers": [
         "Starvation"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -311,6 +372,9 @@
       ],
       "answers": [
         "race condition"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -325,6 +389,9 @@
       ],
       "answers": [
         "its magnitude is the number of processes waiting on that semaphore"
+      ],
+      "feedback": [
+        "If the resulting semaphore value is negative, the calling thread or process is blocked, and cannot continue until some other thread or process increments it"
       ]
     },
     {
@@ -339,6 +406,9 @@
       ],
       "answers": [
         "3"
+      ], 
+      "feedback": [
+        "Any one of the 4 processes can get into critical section after executing wait(mutex) which decrements the mutex value to 0. At this time, P5 can enter critical section by incrementing the value to 1. Now any of the other 4 processes can enter the critical section decrementing the mutex value to 0. Now, none of the remaining processes can get into the critical sections."
       ]
     },
     {
@@ -351,6 +421,9 @@
       ],
       "answers": [
         "No"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -363,6 +436,9 @@
       ],
       "answers": [
         "Yes"
+      ],
+      "feedback": [
+        "Assume T1 finishes execution of lock(m1), lock(m2) and unlock(m1), and is about to execute lock(m1). Assume T2 finishese execution of lock(m1), and is about to execute lock(m2). T1 is requesting m1, but holding the lock for m2; T2 is requesting m2, but holding the lock for m1. A deadlock occurred."
       ]
     },
     {
@@ -378,6 +454,9 @@
       "answers": [
         "Mutual exclusion",
         "Circular wait"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -393,6 +472,9 @@
         "Imposing a total ordering on all resource can prevent the deadlock",
         "Dynamically making allocation decisions can avoid the deadlock",
         "A deadlock can be resolved by releasing all the resources held by the current process"
+      ],
+      "feedback": [
+        "A deadlock is a situation in which two computer programs sharing the same resource are effectively preventing each other from accessing the resource, resulting in both programs ceasing to function."
       ]
     },
     {
@@ -407,6 +489,9 @@
       ],
       "answers": [
         "2"
+      ],
+      "feedback": [
+        "Assume all the processses are requesting 3 resources, and OS allocates 2, 1, 1, 1 resource(s) to each process. Then none of them has adequate resources to run and will need to wait for each other."
       ]
     },
     {
@@ -419,6 +504,9 @@
       ],
       "answers": [
         "False"
+      ],
+      "feedback": [
+        "Not in multiple instance scenario"
       ]
     },
     {
@@ -433,6 +521,9 @@
       ],
       "answers": [
         "In deadlock prevention, the request for resources is always granted if the resulting state is safe"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -447,6 +538,9 @@
       ],
       "answers": [
         "Never request a resource after releasing any resource"
+      ],
+      "feedback": [
+        ""
       ]
     },
     {
@@ -461,6 +555,9 @@
       ],
       "answers": [
         "none of the above"
+      ],
+      "feedback": [
+        "When there is only one resource, the conditions of hold and wait and circular wait gets eliminated. With the assumption that no process can use a resource for an infinite amount of time, whenever a process will finish its execution, another process can get the resource. So a deadlock can't occur."
       ]
     },
     {
@@ -474,6 +571,9 @@
       ],
       "answers": [
         "starvation"
+      ],
+      "feedback": [
+        "A condition where a computer process cannot be supported by available computer resource"
       ]
     }
   ]

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject from '../@core/GameObject';
 import Interactable from '../@core/Interactable';
@@ -11,6 +11,7 @@ import spriteData from '../spriteData';
 import Lever from '../entities/Lever';
 import Chair from '../entities/Chair';
 import { useQuestion } from 'context/QuestionContext';
+import { useDialog } from "../context/DialogContext";
 
 const mapData = mapDataString(`
 E E L · C C · · · · · · · · · · C C · R E E E E E E E E E E E E E
@@ -272,12 +273,26 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
+const ShowDelayedDialog = () => { // NOTE: only put in its own component so it doesnt show up until after the assets are loaded
+    const messages = [
+        "Whew. That was harder than the last room. But it’s finally done, let's see what’s next. ",
+        "Wow there's a lot of tables spread out let's try to find the next levers"
+    ];
+
+    const { showDialog } = useDialog();
+    useEffect(() => {
+        showDialog(messages);
+    }, []);
+    return <></>
+}
+
 export default function GreatHallScene() {
     const { setChapter } = useQuestion();
     setChapter("6 and 7");
     return (
         <>
             <GameObject name="map">
+                <ShowDelayedDialog />
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
             </GameObject>

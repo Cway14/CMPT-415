@@ -105,7 +105,7 @@ const spriteData: { [index: string]: SpriteProps } = {
             book_bot: [[7, 2]], 
             book_top: [[7, 3]], 
             box: [[8,15]],
-            table: [[3,9]],
+            table: [[1,15]],
             chair: [[2, 15]],
             chair2: [[3, 15]],
             chair3: [[4, 15]],
