@@ -13,7 +13,7 @@
         "critical section"
       ],
       "feedback": [
-        ""
+        "The critical section refers to the segment of code where processes access shared resources, such as common variables and files, and perform write operations on them. Since processes execute concurrently, any process can be interrupted mid-execution."
       ]
     },
     {
@@ -33,7 +33,7 @@
         "Progress"
       ],
       "feedback": [
-        ""
+        "There should be a boundary on getting chances to enter into the critical section. If bounded waiting is not satisfied then there is a possibility of starvation."
       ]
     },
     {
@@ -47,11 +47,10 @@
         "when another process is in its critical section"
       ],
       "answers": [
-        "after a process has made a request to enter its critical section and before the request is granted",
-        "none of the mentioned"
+        "after a process has made a request to enter its critical section and before the request is granted"
       ],
       "feedback": [
-        ""
+        "Bounded wait insures that there exists a bound, or limit, on the number of times other processes are allowed to enter their critical sections after a process has made request to enter its critical section and before that request is granted. Which implies that there must not be any starvation."
       ]
     },
     {
@@ -277,8 +276,7 @@
         "x=1"
       ],
       "feedback": [
-        "x++ is implemented in three instructions: Read X into a register, Increment the value, Store the value (Write it back), The thread can be pre-empted in between any of those."
-      ]
+        "x++ is implemented in three instructions: Read X into a register, Increment the value, Store the value (Write it back), The thread can be pre-empted in between any of those."      ]
     },
     {
       "topic": "Synchro and Classical",
@@ -342,7 +340,7 @@
         "False"
       ],
       "feedback": [
-        ""
+        "If the mutex is already locked by another thread, the thread waits for the mutex to become available. The thread that has locked a mutex becomes its current owner and remains the owner until the same thread has unlocked it."
       ]
     },
     {
@@ -393,7 +391,7 @@
         "its magnitude is the number of processes waiting on that semaphore"
       ],
       "feedback": [
-        ""
+        "If the resulting semaphore value is negative, the calling thread or process is blocked, and cannot continue until some other thread or process increments it"
       ]
     },
     {
@@ -476,7 +474,7 @@
         "A deadlock can be resolved by releasing all the resources held by the current process"
       ],
       "feedback": [
-        ""
+        "A deadlock is a situation in which two computer programs sharing the same resource are effectively preventing each other from accessing the resource, resulting in both programs ceasing to function."
       ]
     },
     {
@@ -559,7 +557,7 @@
         "none of the above"
       ],
       "feedback": [
-        ""
+        "When there is only one resource, the conditions of hold and wait and circular wait gets eliminated. With the assumption that no process can use a resource for an infinite amount of time, whenever a process will finish its execution, another process can get the resource. So a deadlock can't occur."
       ]
     },
     {
@@ -575,7 +573,7 @@
         "starvation"
       ],
       "feedback": [
-        ""
+        "A condition where a computer process cannot be supported by available computer resource"
       ]
     }
   ]
