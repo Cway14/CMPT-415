@@ -16,7 +16,6 @@ import Shelf from '../entities/Shelf';
 import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
-import MagicBook from '../entities/MagicBook';
 import Lever from '../entities/Lever';
 
 const mapData = mapDataString(`
@@ -24,7 +23,7 @@ E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
 E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E
 E E L B · · 2 2 R E L B · · 2 2 R E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E
-E E L · · · · C R E L & · · · C R E E E E E E
+E E L & · · · C R E L & · · · C R E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ }
 E E > # # # # # < E > # # # # # < [ - - 7 - ]
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R
@@ -464,7 +463,6 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                 <Fragment key={key}>
                     {floor}
                     <Table {...position}/>
-                    <MagicBook{...position}/>
                 </Fragment>
             );  
         case 'C':

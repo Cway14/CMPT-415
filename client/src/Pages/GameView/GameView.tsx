@@ -15,7 +15,6 @@ import KeyRoomScene from '../../scenes/KeyRoomScene';
 import soundData from '../../soundData';
 import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
-import { useDialog } from "../../context/DialogContext";
 
 
 const urls = [
@@ -23,21 +22,6 @@ const urls = [
     ...Object.values(soundData).map(data => data.src),
     // flatten
 ].reduce<string[]>((acc, val) => acc.concat(val), []);
-
-const ShowDelayedDialog = () => { // NOTE: only put in its own component so it doesnt show up until after the assets are loaded
-    const messages = [
-        "Welcome to the game!",
-        "This is an example of a dialog",
-        "This is the third dialog",
-        "This is the fourth dialog",
-    ];
-
-    const { showDialog } = useDialog();
-    useEffect(() => {
-        showDialog(messages);
-    }, []);
-    return <></>
-}
 
 export default function GameView() {
     const [width, height] = useWindowSize();
@@ -49,7 +33,6 @@ export default function GameView() {
             <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
                 <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
                     <AssetLoader urls={urls} placeholder="Loading assets ...">
-                        <ShowDelayedDialog />
                         <SceneManager defaultScene="bedroom">
                             <Scene id="office">
                                 <OfficeScene />
