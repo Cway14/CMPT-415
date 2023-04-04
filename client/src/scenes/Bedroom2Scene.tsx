@@ -18,6 +18,7 @@ import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import MagicBook from '../entities/MagicBook';
 import Lever from '../entities/Lever';
+import { useQuestion } from 'context/QuestionContext';
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
@@ -69,149 +70,149 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_bottom" />
+                    <Sprite {...spriteData.map} state="wall_bottom" />
                 </GameObject>
             );
         case 'R':
             return (
-                 <GameObject key={key} {...position} layer="wall">
-                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_right" />
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
+                    <Sprite {...spriteData.map} state="wall_right" />
                 </GameObject>
             );
         case 'L':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_left" />
+                    <Sprite {...spriteData.map} state="wall_left" />
                 </GameObject>
             );
         case '[':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_left_top_lower" />
+                    <Sprite {...spriteData.map} state="wall_left_top_lower" />
                 </GameObject>
-            );     
+            );
         case ']':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_right_top_lower" />
+                    <Sprite {...spriteData.map} state="wall_right_top_lower" />
                 </GameObject>
-                 );     
+            );
         case '{':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_left_top_upper" />
+                    <Sprite {...spriteData.map} state="wall_left_top_upper" />
                 </GameObject>
-            );   
+            );
         case '}':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_right_top_upper" />
+                    <Sprite {...spriteData.map} state="wall_right_top_upper" />
                 </GameObject>
-            );  
+            );
         case '(':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_upper_corner_left" />
+                    <Sprite {...spriteData.map} state="wall_upper_corner_left" />
                 </GameObject>
-            );  
+            );
         case ')':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_upper_corner_right" />
+                    <Sprite {...spriteData.map} state="wall_upper_corner_right" />
                 </GameObject>
             );
         case 'K':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="left_corner" />
+                    <Sprite {...spriteData.map} state="left_corner" />
                 </GameObject>
-            ); 
+            );
         case 'X':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
                     <Sprite {...spriteData.map} state="wall_lower_corner_left" />
                 </GameObject>
-            );  
+            );
         case 'Y':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_lower_corner_right" />
+                    <Sprite {...spriteData.map} state="wall_lower_corner_right" />
                 </GameObject>
-            );   
+            );
         case '-':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_top_lower" />
+                    <Sprite {...spriteData.map} state="wall_top_lower" />
                 </GameObject>
-            );   
+            );
         case '^':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_top_upper" />
+                    <Sprite {...spriteData.map} state="wall_top_upper" />
                 </GameObject>
             );
         case '>':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_left_bottom" />
+                    <Sprite {...spriteData.map} state="wall_left_bottom" />
                 </GameObject>
             );
         case '<':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_right_bottom" />
+                    <Sprite {...spriteData.map} state="wall_right_bottom" />
                 </GameObject>
-            );  
+            );
         case 'B':
-                return (
-                    <Fragment key={key}>
-                        {floor}
-                        <BedTop {...position} />
-                    </Fragment>
-                ); 
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <BedTop {...position} />
+                </Fragment>
+            );
         case 'b':
             return (
                 <Fragment key={key}>
                     {floor}
                     <BedBot {...position} />
-                 </Fragment>
-            ); 
+                </Fragment>
+            );
         case '1':
             return (
                 <Fragment key={key}>
                     {bot_wall}
                     <BookShelfTop {...position} />
                 </Fragment>
-            ); 
+            );
         case '2':
             return (
                 <Fragment key={key}>
                     {floor}
                     <BookShelfBot {...position} />
                 </Fragment>
-            ); 
+            );
         case 'S':
             return (
                 <Fragment key={key}>
                     {bot_wall}
                     <Shelf {...position} />
-                 </Fragment>
-                );
+                </Fragment>
+            );
         case '_':
             return (
                 <Fragment key={key}>
@@ -351,7 +352,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"left_table2"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'f':
             return (
                 <Fragment key={key}>
@@ -361,7 +362,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"left_table1"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'c':
             return (
                 <Fragment key={key}>
@@ -371,7 +372,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"cent_table"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'u':
             return (
                 <Fragment key={key}>
@@ -381,7 +382,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items} state={"up_table"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'q':
             return (
                 <Fragment key={key}>
@@ -391,7 +392,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"table_1"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'w':
             return (
                 <Fragment key={key}>
@@ -401,7 +402,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"table_2"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'a':
             return (
                 <Fragment key={key}>
@@ -411,7 +412,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"table_3"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 's':
             return (
                 <Fragment key={key}>
@@ -421,7 +422,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"table_4"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'v':
             return (
                 <Fragment key={key}>
@@ -431,7 +432,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"chair4"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'g':
             return (
                 <Fragment key={key}>
@@ -441,7 +442,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"chair2"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'y':
             return (
                 <Fragment key={key}>
@@ -451,7 +452,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                         <Sprite {...spriteData.items2} state={"chair3"} />
                     </GameObject>
                 </Fragment>
-        );
+            );
         case 'O':
             return (
                 <Fragment key={key}>
@@ -463,42 +464,44 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Table {...position}/>
-                    <MagicBook{...position}/>
+                    <Table {...position} />
+                    <MagicBook{...position} />
                 </Fragment>
-            );  
+            );
         case 'C':
             return (
                 <Fragment key={key}>
                     {floor}
                     <Chair {...position} />
                 </Fragment>
-            ); 
+            );
         case 'E':
             return (
                 <GameObject key={key} {...position} layer="ground">
                     <Sprite {...spriteData.items2} state="space" />
                 </GameObject>
-            ); 
+            );
         case 'D':
             return (
                 <GameObject key={key} {...position} layer="ground">
                     <Sprite {...spriteData.map} state="door" />
                 </GameObject>
-            ); 
+            );
         case '&':
             return (
                 <Fragment key={key}>
                     {floor}
                     <Lever {...position} />
                 </Fragment>
-            ); 
+            );
         default:
             return null;
     }
 };
 
 export default function Bedroom2Scene() {
+    const { setChapter } = useQuestion();
+    setChapter("6 and 7");
     return (
         <>
             <GameObject name="map">

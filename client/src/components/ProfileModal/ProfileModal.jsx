@@ -15,15 +15,31 @@ import coin from "../../assets/coin.png";
 const ProfileModal = ({ closeModal }) => {
     const { setPaused } = useGame();
     const { userProfile, logout } = useAuth();
-    const totalQuestions = 40; // TODO: get from server
-    const progress = (userProfile?.score / totalQuestions) * 100;
+
     const [showSettings, setShowSettings] = React.useState(false);
+    const [statistics, setStatistics] = React.useState({
+        totalCorrect: 0,
+        totalAnswered: 0,
+    });
+    const progress = (statistics.totalCorrect / statistics.totalAnswered) * 100;
+
+    const getUserStatistics = async () => {
+        const response = await fetch(
+            process.env.REACT_APP_API + "/statistics?id=" + userProfile.id
+        );
+        const data = await response.json();
+        setStatistics(data);
+    };
 
     // Pause game when modal is open
     useEffect(() => {
         setPaused(true);
         return () => setPaused(false);
     });
+
+    useEffect(() => {
+        getUserStatistics();
+    }, [userProfile]);
 
     const onContainerClick = (e) => {
         if (e.target.className.includes("profileModalContainer")) {
@@ -65,7 +81,8 @@ const ProfileModal = ({ closeModal }) => {
                         <div>
                             <h4>
                                 Correctly Answered Questions:
-                                {" " + userProfile.score} / {totalQuestions}
+                                {" " + statistics.totalCorrect} /{" "}
+                                {statistics.totalAnswered}
                             </h4>
                             <BorderLinearProgress
                                 variant="determinate"

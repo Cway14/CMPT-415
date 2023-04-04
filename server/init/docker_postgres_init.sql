@@ -18,3 +18,16 @@ create table
         options TEXT NOT NULL,
         answers TEXT NOT NULL
     );
+
+create table answers (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id int NOT NULL,
+    question_id int NOT NULL,
+    answer text NOT NULL,
+    is_correct boolean NOT NULL,
+    created_at date default now(),
+    updated_at date default now(),
+    UNIQUE (user_id, question_id, answer),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (question_id) REFERENCES questions (id)
+);

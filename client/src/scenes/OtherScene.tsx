@@ -8,6 +8,7 @@ import TileMap, { TileMapResolver } from '../@core/TileMap';
 import { mapDataString } from '../@core/utils/mapUtils';
 import Player from '../entities/Player';
 import spriteData from '../spriteData';
+import { useQuestion } from 'context/QuestionContext';
 
 const mapData = mapDataString(`
 # # # # # #
@@ -41,6 +42,8 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
 };
 
 export default function OtherScene() {
+    const { setChapter } = useQuestion();
+    setChapter("6 and 7");
     return (
         <>
             <GameObject name="map">

@@ -12,6 +12,7 @@ import Plant from '../entities/Plant';
 import Player from '../entities/Player';
 import Workstation from '../entities/Workstation';
 import spriteData from '../spriteData';
+import { useQuestion } from 'context/QuestionContext';
 
 const mapData = mapDataString(`
 # # # # # # # # # # # # # # # # #
@@ -78,6 +79,8 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
 };
 
 export default function OfficeScene() {
+    const { setChapter } = useQuestion();
+    setChapter("6 and 7");
     return (
         <>
             <GameObject name="map">
