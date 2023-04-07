@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject from '../@core/GameObject';
 import Interactable from '../@core/Interactable';
@@ -489,7 +489,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} />
+                    <Lever {...position} leverId={0} />
                 </Fragment>
             );
         default:
@@ -499,7 +499,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
 
 export default function Bedroom2Scene() {
     const { setChapter } = useQuestion();
-    setChapter("6 and 7");
+    useEffect(() => setChapter("6 and 7"), [])
     return (
         <>
             <GameObject name="map">

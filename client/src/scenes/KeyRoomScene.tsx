@@ -247,7 +247,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} />
+                    <Lever {...position} leverId={0} />
                 </Fragment>
             );
         case 'D':
@@ -336,7 +336,7 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
 
 export default function KeyRoomScene() {
     const { setChapter } = useQuestion();
-    setChapter("6 and 7");
+    useEffect(() => setChapter("6 and 7"), [])
     return (
         <>
             <GameObject name="map">

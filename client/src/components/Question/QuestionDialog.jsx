@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useAuth } from "../../auth/AuthContext";
 import "./QuestionDialog.css";
 import { useQuestion } from "context/QuestionContext";
+import { useLever } from "context/LeverContext";
 
-const QuestionDialog = ({ question }) => {
+const QuestionDialog = ({ question, leverId }) => {
     const [selected, setSelected] = useState([]);
     const [feedback, setFeedback] = useState("");
 
     const { userProfile, getUserProfile } = useAuth();
-    const { hideQuestion, changeLeverState } = useQuestion();
+    const { hideQuestion } = useQuestion();
+    const { changeLeverState } = useLever();
 
     const handleSelect = (option) => {
         const index = selected.indexOf(option);
@@ -47,9 +49,10 @@ const QuestionDialog = ({ question }) => {
             await getUserProfile();
 
             // update lever status
-            changeLeverState();
+            changeLeverState(leverId);
         } else {
             setFeedback("Incorrect, try again!");
+            setSelected([]);
         }
     };
 

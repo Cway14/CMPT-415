@@ -16,10 +16,12 @@ const convertToJS = (question) => ({
 export function QuestionProvider({ children }) {
     const [currentQuestion, setCurrentQuestion] = useState();
     const [chapter, setChapter] = useState("5");
+    const [currentLever, setCurrentLever] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const { userProfile } = useAuth();
 
     async function showQuestion() {
+        console.log(userProfile);
         const response = await fetch(
             process.env.REACT_APP_API +
                 "/questions/getQuestion?uid=" +
@@ -42,7 +44,12 @@ export function QuestionProvider({ children }) {
 
     return (
         <QuestionContext.Provider value={value}>
-            {isOpen && <QuestionDialog question={currentQuestion} />}
+            {isOpen && (
+                <QuestionDialog
+                    question={currentQuestion}
+                    leverId={currentLever}
+                />
+            )}
             {children}
         </QuestionContext.Provider>
     );

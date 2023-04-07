@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject, { GameObjectProps } from '../@core/GameObject';
 import Interactable, { InteractionEvent } from '../@core/Interactable';
@@ -8,41 +8,44 @@ import useGameObjectEvent from '../@core/useGameObjectEvent';
 import waitForMs from '../@core/utils/waitForMs';
 import spriteData from '../spriteData';
 import { useQuestion } from 'context/QuestionContext';
+import { useLever } from 'context/LeverContext';
 
-function LeverScript() {
+interface LeverProps extends GameObjectProps {
+    leverId: number;
+}
+
+function LeverScript({ leverId }) {
     const { getComponent } = useGameObject();
     const { showQuestion } = useQuestion();
-    const leverState = useRef(false);
+    const { leverState } = useLever();
 
-    function changeLeverState() {
-        console.log('change lever state')
-        leverState.current = !leverState.current;
 
-        if (leverState.current) {
+    useGameObjectEvent<InteractionEvent>('interaction', async () => {
+        if (leverState[leverId].current) return;
+        showQuestion();
+
+        return waitForMs(400);
+    });
+
+    useEffect(() => {
+        console.log(leverState[leverId].current)
+        if (leverState[leverId].current) {
             getComponent<SpriteRef>('Sprite').setState('lever2');
             console.log('lever on')
         } else {
             getComponent<SpriteRef>('Sprite').setState('lever1');
         }
-    }
-
-    useGameObjectEvent<InteractionEvent>('interaction', async () => {
-        if (leverState.current) return;
-        showQuestion();
-        // todo: update lever state when answered correctly
-        changeLeverState();
-        return waitForMs(400);
-    });
+    }, [leverState]);
 
     return null;
 }
-export default function Lever(props: GameObjectProps) {
+export default function Lever({ leverId, ...rest }: LeverProps) {
     return (
-        <GameObject layer="obstacle" {...props}>
+        <GameObject layer="obstacle" {...rest}>
             <Collider />
             <Sprite {...spriteData.lever} state={"lever1"} />
             <Interactable />
-            <LeverScript />
+            <LeverScript leverId={leverId} />
         </GameObject>
     );
 }

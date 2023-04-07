@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject from '../@core/GameObject';
 import Interactable from '../@core/Interactable';
@@ -43,7 +43,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
 
 export default function OtherScene() {
     const { setChapter } = useQuestion();
-    setChapter("6 and 7");
+    useEffect(() => setChapter("6 and 7"), []);
     return (
         <>
             <GameObject name="map">
