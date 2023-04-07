@@ -12,17 +12,17 @@ import { LeverProvider } from "context/LeverContext";
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <DialogProvider>
-                <NotificationProvider>
-                    <LeverProvider>
-                        <PlayerProvider>
+            <NotificationProvider>
+                <LeverProvider>
+                    <PlayerProvider>
+                        <DialogProvider>
                             <AuthProvider>
                                 <App />
                             </AuthProvider>
-                        </PlayerProvider>
-                    </LeverProvider>
-                </NotificationProvider>
-            </DialogProvider>
+                        </DialogProvider>
+                    </PlayerProvider>
+                </LeverProvider>
+            </NotificationProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById("root")

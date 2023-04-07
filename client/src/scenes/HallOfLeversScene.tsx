@@ -547,7 +547,9 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
 
 export default function HallOfLeversScene() {
     const { setChapter } = useQuestion();
-    useEffect(() => setChapter("6 and 7"), [])
+    useEffect(() => {
+        setChapter("6 and 7")
+    }, [])
     return (
         <>
             <GameObject name="map">

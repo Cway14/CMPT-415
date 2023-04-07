@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLever } from "./LeverContext";
 
 const PlayerContext = React.createContext();
@@ -11,8 +11,9 @@ export function PlayerProvider({ children }) {
     const { leverState, setLeverState } = useLever();
     // stores the state of each lever
     const [currentRoom, setCurrentRoom] = useState();
+    const [roomsEntered, setRoomsEntered] = useState([]);
 
-    const getLeverNumbers = (room) => {
+    const getLeverIdsInRoom = (room) => {
         switch (room) {
             case "Bedroom":
                 return [0];
@@ -29,8 +30,13 @@ export function PlayerProvider({ children }) {
         }
     };
 
+    const hasEnteredRoom = (room) => {
+        return roomsEntered.includes(room);
+    };
+
     const setGameContext = (context) => {
         setCurrentRoom(context.room);
+        setRoomsEntered(context.roomsEntered);
 
         const newLeverState = [...leverState];
         context.leversCompleted.forEach((leverIndex) => {
@@ -39,10 +45,15 @@ export function PlayerProvider({ children }) {
         setLeverState(newLeverState);
     };
 
+    useEffect(() => {
+        // TODO: update server with current room
+    }, [currentRoom]);
+
     const value = {
         currentRoom,
-        getLeverNumbers,
+        getLeverIdsInRoom,
         setGameContext,
+        hasEnteredRoom,
     };
 
     return (
