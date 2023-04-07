@@ -27,13 +27,13 @@ export function LeverProvider({ children }) {
     const changeLeverState = (index) => {
         const newState = [...leverState];
         newState[index].current = !newState[index].current;
-        console.log("new state ", newState);
         setLeverState(newState);
     };
 
     const value = {
         leverState,
         changeLeverState,
+        setLeverState,
     };
 
     return (

@@ -9,6 +9,7 @@ import {
     reauthenticateWithCredential,
     EmailAuthProvider,
 } from "firebase/auth";
+import { usePlayer } from "../context/PlayerContext";
 
 const AuthContext = React.createContext();
 
@@ -24,6 +25,7 @@ export function AuthProvider({ children }) {
         profile_picture: "",
     });
     const [loading, setLoading] = useState(true);
+    const { setGameContext } = usePlayer();
 
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -73,6 +75,15 @@ export function AuthProvider({ children }) {
         }
     }
 
+    async function getGameContext() {
+        const gameContext = {
+            room: "keyroom",
+            leversCompleted: [0],
+        };
+
+        setGameContext(gameContext);
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -86,6 +97,11 @@ export function AuthProvider({ children }) {
         if (!currentUser) return;
         getUserProfile();
     }, [currentUser]);
+
+    useEffect(() => {
+        if (!userProfile) return;
+        getGameContext();
+    }, [userProfile]);
 
     const value = {
         currentUser,

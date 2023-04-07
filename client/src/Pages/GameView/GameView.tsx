@@ -17,7 +17,7 @@ import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
 import { useDialog } from "../../context/DialogContext";
 import { QuestionProvider } from '../../context/QuestionContext';
-import { LeverProvider } from 'context/LeverContext';
+import { usePlayer } from 'context/PlayerContext';
 
 
 const urls = [
@@ -29,44 +29,45 @@ const urls = [
 export default function GameView() {
     const [width, height] = useWindowSize();
     const [showProfileModal, setShowProfileModal] = React.useState(false);
+    const { currentRoom } = usePlayer();
+
+    if (!currentRoom) return <></>;
 
     return (
         <>
-            <LeverProvider>
-                <QuestionProvider >
-                    <Global styles={globalStyles} />
-                    <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
-                        <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
-                            <AssetLoader urls={urls} placeholder="Loading assets ...">
-                                {/* <ShowDelayedDialog /> */}
-                                <SceneManager defaultScene="bedroom">
-                                    <Scene id="office">
-                                        <OfficeScene />
-                                    </Scene>
-                                    <Scene id="other">
-                                        <OtherScene />
-                                    </Scene>
-                                    <Scene id="bedroom">
-                                        <BedroomScene />
-                                    </Scene>
-                                    <Scene id="room2">
-                                        <Bedroom2Scene />
-                                    </Scene>
-                                    <Scene id="halloflevers">
-                                        <HallOfLeversScene />
-                                    </Scene>
-                                    <Scene id="greathall">
-                                        <GreatHallScene />
-                                    </Scene>
-                                    <Scene id="keyroom">
-                                        <KeyRoomScene />
-                                    </Scene>
-                                </SceneManager>
-                            </AssetLoader>
-                        </Game>
-                    </div>
-                </QuestionProvider>
-            </LeverProvider>
+            <QuestionProvider >
+                <Global styles={globalStyles} />
+                <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
+                    <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
+                        <AssetLoader urls={urls} placeholder="Loading assets ...">
+                            {/* <ShowDelayedDialog /> */}
+                            <SceneManager defaultScene={currentRoom}>
+                                <Scene id="office">
+                                    <OfficeScene />
+                                </Scene>
+                                <Scene id="other">
+                                    <OtherScene />
+                                </Scene>
+                                <Scene id="bedroom">
+                                    <BedroomScene />
+                                </Scene>
+                                <Scene id="room2">
+                                    <Bedroom2Scene />
+                                </Scene>
+                                <Scene id="halloflevers">
+                                    <HallOfLeversScene />
+                                </Scene>
+                                <Scene id="greathall">
+                                    <GreatHallScene />
+                                </Scene>
+                                <Scene id="keyroom">
+                                    <KeyRoomScene />
+                                </Scene>
+                            </SceneManager>
+                        </AssetLoader>
+                    </Game>
+                </div>
+            </QuestionProvider>
         </>
     );
 }
