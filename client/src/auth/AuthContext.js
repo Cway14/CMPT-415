@@ -10,6 +10,7 @@ import {
     EmailAuthProvider,
 } from "firebase/auth";
 import { usePlayer } from "../context/PlayerContext";
+import { useNotification } from "../context/NotificationContext";
 
 const AuthContext = React.createContext();
 
@@ -26,6 +27,7 @@ export function AuthProvider({ children }) {
     });
     const [loading, setLoading] = useState(true);
     const { setGameContext } = usePlayer();
+    const { showNotification } = useNotification();
 
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -72,17 +74,28 @@ export function AuthProvider({ children }) {
             setUserProfile(data);
         } catch (error) {
             console.log("error: ", error);
+            showNotification("An error occurred. Please try again.", "error");
         }
     }
 
     async function getGameContext() {
-        const gameContext = {
-            room: "bedroom",
-            leversCompleted: [0, 1, 2, 3, 4, 6, 7, 8, 9],
-            roomsEntered: ["bedroom"],
-        };
-
-        setGameContext(gameContext);
+        try {
+            const url =
+                process.env.REACT_APP_API +
+                "/game/context?id=" +
+                userProfile.id;
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const gameContext = await response.json();
+            setGameContext(gameContext);
+        } catch (error) {
+            console.log("error: ", error);
+            showNotification("An error occurred. Please try again.", "error");
+        }
     }
 
     useEffect(() => {

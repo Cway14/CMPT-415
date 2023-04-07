@@ -7,6 +7,7 @@ const leaderboardRoutes = require("./routes/leaderboard");
 const userRoutes = require("./routes/user");
 const questionRoutes = require("./routes/question");
 const statisticsRoutes = require("./routes/statistics");
+const gameRoutes = require("./routes/game");
 
 const app = express();
 const accessTokenSecret = "lol";
@@ -19,6 +20,7 @@ app.use("/leaderboard", leaderboardRoutes);
 app.use("/users", userRoutes);
 app.use("/questions", questionRoutes);
 app.use("/statistics", statisticsRoutes);
+app.use("/game", gameRoutes);
 
 app.post("/signup", async (req, res) => {
     const { email, username, password } = req.body;
