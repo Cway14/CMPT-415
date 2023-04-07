@@ -17,18 +17,18 @@ const mapData = mapDataString(`
 E E L · C C · · · · · · · · · · C C · R E E E E E E E E E E E E E
 E E L v q w y · · · · · · · · v q w y R E E E E E E E E E E E E E
 E E L v a s y · · · · · · · · v a s y R E E E E E E E E E E E E E
-E E L · g g · · · · · · & · · · g g · R E E E E E E E E E E E E E
+E E L · g g · · · · · · 1 · · · g g · R E E E E E E E E E E E E E
 E E > # # # # # # # # # # # # # # # # < E E E E E E E E E E E E E
 E E E E E E E E E E { ^ } E E E E E E E E E E E E E E E E E E E E
 E E E E E E E E E E L D R E E E E E E E E E E E E E E E E E E E E
 E E E E E E E { ^ ^ ( · ) ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ }
 E E E E E E E [ - - X · Y - - - - - - - - - - - - - - - - - - - ]
-E E E E E E E L · · · · · · · · · · · · · C · · & · · · · · · · R
+E E E E E E E L · · · · · · · · · · · · · C · · 6 · · · · · · · R
 E E E E E E E L · · · · · · C C · · · · C · · · · · C C · · · · R
 E E E E E E E L · · · · · v q w · y · v q w y · · v q w y · · · R
 E E E E E E E L · · · · · v a s y · · v a s y · v · a s · y · · R
-E E E E E E E L · · · · · · · g & · · · g g · · · · g · · · · · R
-E E E E E E E L · · · & · · g · · · · · · · · · · · · g · · · & R
+E E E E E E E L · · · · · · · g 5 · · · g g · · · · g · · · · · R
+E E E E E E E L · · · 4 · · g · · · · · · · · · · · · g · · · 7 R
 E E E E E E E > # # # # # # # # # # # # # # # # # # # # # # # # <
 E E E E E E E E E { ^ } E E E E E E E E E E E E E E E E E E E E E
 E E E E E E E E E L D R E E E E E E E E E E E E E E E E E E E E E
@@ -241,11 +241,46 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     </GameObject>
                 </Fragment>
             );
-        case '&':
+        case '1':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={0} />
+                    <Lever {...position} leverId={1} />
+                </Fragment>
+            );
+        case '4':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={4} />
+                </Fragment>
+            );
+        case '5':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={5} />
+                </Fragment>
+            );
+        case '6':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={6} />
+                </Fragment>
+            );
+        case '7':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={7} />
+                </Fragment>
+            );
+        case '8':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={8} />
                 </Fragment>
             );
         case 'D':

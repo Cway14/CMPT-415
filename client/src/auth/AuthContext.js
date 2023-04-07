@@ -78,7 +78,7 @@ export function AuthProvider({ children }) {
     async function getGameContext() {
         const gameContext = {
             room: "keyroom",
-            leversCompleted: [0],
+            leversCompleted: [0, 1, 2, 3, 4, 6, 7, 8, 9],
         };
 
         setGameContext(gameContext);

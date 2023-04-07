@@ -16,8 +16,8 @@ import { useDialog } from "../context/DialogContext";
 const mapData = mapDataString(`
 E E E E E E E E E E E E E E E E E E E E E L · · · · · v q w · y · v q w y · · v q w y · · · R E E E E E E
 E E E E E E E E E E E E E E E E E E E E E L · · · · · v a s y · · v a s y · v · a s · y · · R E E E E E E
-E E E E E E E E E E E E E E E E E E E E E L · · · · · · · g & · · · g g · · · · g · · · · · R E E E E E E
-E E E E E E E E E E E E E E E E E E E E E L · · · & · · g · · · · · · · · · · · · g · · · & R E E E E E E
+E E E E E E E E E E E E E E E E E E E E E L · · · · · · · g 5 · · · g g · · · · g · · · · · R E E E E E E
+E E E E E E E E E E E E E E E E E E E E E L · · · 4 · · g · · · · · · · · · · · · g · · · 7 R E E E E E E
 E E E E E E E E E E E E E E E E E E E E E > # # # # # # # # # # # # # # # # # # # # # # # # < E E E E E E
 E E E E E E E E E E E E E E E E E E E E E E E { ^ } E E E E E E E E E E E E E E E E E E E E E E E E E E E
 E E E E E E E E E E E E E E E E E E E E E E E L D R E E E E E E E E E E E E E E E E E E E E E E E E E E E
@@ -34,7 +34,7 @@ E E E L - X · Y - R E L - X · Y - R E L - X · Y - R E L - X · Y - R E E E E 
 E E E L V · · · · R E L V · · · · R E L V · · · · R E L V · · · · R E E E E E E E E E E E E E E E E E E E
 E E E L F · · · · R E L F · · · · R E L F · · · · R E L F · · · · R E E E E E E E E E E E E E E E E E E E
 E E E L F · · · · R E L F · · · · R E L F · · · · R E L F · · · · R E E E E E E E E E E E E E E E E E E E
-E E E L f · · · & R E L f · · · & R E L f · · · & R E L f · · · & R E E E E E E E E E E E E E E E E E E E
+E E E L f · · · 3 R E L f · · · 2 R E L f · · · 1 R E L f · · · 9 R E E E E E E E E E E E E E E E E E E E
 E E E > # # # # # < E > # # # # # < E > # # # # # < E > # # # # # < E E E E E E E E E E E E E E E E E E E
 `);
 
@@ -243,11 +243,53 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     </GameObject>
                 </Fragment>
             );
-        case '&':
+        case '4':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={0} />
+                    <Lever {...position} leverId={4} />
+                </Fragment>
+            );
+        case '5':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={5} />
+                </Fragment>
+            );
+        case '7':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={7} />
+                </Fragment>
+            );
+        case '9':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={9} />
+                </Fragment>
+            );
+        case '1':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={10} />
+                </Fragment>
+            );
+        case '2':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={11} />
+                </Fragment>
+            );
+        case '3':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={12} />
                 </Fragment>
             );
         case 'D':

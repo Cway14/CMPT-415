@@ -22,23 +22,23 @@ import { useDialog } from "../context/DialogContext";
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E E E E E
-E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E E E E E
-E E L B · · 2 2 R E L B · · 2 2 R E E E E E E E E E E
+E E [ - S - ¡ ¡ ] E [ - S - ¡ ¡ ] E E E E E E E E E E
+E E L B · · ™ ™ R E L B · · ™ ™ R E E E E E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E E E E E
-E E L & · · · C R E L & · · · C R E E E E E E E E E E
+E E L 0 · · · C R E L 3 · · · C R E E E E E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ } E E E E
 E E > # # # # # < E > # # # # # < [ - - 7 - ] E E E E
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R E E E E
 E E E E L D R E E E E E L D R E E L · · · · R E E E E
 E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R E E E E
-E E [ - X · Y - - - - - X · Y - - X · · · & R E E E E
-E E L · · · · V · · · V · · · · · · · · 3 4 R E E E E
+E E [ - X · Y - - - - - X · Y - - X · · · 2 R E E E E
+E E L · · · · V · · · V · · · · · · · · £ 4 R E E E E
 E E L · · · · F · · · F · · · · · · · · 5 6 R E E E E
 E E L · · · · f c u · f · · · · · · · K # # < E E E E
 E E L · C C · · · · · · · · · · C C · R E E E E E E E
 E E L v q w y · · · · · · · · v q w y R E E E E E E E
 E E L v a s y · · · · · · · · v a s y R E E E E E E E
-E E L · g g · · · · · · & · · · g g · R E E E E E E E
+E E L · g g · · · · · · 1 · · · g g · R E E E E E E E
 E E > # # # # # # # # # # # # # # # # < E E E E E E E
 E E E E E E E E E E { ^ } E E E E E E E E E E E E E E
 E E E E E E E E E E L D R E E E E E E E E E E E E E E
@@ -204,14 +204,14 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <BedBot {...position} />
                 </Fragment>
             );
-        case '1':
+        case '¡':
             return (
                 <Fragment key={key}>
                     {bot_wall}
                     <BookShelfTop {...position} />
                 </Fragment>
             );
-        case '2':
+        case '™':
             return (
                 <Fragment key={key}>
                     {floor}
@@ -255,7 +255,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     </GameObject>
                 </Fragment>
             );
-        case '3':
+        case '£':
             return (
                 <Fragment key={key}>
                     {floor}
@@ -486,11 +486,32 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Chair {...position} />
                 </Fragment>
             );
-        case '&':
+        case '0':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={0} />
+                    <Lever {...position} leverId={2} />
+                </Fragment>
+            );
+        case '1':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={4} />
+                </Fragment>
+            );
+        case '2':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={5} />
+                </Fragment>
+            );
+        case '3':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={6} />
                 </Fragment>
             );
         case 'E':

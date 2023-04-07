@@ -489,7 +489,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={0} />
+                    <Lever {...position} leverId={3} />
                 </Fragment>
             );
         default:
