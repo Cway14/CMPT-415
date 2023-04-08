@@ -13,15 +13,15 @@ ReactDOM.render(
     <React.StrictMode>
         <Router>
             <NotificationProvider>
-                <LeverProvider>
-                    <AuthProvider>
+                <AuthProvider>
+                    <LeverProvider>
                         <PlayerProvider>
                             <DialogProvider>
                                 <App />
                             </DialogProvider>
                         </PlayerProvider>
-                    </AuthProvider>
-                </LeverProvider>
+                    </LeverProvider>
+                </AuthProvider>
             </NotificationProvider>
         </Router>
     </React.StrictMode>,
