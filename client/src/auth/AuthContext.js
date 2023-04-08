@@ -80,18 +80,25 @@ export function AuthProvider({ children }) {
 
     async function getGameContext() {
         try {
-            const url =
-                process.env.REACT_APP_API +
-                "/game/context?id=" +
-                userProfile.id;
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            const gameContext = await response.json();
+            const gameContext = {
+                room: "bedroom",
+                leversCompleted: [0, 1, 2, 3, 4, 6, 7, 8, 9],
+                roomsEntered: ["bedroom"],
+            };
+
             setGameContext(gameContext);
+            // const url =
+            //     process.env.REACT_APP_API +
+            //     "/game/context?id=" +
+            //     userProfile.id;
+            // const response = await fetch(url, {
+            //     method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            // });
+            // const gameContext = await response.json();
+            // setGameContext(gameContext);
         } catch (error) {
             console.log("error: ", error);
             showNotification("An error occurred. Please try again.", "error");
