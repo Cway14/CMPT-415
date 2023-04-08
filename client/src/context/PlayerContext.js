@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLever } from "./LeverContext";
+import { useAuth } from "../auth/AuthContext";
+import { useNotification } from "./NotificationContext";
 
 const PlayerContext = React.createContext();
 
@@ -9,6 +11,8 @@ export function usePlayer() {
 
 export function PlayerProvider({ children }) {
     const { leverState, setLeverState } = useLever();
+    const { userProfile } = useAuth();
+    const { showNotification } = useNotification();
     // stores the state of each lever
     const [currentRoom, setCurrentRoom] = useState();
     const [roomsEntered, setRoomsEntered] = useState([]);
@@ -55,9 +59,55 @@ export function PlayerProvider({ children }) {
         setLeverState(newLeverState);
     };
 
+    async function getGameContext() {
+        try {
+            const gameContext = {
+                room: "bedroom",
+                leversCompleted: [],
+                roomsEntered: ["bedroom"],
+            };
+
+            setGameContext(gameContext);
+            // const url =
+            //     process.env.REACT_APP_API +
+            //     "/game/context?id=" +
+            //     userProfile.id;
+            // const response = await fetch(url, {
+            //     method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            // });
+            // const gameContext = await response.json();
+            // setGameContext(gameContext);
+        } catch (error) {
+            console.log("error: ", error);
+            showNotification("An error occurred. Please try again.", "error");
+        }
+    }
+
     useEffect(() => {
-        // TODO: update server with current room
+        if (!currentRoom) return;
+        const url =
+            process.env.REACT_APP_API +
+            "/game/current_room?id" +
+            userProfile.id +
+            "&room=" +
+            currentRoom;
+
+        try {
+            fetch(url, {
+                method: "POST",
+            });
+        } catch (error) {
+            showNotification("Error: failed to save game progress", "error");
+        }
     }, [currentRoom]);
+
+    useEffect(() => {
+        if (!userProfile) return;
+        getGameContext();
+    }, [userProfile]);
 
     const value = {
         currentRoom,

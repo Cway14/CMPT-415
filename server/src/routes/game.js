@@ -19,7 +19,7 @@ router.post("/current_room", async (req, res) => {
     const { id, room } = req.query;
     try {
         const query = {
-            text: "UPDATE current_room SET room_id = $1 WHERE user_id = $2 RETURNING *",
+            text: "UPDATE current_room SET room_id = (select id from rooms where name = $1) WHERE user_id = $2 RETURNING *",
             values: [room, id],
         };
         const response = await db.query(query);

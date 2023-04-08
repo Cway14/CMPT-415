@@ -28,10 +28,8 @@ function LeverScript({ leverId }) {
     });
 
     useEffect(() => {
-        console.log(leverState[leverId].current)
         if (leverState[leverId].current) {
             getComponent<SpriteRef>('Sprite').setState('lever2');
-            console.log('lever on')
         } else {
             getComponent<SpriteRef>('Sprite').setState('lever1');
         }

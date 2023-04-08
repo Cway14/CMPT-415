@@ -14,13 +14,13 @@ ReactDOM.render(
         <Router>
             <NotificationProvider>
                 <LeverProvider>
-                    <PlayerProvider>
-                        <DialogProvider>
-                            <AuthProvider>
+                    <AuthProvider>
+                        <PlayerProvider>
+                            <DialogProvider>
                                 <App />
-                            </AuthProvider>
-                        </DialogProvider>
-                    </PlayerProvider>
+                            </DialogProvider>
+                        </PlayerProvider>
+                    </AuthProvider>
                 </LeverProvider>
             </NotificationProvider>
         </Router>

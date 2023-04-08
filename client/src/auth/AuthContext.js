@@ -9,7 +9,6 @@ import {
     reauthenticateWithCredential,
     EmailAuthProvider,
 } from "firebase/auth";
-import { usePlayer } from "../context/PlayerContext";
 import { useNotification } from "../context/NotificationContext";
 
 const AuthContext = React.createContext();
@@ -26,7 +25,6 @@ export function AuthProvider({ children }) {
         profile_picture: "",
     });
     const [loading, setLoading] = useState(true);
-    const { setGameContext } = usePlayer();
     const { showNotification } = useNotification();
 
     function signup(email, password) {
@@ -78,33 +76,6 @@ export function AuthProvider({ children }) {
         }
     }
 
-    async function getGameContext() {
-        try {
-            const gameContext = {
-                room: "bedroom",
-                leversCompleted: [],
-                roomsEntered: ["bedroom"],
-            };
-
-            setGameContext(gameContext);
-            // const url =
-            //     process.env.REACT_APP_API +
-            //     "/game/context?id=" +
-            //     userProfile.id;
-            // const response = await fetch(url, {
-            //     method: "GET",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            // });
-            // const gameContext = await response.json();
-            // setGameContext(gameContext);
-        } catch (error) {
-            console.log("error: ", error);
-            showNotification("An error occurred. Please try again.", "error");
-        }
-    }
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -118,11 +89,6 @@ export function AuthProvider({ children }) {
         if (!currentUser) return;
         getUserProfile();
     }, [currentUser]);
-
-    useEffect(() => {
-        if (!userProfile) return;
-        getGameContext();
-    }, [userProfile]);
 
     const value = {
         currentUser,
