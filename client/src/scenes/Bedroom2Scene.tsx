@@ -509,7 +509,7 @@ export default function Bedroom2Scene() {
             <GameObject x={13} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance2" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance2" room="room2" />
             </GameObject>
             <Player x={13} y={5} />
         </>

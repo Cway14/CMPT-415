@@ -388,7 +388,7 @@ export default function KeyRoomScene() {
             <GameObject x={24} y={14}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="greathall/exit" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="greathall/exit" room="keyroom" />
             </GameObject>
             <Player x={24} y={14} />
         </>

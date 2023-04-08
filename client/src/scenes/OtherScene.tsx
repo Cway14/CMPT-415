@@ -53,7 +53,7 @@ export default function OtherScene() {
             <GameObject x={0} y={2}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" />
+                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" room="other" />
             </GameObject>
             <Player x={0} y={2} />
         </>

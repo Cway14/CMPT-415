@@ -15,7 +15,7 @@ export function PlayerProvider({ children }) {
 
     const getLeverIdsInRoom = (room) => {
         switch (room) {
-            case "Bedroom":
+            case "bedroom":
                 return [0];
             case "halloflevers":
                 return [1, 2];
@@ -32,6 +32,16 @@ export function PlayerProvider({ children }) {
 
     const hasEnteredRoom = (room) => {
         return roomsEntered.includes(room);
+    };
+
+    const completedRoom = (room) => {
+        const levers = getLeverIdsInRoom(room);
+
+        const all_levers_complete = levers.every(
+            (leverId) => leverState[leverId].current
+        );
+
+        return all_levers_complete;
     };
 
     const setGameContext = (context) => {
@@ -51,9 +61,11 @@ export function PlayerProvider({ children }) {
 
     const value = {
         currentRoom,
+        setCurrentRoom,
         getLeverIdsInRoom,
         setGameContext,
         hasEnteredRoom,
+        completedRoom,
     };
 
     return (

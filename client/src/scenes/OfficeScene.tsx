@@ -90,7 +90,7 @@ export default function OfficeScene() {
             <GameObject x={16} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[-1, 0]} target="other/start" />
+                <ScenePortal name="exit" enterDirection={[-1, 0]} target="other/start" room="office" />
             </GameObject>
             <Player x={6} y={3} />
         </>

@@ -560,17 +560,17 @@ export default function HallOfLeversScene() {
             <GameObject x={5} y={15}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" room="halloflevers" />
             </GameObject>
             <GameObject x={13} y={15}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" />
+                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" room="halloflevers" />
             </GameObject>
             <GameObject x={11} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" room="halloflevers" />
             </GameObject>
             <Player x={5} y={15} />
         </>

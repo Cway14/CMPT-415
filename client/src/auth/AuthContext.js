@@ -82,7 +82,7 @@ export function AuthProvider({ children }) {
         try {
             const gameContext = {
                 room: "bedroom",
-                leversCompleted: [0, 1, 2, 3, 4, 6, 7, 8, 9],
+                leversCompleted: [],
                 roomsEntered: ["bedroom"],
             };
 

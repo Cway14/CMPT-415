@@ -334,12 +334,12 @@ export default function GreatHallScene() {
             <GameObject x={11} y={13}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="halloflevers/exit" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="halloflevers/exit" room="greathall" />
             </GameObject>
             <GameObject x={10} y={4}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="keyroom/entrance" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="keyroom/entrance" room="greathall" />
             </GameObject>
             <Player x={11} y={13} />
         </>
