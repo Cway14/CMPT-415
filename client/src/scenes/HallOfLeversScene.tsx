@@ -17,8 +17,13 @@ import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import Lever from '../entities/Lever';
-import { useQuestion } from 'context/QuestionContext';
 import { useDialog } from "../context/DialogContext";
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E E E E E
@@ -545,13 +550,9 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
     return <></>
 }
 
-export default function HallOfLeversScene() {
-    const { setChapter } = useQuestion();
-    useEffect(() => {
-        setChapter("6 and 7")
-    }, [])
+export default function HallOfLeversScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ShowDelayedDialog />
                 <ambientLight />
@@ -560,19 +561,19 @@ export default function HallOfLeversScene() {
             <GameObject x={5} y={15}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" room="halloflevers" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" room={id} />
             </GameObject>
             <GameObject x={13} y={15}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" room="halloflevers" />
+                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" room={id} />
             </GameObject>
             <GameObject x={11} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" room="halloflevers" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" room={id} />
             </GameObject>
             <Player x={5} y={15} />
-        </>
+        </Scene>
     );
 }

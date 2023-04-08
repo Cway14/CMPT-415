@@ -10,8 +10,14 @@ import Player from '../entities/Player';
 import spriteData from '../spriteData';
 import Lever from '../entities/Lever';
 import Chair from '../entities/Chair';
-import { useQuestion } from 'context/QuestionContext';
 import { useDialog } from "../context/DialogContext";
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
+
 
 const mapData = mapDataString(`
 E E E E E E E E E E E E E E E E E E E E E L · · · · · v q w · y · v q w y · · v q w y · · · R E E E E E E
@@ -376,11 +382,9 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
 }
 
 
-export default function KeyRoomScene() {
-    const { setChapter } = useQuestion();
-    useEffect(() => setChapter("6 and 7"), [])
+export default function KeyRoomScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
@@ -388,9 +392,9 @@ export default function KeyRoomScene() {
             <GameObject x={24} y={14}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="greathall/exit" room="keyroom" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="greathall/exit" room={id} />
             </GameObject>
             <Player x={24} y={14} />
-        </>
+        </Scene>
     );
 }

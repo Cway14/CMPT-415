@@ -12,7 +12,12 @@ import Plant from '../entities/Plant';
 import Player from '../entities/Player';
 import Workstation from '../entities/Workstation';
 import spriteData from '../spriteData';
-import { useQuestion } from 'context/QuestionContext';
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
 
 const mapData = mapDataString(`
 # # # # # # # # # # # # # # # # #
@@ -78,11 +83,9 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
-export default function OfficeScene() {
-    const { setChapter } = useQuestion();
-    useEffect(() => setChapter("6 and 7"), []);
+export default function OfficeScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
@@ -90,9 +93,9 @@ export default function OfficeScene() {
             <GameObject x={16} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[-1, 0]} target="other/start" room="office" />
+                <ScenePortal name="exit" enterDirection={[-1, 0]} target="other/start" room={id} />
             </GameObject>
             <Player x={6} y={3} />
-        </>
+        </Scene>
     );
 }

@@ -43,25 +43,25 @@ export default function GameView() {
                             {/* <ShowDelayedDialog /> */}
                             <SceneManager defaultScene={currentRoom}>
                                 <Scene id="office">
-                                    <OfficeScene />
+                                    <OfficeScene id="office" chapter="5" />
                                 </Scene>
                                 <Scene id="other">
-                                    <OtherScene />
+                                    <OtherScene id="other" chapter="5" />
                                 </Scene>
                                 <Scene id="bedroom">
-                                    <BedroomScene />
+                                    <BedroomScene id="bedroom" chapter="5" />
                                 </Scene>
                                 <Scene id="room2">
-                                    <Bedroom2Scene />
+                                    <Bedroom2Scene id="room2" chapter="5" />
                                 </Scene>
                                 <Scene id="halloflevers">
-                                    <HallOfLeversScene />
+                                    <HallOfLeversScene id="halloflevers" chapter="5" />
                                 </Scene>
                                 <Scene id="greathall">
-                                    <GreatHallScene />
+                                    <GreatHallScene id="greathall" chapter="5" />
                                 </Scene>
                                 <Scene id="keyroom">
-                                    <KeyRoomScene />
+                                    <KeyRoomScene id="keyroom" chapter="5" />
                                 </Scene>
                             </SceneManager>
                         </AssetLoader>

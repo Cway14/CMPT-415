@@ -113,7 +113,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
-export default function RoomScene() {
+export default function RoomScene({ id }: { id: string }) {
     return (
         <>
             <GameObject name="map">
@@ -123,7 +123,7 @@ export default function RoomScene() {
             <GameObject x={0} y={2}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" room="room" />
+                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" room={id} />
             </GameObject>
             <Player x={4} y={5} />
         </>

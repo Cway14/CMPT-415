@@ -17,8 +17,12 @@ import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import Lever from '../entities/Lever';
-import { useQuestion } from 'context/QuestionContext';
+import Scene from './Scene';
 
+interface Props {
+    id: string;
+    chapter: string;
+}
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
 E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E
@@ -497,11 +501,9 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
-export default function Bedroom2Scene() {
-    const { setChapter } = useQuestion();
-    useEffect(() => setChapter("6 and 7"), [])
+export default function Bedroom2Scene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
@@ -509,9 +511,9 @@ export default function Bedroom2Scene() {
             <GameObject x={13} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance2" room="room2" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance2" room={id} />
             </GameObject>
             <Player x={13} y={5} />
-        </>
+        </Scene>
     );
 }

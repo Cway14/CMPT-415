@@ -10,8 +10,14 @@ import Player from '../entities/Player';
 import spriteData from '../spriteData';
 import Lever from '../entities/Lever';
 import Chair from '../entities/Chair';
-import { useQuestion } from 'context/QuestionContext';
 import { useDialog } from "../context/DialogContext";
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
+
 
 const mapData = mapDataString(`
 E E L · C C · · · · · · · · · · C C · R E E E E E E E E E E E E E
@@ -321,11 +327,9 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
     return <></>
 }
 
-export default function GreatHallScene() {
-    const { setChapter } = useQuestion();
-    useEffect(() => setChapter("6 and 7"), [])
+export default function GreatHallScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ShowDelayedDialog />
                 <ambientLight />
@@ -334,14 +338,14 @@ export default function GreatHallScene() {
             <GameObject x={11} y={13}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="halloflevers/exit" room="greathall" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="halloflevers/exit" room={id} />
             </GameObject>
             <GameObject x={10} y={4}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="keyroom/entrance" room="greathall" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="keyroom/entrance" room={id} />
             </GameObject>
             <Player x={11} y={13} />
-        </>
+        </Scene>
     );
 }
