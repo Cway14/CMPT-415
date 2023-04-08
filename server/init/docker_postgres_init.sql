@@ -31,3 +31,44 @@ create table answers (
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (question_id) REFERENCES questions (id)
 );
+
+create table levers_completed (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id int NOT NULL,
+    lever_id int NOT NULL,
+    created_at date default now(),
+    updated_at date default now(),
+    UNIQUE (user_id, lever_id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+create table rooms (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name text not null,
+    created_at date default now(),
+    updated_at date default now()
+);
+
+INSERT INTO rooms (name) VALUES ('bedroom'), ('keyroom'), ('halloflevers'), ('room2'), ('greathall');
+
+create table rooms_entered (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id int NOT NULL,
+    room_id int NOT NULL,
+    created_at date default now(),
+    updated_at date default now(),
+    UNIQUE (user_id, room_id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (room_id) REFERENCES rooms (id)
+);
+
+create table current_room (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id int NOT NULL,
+    room_id int NOT NULL,
+    created_at date default now(),
+    updated_at date default now(),
+    UNIQUE (user_id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (room_id) REFERENCES rooms (id)
+)
