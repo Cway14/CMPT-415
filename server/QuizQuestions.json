@@ -67,7 +67,7 @@
       "Bounded Wating"
     ],
     "feedback": [
-      ""
+      "The test_and_set() atomic hardware instruction provides mutual exclusion and progress guarantees, meaning that only one process can access the critical section at a time, and some processes will eventually enter the critical section if no other process is currently in it. However, it does not guarantee bounded waiting, which means that a process may need to wait an unbounded amount of time before it can enter the critical section, even if no other processes are currently accessing it. This can lead to a \" starvation \" situation, where a process is continually blocked from entering the critical section while other processes repeatedly access it."
     ]
   },
   {
@@ -86,7 +86,7 @@
       "signal()"
     ],
     "feedback": [
-      ""
+      "The wait() operation decrements the value of the semaphore by 1, and if the resulting value is negative, the process executing the wait() operation is blocked until another process signals the semaphore by executing the signal() operation. The signal() operation increments the value of the semaphore by 1, and if any processes are waiting on the semaphore, it unblocks one of them. The other options stop() and sleep(), are not atomic operations on semaphores."
     ]
   },
   {
@@ -103,13 +103,13 @@
       "they require busy waiting"
     ],
     "feedback": [
-      ""
+      "Busy waiting is a technique in which a process repeatedly checks if a shared resource, such as a critical section, is available instead of yielding the CPU to another process. While the process is busy waiting, it is consuming CPU cycles without performing any useful work, which can lead to inefficient use of system resources. In the case of spinlocks, a process that cannot acquire a lock on a shared resource will keep spinning in a loop, checking the lock repeatedly until it becomes available. This can lead to unnecessary CPU consumption and delays in other processes that could have used the CPU. Therefore, spinlocks are not recommended for long critical sections or in systems with many threads or processes contending for the same resources."
     ]
   },
   {
     "topic": "Sync and Sync Prob",
     "chapter": "5",
-    "question": "To ensure difficulties do not arise in the readers - writers problem _______ are given exclusive access to",
+    "question": "To ensure difficulties do not arise in the readers - writers problem _______ are given exclusive access to the shared resources",
     "options": [
       "readers",
       "none of the mentioned",
@@ -117,10 +117,10 @@
       "readers and writers"
     ],
     "answers": [
-      "readers"
+      "writers"
     ],
     "feedback": [
-      ""
+      "In the readers-writers problem, writers need exclusive access to the shared resource to ensure data consistency. This is because if multiple writers write to the shared resource simultaneously, it can lead to data inconsistency. In contrast, multiple readers can access the shared resource simultaneously without any issues, so they do not need exclusive access."
     ]
   },
   {
@@ -154,7 +154,7 @@
       "4"
     ],
     "feedback": [
-      ""
+      "At the beginning, the semaphore had a value of 7. Then, 18 wait() operations were completed on this semaphore, which means that the semaphore was decremented by 18. After the wait() operations, the semaphore value is 7 - 18 = -11. Finally, 15 signal() operations were completed on this semaphore, which means the semaphore was incremented by 15. After the signal() operations, the semaphore value is -11 + 15 = 4. Therefore, the resulting value of the semaphore is 4."
     ]
   },
   {
@@ -173,7 +173,7 @@
       "We assume that the pool consists of n buffers, each capable of holding one item"
     ],
     "feedback": [
-      ""
+      "The assumptions that stand true for the bounded buffer problem are: The empty and full semaphores count the number of empty and full buffers. The semaphore empty is initialised to the value n; the semaphore full is initialised to the value 0. We assume that the pool consists of n buffers, each capable of holding one item. These assumptions are necessary for solving the bounded buffer problem using semaphores."
     ]
   },
   {
@@ -190,7 +190,7 @@
       "5 philosophers and 5 chopsticks"
     ],
     "feedback": [
-      ""
+      "5 philosophers and 5 chopsticks  - Each philosopher picks up the chopstick to their right and waits for the chopstick to their left to become available, which can lead to a deadlock."
     ]
   },
   {
@@ -225,7 +225,7 @@
       "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) will not affect the execution"
     ],
     "feedback": [
-      ""
+      "The first statement is correct because changing the order of wait operations can lead to a situation where the producer and consumer wait for each other to signal, resulting in a deadlock. For example, if the producer waits for \"mutex\" first and then \"empty\", and the consumer waits for \"empty\" first and then \"mutex\", there is a possibility of a deadlock. The second statement is incorrect because switching the order of wait operations can affect the execution, as explained in the first statement. The third statement is correct because the order of signal operations does not affect the execution. Signalling \"mutex\" ensures that only one thread accesses the buffer at a time, and signalling \"full\" or \"empty\" indicates that a buffer has been filled or emptied, respectively. The fourth statement is incorrect because changing the order of signal operations does not cause a deadlock. However, depending on the implementation, it can lead to incorrect behavior or inefficiency."
     ]
   },
   {
@@ -256,7 +256,7 @@
       "Accesses shared resources"
     ],
     "feedback": [
-      ""
+      "A critical section is a code section in a program where the shared resources (such as variables, data structures, etc.) are accessed and manipulated. Since multiple processes/threads may access and manipulate these resources concurrently, it is important to ensure that only one process/thread executes the critical section at a time to avoid data inconsistency and other issues."
     ]
   },
   {
@@ -290,7 +290,7 @@
       "Starvation can occur but deadlock cannot occur"
     ],
     "feedback": [
-      ""
+      "If a process is required to release all resources before requesting another resource, starvation cannot occur because a process must release all its resources before making another request. However, deadlock can still occur if multiple processes are waiting for the same set of resources and the resources are not released in a way that allows all processes to access them."
     ]
   },
   {
@@ -322,7 +322,7 @@
       "Starvation"
     ],
     "feedback": [
-      ""
+      "Starvation occurs when a process cannot get the required resources to complete its execution because other processes hold the resources. In the given scenario, processes P1 and P2 repeatedly access resource R while P3 waits. This means P3 cannot get the required resource, which can cause a delay or even prevent it from completing its execution. This situation is called starvation."
     ]
   },
   {
@@ -339,7 +339,7 @@
       "race condition"
     ],
     "feedback": [
-      ""
+      "In a race condition, multiple processes or threads access and manipulate the same shared resource or data concurrently, and the outcome of the execution depends on the particular order in which access takes place. Race conditions can result in inconsistent or incorrect program behaviour and can be difficult to detect and reproduce. Starvation refers to a situation where a process cannot acquire the necessary resources to make progress, while aging refers to a scheduling algorithm that assigns priority based on how long a process has been waiting. Data consistency refers to data being accurate, valid, and consistent across different system parts."
     ]
   },
   {
@@ -388,7 +388,7 @@
       "No"
     ],
     "feedback": [
-      ""
+      "No, there will not be a deadlock in this scenario. Both threads acquire the locks in the same order, so there is no possibility of a circular wait. Therefore, the locks will be released in the reverse order, and both threads will complete their execution without any deadlock."
     ]
   },
   {
@@ -421,7 +421,7 @@
       "Circular wait"
     ],
     "feedback": [
-      ""
+      "Mutual exclusion is present because both processes hold exclusive locks on the resources they need, and circular wait is present because there is a circular dependency between the two processes regarding the resources they are holding and waiting for."
     ]
   },
   {
@@ -488,7 +488,7 @@
       "In deadlock prevention, the request for resources is always granted if the resulting state is safe"
     ],
     "feedback": [
-      ""
+      "The resource request may be denied in deadlock prevention even if the resulting state is safe. This is because deadlock prevention schemes aim to prevent the system from reaching a deadlock state by limiting how resources can be requested and allocated. This may sometimes require denying a request even if the resulting state would be safe."
     ]
   },
   {
@@ -505,7 +505,7 @@
       "Never request a resource after releasing any resource"
     ],
     "feedback": [
-      ""
+      "Because it can lead to starvation. If a process releases a resource and never requests it again, other processes may acquire and hold that resource indefinitely, preventing the first process from progressing. This can result in starvation, where a process cannot proceed despite the availability of resources."
     ]
   },
   {
