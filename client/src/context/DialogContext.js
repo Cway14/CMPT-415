@@ -9,56 +9,33 @@ export function useDialog() {
 }
 
 export function DialogProvider({ children }) {
-    const [currentDialog, setCurrentDialog] = useState();
-    const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState([]);
+    const [dialogModal, setDialogModal] = useState(<></>);
     const { currentRoom, hasEnteredRoom } = usePlayer();
 
     // pass array of messages to showDialog, and it will display them one by one
-    // if forceShow is true, it will show the dialog even player has seen it before
+
     function showDialog(newMessages, forceShow = false) {
         if (!forceShow) {
+            // if forceShow is true, it will show the dialog even player has seen it before
             if (hasEnteredRoom(currentRoom)) return;
         }
 
-        setCurrentDialog(newMessages.shift());
-        setMessages(newMessages);
-        setIsOpen(true);
+        setDialogModal(
+            <DialogModal messages={newMessages} onClose={closeModal} />
+        );
     }
 
-    // set the next message in the queue
-    function nextMessage() {
-        const localMessages = [...messages];
-        const nextDialog = localMessages.shift();
-        setMessages(localMessages);
-
-        if (!nextDialog) {
-            hideDialog();
-            return;
-        }
-
-        setCurrentDialog(nextDialog);
-    }
-
-    function hideDialog() {
-        setIsOpen(false);
-    }
+    const closeModal = () => {
+        setDialogModal(<></>);
+    };
 
     const value = {
-        currentDialog,
-        isOpen,
         showDialog,
-        hideDialog,
     };
 
     return (
         <DialogContext.Provider value={value}>
-            {isOpen && (
-                <DialogModal
-                    text={currentDialog}
-                    nextAction={() => nextMessage()}
-                />
-            )}
+            {dialogModal}
             {children}
         </DialogContext.Provider>
     );
