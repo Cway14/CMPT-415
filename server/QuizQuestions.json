@@ -126,23 +126,6 @@
   {
     "topic": "Sync and Sync Prob",
     "chapter": "5",
-    "question": "&lt;div&gt;&lt;p&gt;The following program use a shared binary semaphore T:&lt;/p&gt;\n&lt;div class=\"hk1_style-wrap5\"&gt;\n&lt;div class=\"hk1_style-wrap4\"&gt;\n&lt;div class=\"hk1_style-wrap3\"&gt;\n&lt;div class=\"hk1_style-wrap2\"&gt;\n&lt;div class=\"hk1_style-wrap\"&gt;\n&lt;div class=\"hk1_style\"&gt;\n&lt;div class=\"txt\"&gt;\n&lt;pre class=\"de1\"&gt;Process A  \nint Y;            \nA1: Y = X*2;      \nA2: X = Y;        \nsignal(T);        \n&amp;nbsp;\nProcess B\nint Z;\nB1: wait(T);\nB2: Z = X+1;\nX = Z;&lt;/pre&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;p&gt;T is set to 0 before either process begins execution and, as before, X is set to 5.&lt;br&gt;Now, how many different values of X are possible after both processes finish executing?&lt;/p&gt;&lt;/div&gt;",
-    "options": [
-      "1",
-      "2",
-      "3",
-      "none of the above"
-    ],
-    "answers": [
-      "2"
-    ],
-    "feedback": [
-      "The semaphore T ensures that all the statements from A finish execution before B begins. So now there is only one way in which statements from A and B can be executed: A1 A2 B1 B2: X = 11"
-    ]
-  },
-  {
-    "topic": "Sync and Sync Prob",
-    "chapter": "5",
     "question": "At a particular time of computation the value of a counting semaphore is 7. Then 18 wait() operations and 15 signal() operations were completed on this semaphore. The resulting value of the semaphore is?",
     "options": [
       "5",
@@ -213,24 +196,6 @@
   {
     "topic": "Synchro and Classical",
     "chapter": "6 and 7",
-    "question": "&lt;div&gt;&lt;p&gt;Which of the following statements are correct about the Producer-Consumer Problem.&lt;/p&gt;\n&lt;p&gt;Below is the structure of the Producer-Consumer Problem.&lt;/p&gt;\n&lt;p&gt;&lt;img src=\"https://canvas.sfu.ca/assessment_questions/4046689/files/18477665/download?verifier=Gitsr8hpowq8SXnhNdfwFhOEz22sNVLl4tXURBa5\" alt=\"11.png\"&gt;&lt;/p&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;",
-    "options": [
-      "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) can cause deadlock",
-      "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) will not affect the execution",
-      "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) will not affect the execution",
-      "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) can cause deadlock"
-    ],
-    "answers": [
-      "Switching the order of wait operations (wait(empty) and wait(mutex), or wait(full) and wait(mutex)) can cause deadlock",
-      "Switching the order of signal operations (signal(mutex) and signal(full), or signal(mutex) and signal(empty)) will not affect the execution"
-    ],
-    "feedback": [
-      "The first statement is correct because changing the order of wait operations can lead to a situation where the producer and consumer wait for each other to signal, resulting in a deadlock. For example, if the producer waits for \"mutex\" first and then \"empty\", and the consumer waits for \"empty\" first and then \"mutex\", there is a possibility of a deadlock. The second statement is incorrect because switching the order of wait operations can affect the execution, as explained in the first statement. The third statement is correct because the order of signal operations does not affect the execution. Signalling \"mutex\" ensures that only one thread accesses the buffer at a time, and signalling \"full\" or \"empty\" indicates that a buffer has been filled or emptied, respectively. The fourth statement is incorrect because changing the order of signal operations does not cause a deadlock. However, depending on the implementation, it can lead to incorrect behavior or inefficiency."
-    ]
-  },
-  {
-    "topic": "Synchro and Classical",
-    "chapter": "6 and 7",
     "question": "Which of the following operations is an atomic operation",
     "options": [
       "x++",
@@ -241,7 +206,8 @@
       "x=1"
     ],
     "feedback": [
-      "x++ is implemented in three instructions: Read X into a register, Increment the value, Store the value (Write it back), The thread can be pre-empted in between any of those."      ]
+      "x++ is implemented in three instructions: Read X into a register, Increment the value, Store the value (Write it back), The thread can be pre-empted in between any of those."
+    ]
   },
   {
     "topic": "Synchro and Classical",
@@ -357,23 +323,6 @@
     ],
     "feedback": [
       "If the resulting semaphore value is negative, the calling thread or process is blocked, and cannot continue until some other thread or process increments it"
-    ]
-  },
-  {
-    "topic": "Synchro and Classical",
-    "chapter": "6 and 7",
-    "question": "&lt;div&gt;&lt;p&gt;For a set of 5 processes P1-P4, is pseudo-coded as follows&lt;/p&gt;\n&lt;div class=\"hk1_style-wrap5\"&gt;\n&lt;div class=\"hk1_style-wrap4\"&gt;\n&lt;div class=\"hk1_style-wrap3\"&gt;\n&lt;div class=\"hk1_style-wrap2\"&gt;\n&lt;div class=\"hk1_style-wrap\"&gt;\n&lt;div class=\"hk1_style\"&gt;\n&lt;div class=\"txt\"&gt;\n&lt;pre class=\"de1\"&gt;&lt;code&gt;while(true_condition) {\n wait(mutex);\n //critical section\n signal(mutex)&lt;/code&gt; }&lt;/pre&gt;\n&lt;p&gt;P5, however, has the following pseudo-code:&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;while(true_condition) {\n signal(mutex);\n //critical section\n signal(mutex)&lt;/code&gt; &lt;br&gt;}&lt;/pre&gt;\n&lt;p&gt;&lt;span&gt;What is the maximum number of processes that can be inside the critical section at any given moment (the mutex is initialised to 1)?&lt;/span&gt;&lt;/p&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/div&gt;&lt;/div&gt;",
-    "options": [
-      "3",
-      "2",
-      "None of the above",
-      "1"
-    ],
-    "answers": [
-      "3"
-    ], 
-    "feedback": [
-      "Any one of the 4 processes can get into critical section after executing wait(mutex) which decrements the mutex value to 0. At this time, P5 can enter critical section by incrementing the value to 1. Now any of the other 4 processes can enter the critical section decrementing the mutex value to 0. Now, none of the remaining processes can get into the critical sections."
     ]
   },
   {
