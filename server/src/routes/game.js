@@ -6,9 +6,38 @@ const db = require("../db");
 router.get("/context", async (req, res) => {
     const { id } = req.query;
     try {
-        // get users current room, levers completed, and rooms entered
-        // return format: {current_room: "room_name", levers_completed: [1, 2, 3], rooms_entered: [1, 2, 3]}
-        const query = "";
+        const currentRoomQuery = `
+            SELECT rooms.name as current_room
+            FROM current_room
+            INNER JOIN rooms ON current_room.room_id = rooms.id
+            WHERE current_room.user_id = $1
+        `;
+        const currentRoomResult = await db.query(currentRoomQuery, [id]);
+        const currentRoom = currentRoomResult.rows[0]?.current_room || null;
+
+        const leversCompletedQuery = `
+            SELECT lever_id
+            FROM levers_completed
+            WHERE user_id = $1
+        `;
+        const leversCompletedResult = await db.query(leversCompletedQuery, [id]);
+        const leversCompleted = leversCompletedResult.rows.map(row => row.lever_id);
+
+        const roomsEnteredQuery = `
+            SELECT room_id
+            FROM rooms_entered
+            WHERE user_id = $1
+        `;
+        
+        const roomsEnteredResult = await db.query(roomsEnteredQuery, [id]);
+        const roomsEntered = roomsEnteredResult.rows.map(row => row.room_id);
+
+        const result = {
+            current_room: currentRoom,
+            levers_completed: leversCompleted,
+            rooms_entered: roomsEntered
+        };
+        res.json(result);
     } catch (error) {
         console.error("ERROR: ", error);
         res.sendStatus(500);
