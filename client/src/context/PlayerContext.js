@@ -28,7 +28,7 @@ export function PlayerProvider({ children }) {
             case "greathall":
                 return [4, 5, 6, 7];
             case "keyroom":
-                return [8, 9, 10, 11, 12];
+                return [8, 9, 10, 11];
             default:
                 return [];
         }

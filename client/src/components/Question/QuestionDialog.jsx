@@ -58,7 +58,7 @@ const QuestionDialog = ({ question, getQuestion }) => {
             await getUserProfile();
 
             // update lever status
-            changeLeverState(leverId);
+            changeLeverState();
         } else {
             const selectedElements =
                 document.getElementsByClassName("selected");

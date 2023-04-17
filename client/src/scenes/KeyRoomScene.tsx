@@ -12,6 +12,7 @@ import Lever from '../entities/Lever';
 import Chair from '../entities/Chair';
 import { useDialog } from "../context/DialogContext";
 import Scene from './Scene';
+import EndGame from 'entities/EndGameTrigger';
 
 interface Props {
     id: string;
@@ -31,7 +32,7 @@ E E { ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ( · ) ^ ^ ^ ^ ^ ^ ^ } E E E E E E
 E E [ - - - - - - - - - - - - - - - - - - - - X · Y - - - - - - - ] E E E E E E E E E E E E E E E E E E E
 ^ ^ ( · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
 - - X · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
-· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
+| · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
 # # H · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · R E E E E E E E E E E E E E E E E E E E
 E E > # # H · K # # # # # H · K # # # # # H · K # # # # # H · K # < E E E E E E E E E E E E E E E E E E E
 E E E E E L · R E E E E E L · R E E E E E L · R E E E E E L · R E E E E E E E E E E E E E E E E E E E E E 
@@ -40,7 +41,7 @@ E E E L - X · Y - R E L - X · Y - R E L - X · Y - R E L - X · Y - R E E E E 
 E E E L V · · · · R E L V · · · · R E L V · · · · R E L V · · · · R E E E E E E E E E E E E E E E E E E E
 E E E L F · · · · R E L F · · · · R E L F · · · · R E L F · · · · R E E E E E E E E E E E E E E E E E E E
 E E E L F · · · · R E L F · · · · R E L F · · · · R E L F · · · · R E E E E E E E E E E E E E E E E E E E
-E E E L f · · · 3 R E L f · · · 2 R E L f · · · 1 R E L f · · · 9 R E E E E E E E E E E E E E E E E E E E
+E E E L f · · · 2 R E L f · · · 1 R E L f · · · 9 R E L f · · · 8 R E E E E E E E E E E E E E E E E E E E
 E E E > # # # # # < E > # # # # # < E > # # # # # < E > # # # # # < E E E E E E E E E E E E E E E E E E E
 `);
 
@@ -270,6 +271,13 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Lever {...position} leverId={7} />
                 </Fragment>
             );
+        case '8':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={8} />
+                </Fragment>
+            );
         case '9':
             return (
                 <Fragment key={key}>
@@ -291,11 +299,11 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Lever {...position} leverId={11} />
                 </Fragment>
             );
-        case '3':
+        case '|':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={12} />
+                    <EndGame {...position} />
                 </Fragment>
             );
         case 'D':

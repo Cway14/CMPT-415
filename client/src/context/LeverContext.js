@@ -27,7 +27,6 @@ export function LeverProvider({ children }) {
         useRef(false),
         useRef(false),
         useRef(false),
-        useRef(false),
     ]);
 
     const changeLeverState = () => {
@@ -50,12 +49,15 @@ export function LeverProvider({ children }) {
         }
     };
 
+    const isAllLeverComplete = () => leverState.every((lever) => lever.current);
+
     const value = {
         leverState,
         changeLeverState,
         setLeverState,
         currentLever,
         setCurrentLever,
+        isAllLeverComplete,
     };
 
     return (
