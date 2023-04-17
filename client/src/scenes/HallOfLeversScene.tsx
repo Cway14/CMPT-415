@@ -495,28 +495,28 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={2} />
+                    <Lever {...position} leverId={0} />
                 </Fragment>
             );
         case '1':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={4} />
+                    <Lever {...position} leverId={1} />
                 </Fragment>
             );
         case '2':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={5} />
+                    <Lever {...position} leverId={2} />
                 </Fragment>
             );
         case '3':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} leverId={6} />
+                    <Lever {...position} leverId={3} />
                 </Fragment>
             );
         case 'E':

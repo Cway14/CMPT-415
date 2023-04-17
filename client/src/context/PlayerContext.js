@@ -49,11 +49,11 @@ export function PlayerProvider({ children }) {
     };
 
     const setGameContext = (context) => {
-        setCurrentRoom(context.room);
-        setRoomsEntered(context.roomsEntered);
+        setCurrentRoom(context.current_room);
+        setRoomsEntered(context.rooms_entered);
 
         const newLeverState = [...leverState];
-        context.leversCompleted.forEach((leverIndex) => {
+        context.levers_completed.forEach((leverIndex) => {
             newLeverState[leverIndex].current = true;
         });
         setLeverState(newLeverState);
@@ -61,25 +61,18 @@ export function PlayerProvider({ children }) {
 
     async function getGameContext() {
         try {
-            const gameContext = {
-                room: "bedroom",
-                leversCompleted: [],
-                roomsEntered: ["bedroom"],
-            };
-
+            const url =
+                process.env.REACT_APP_API +
+                "/game/context?id=" +
+                userProfile.id;
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const gameContext = await response.json();
             setGameContext(gameContext);
-            // const url =
-            //     process.env.REACT_APP_API +
-            //     "/game/context?id=" +
-            //     userProfile.id;
-            // const response = await fetch(url, {
-            //     method: "GET",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            // });
-            // const gameContext = await response.json();
-            // setGameContext(gameContext);
         } catch (error) {
             console.log("error: ", error);
             showNotification("An error occurred. Please try again.", "error");

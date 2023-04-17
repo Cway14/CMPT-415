@@ -21,7 +21,6 @@ export function QuestionProvider({ children }) {
     const { userProfile } = useAuth();
 
     async function showQuestion() {
-        console.log(userProfile);
         const response = await fetch(
             process.env.REACT_APP_API +
                 "/questions/getQuestion?uid=" +
