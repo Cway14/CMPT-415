@@ -28,7 +28,7 @@ E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E
 E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E
 E E L B · · 2 2 R E L B · · 2 2 R E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E
-E E L & · · · C R E L & · · · C R E E E E E E
+E E L & · · · C R E L | · · · C R E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ }
 E E > # # # # # < E > # # # # # < [ - - 7 - ]
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R
@@ -490,6 +490,13 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                 </GameObject>
             );
         case '&':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={0} />
+                </Fragment>
+            );
+        case '|':
             return (
                 <Fragment key={key}>
                     {floor}

@@ -36,6 +36,11 @@ export function AuthProvider({ children }) {
     }
 
     function logout() {
+        setUserProfile({
+            name: "John Doe",
+            score: 0,
+            profile_picture: "",
+        });
         return signOut(auth);
     }
 
