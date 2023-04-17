@@ -80,17 +80,18 @@ export function PlayerProvider({ children }) {
     }
 
     useEffect(() => {
+        // update the current room in the database
         if (!currentRoom) return;
         const url =
             process.env.REACT_APP_API +
-            "/game/current_room?id" +
+            "/game/current_room?id=" +
             userProfile.id +
             "&room=" +
             currentRoom;
 
         try {
             fetch(url, {
-                method: "POST",
+                method: "PUT",
             });
         } catch (error) {
             showNotification("Error: failed to save game progress", "error");

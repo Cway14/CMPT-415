@@ -56,22 +56,12 @@ router.put("/current_room", async (req, res) => {
             text: "UPDATE users SET current_room_id = (select id from rooms where name = $1) WHERE id = $2 RETURNING *",
             values: [room, id],
         };
-        const response = await db.query(query);
-        res.json(response.rows);
-    } catch (error) {
-        console.error("ERROR: ", error);
-        res.sendStatus(500);
-    }
-});
 
-router.post("/entered_room", async (req, res) => {
-    const { id, room } = req.query;
-    try {
-        const query = {
-            text: "INSERT INTO rooms_entered (room_id, user_id) VALUES ((select id from rooms where name = $1), $2) RETURNING *",
-            values: [room, id],
-        };
         const response = await db.query(query);
+
+        // if user has entered the room for the first time, add it to the rooms_entered table
+        insertEnteredRoomQuery(id, room);
+
         res.json(response.rows);
     } catch (error) {
         console.error("ERROR: ", error);
@@ -93,5 +83,20 @@ router.post("/lever_completed", async (req, res) => {
         res.sendStatus(500);
     }
 });
+
+async function insertEnteredRoomQuery(id, room) {
+    const roomsEnteredQuery = {
+        text: "SELECT * FROM rooms_entered WHERE user_id = $1 AND room_id = (select id from rooms where name = $2)",
+    };
+    const roomsEnteredResult = await db.query(roomsEnteredQuery, [id, room]);
+
+    if (roomsEnteredResult.rows.length === 0) {
+        const insertQuery = {
+            text: "INSERT INTO rooms_entered (user_id, room_id) VALUES ($1, (select id from rooms where name = $2)) RETURNING *",
+            values: [id, room],
+        };
+        const insertResult = await db.query(insertQuery);
+    }
+}
 
 module.exports = router;
