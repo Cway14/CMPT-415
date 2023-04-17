@@ -58,10 +58,10 @@ export default function GameView() {
                                     <HallOfLeversScene id="halloflevers" chapter="5" />
                                 </Scene>
                                 <Scene id="greathall">
-                                    <GreatHallScene id="greathall" chapter="5" />
+                                    <GreatHallScene id="greathall" chapter="6 and 7" />
                                 </Scene>
                                 <Scene id="keyroom">
-                                    <KeyRoomScene id="keyroom" chapter="5" />
+                                    <KeyRoomScene id="keyroom" chapter="8" />
                                 </Scene>
                             </SceneManager>
                         </AssetLoader>
