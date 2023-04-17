@@ -11,6 +11,7 @@ export function useLever() {
 export function LeverProvider({ children }) {
     const { userProfile } = useAuth();
     const { showNotification } = useNotification();
+    const [currentLever, setCurrentLever] = useState(0);
 
     // stores the state of each lever
     const [leverState, setLeverState] = useState([
@@ -29,7 +30,8 @@ export function LeverProvider({ children }) {
         useRef(false),
     ]);
 
-    const changeLeverState = (index) => {
+    const changeLeverState = () => {
+        const index = currentLever;
         const newState = [...leverState];
         newState[index].current = !newState[index].current;
         setLeverState(newState);
@@ -52,6 +54,8 @@ export function LeverProvider({ children }) {
         leverState,
         changeLeverState,
         setLeverState,
+        currentLever,
+        setCurrentLever,
     };
 
     return (

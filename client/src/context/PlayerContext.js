@@ -98,7 +98,7 @@ export function PlayerProvider({ children }) {
     }, [currentRoom]);
 
     useEffect(() => {
-        if (!userProfile) return;
+        if (!userProfile.id) return;
         getGameContext();
     }, [userProfile]);
 

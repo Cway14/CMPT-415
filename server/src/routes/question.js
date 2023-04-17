@@ -37,12 +37,17 @@ router.get("/getQuestion", async (req, res) => {
     const { uid, chapter } = req.query;
 
     try {
-        const query = {
+        let query = {
             text: `SELECT id, question, options, chapter FROM questions WHERE id NOT IN (SELECT question_id FROM answers WHERE user_id = '${uid}') AND chapter = '${chapter}'`,
         };
 
         // select random row from the result
-        const response = await db.query(query);
+        let response = await db.query(query);
+
+        if (response.rows.length === 0) {
+            res.json({ message: "ERROR: No more questions in this chapter" });
+        }
+
         const randomIndex = Math.floor(Math.random() * response.rows.length);
         res.json(response.rows[randomIndex]);
     } catch (err) {

@@ -17,11 +17,12 @@ interface LeverProps extends GameObjectProps {
 function LeverScript({ leverId }) {
     const { getComponent } = useGameObject();
     const { showQuestion } = useQuestion();
-    const { leverState } = useLever();
+    const { leverState, setCurrentLever } = useLever();
 
 
     useGameObjectEvent<InteractionEvent>('interaction', async () => {
         if (leverState[leverId].current) return;
+        setCurrentLever(leverId);
         showQuestion();
 
         return waitForMs(400);
