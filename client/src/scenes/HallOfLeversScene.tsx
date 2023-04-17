@@ -17,28 +17,33 @@ import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import Lever from '../entities/Lever';
-import { useQuestion } from 'context/QuestionContext';
 import { useDialog } from "../context/DialogContext";
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ } E E E E E E E E E E
-E E [ - S - 1 1 ] E [ - S - 1 1 ] E E E E E E E E E E
-E E L B · · 2 2 R E L B · · 2 2 R E E E E E E E E E E
+E E [ - S - ¡ ¡ ] E [ - S - ¡ ¡ ] E E E E E E E E E E
+E E L B · · ™ ™ R E L B · · ™ ™ R E E E E E E E E E E
 E E L b · · · · R E L b · · · · R E E E E E E E E E E
-E E L & · · · C R E L & · · · C R E E E E E E E E E E
+E E L 0 · · · C R E L 3 · · · C R E E E E E E E E E E
 E E L O · · · T R E L O · · · T R { ^ ^ ^ ^ } E E E E
 E E > # # # # # < E > # # # # # < [ - - 7 - ] E E E E
 E E E E { ^ } E E E E E { ^ } E E L Z Q 8 9 R E E E E
 E E E E L D R E E E E E L D R E E L · · · · R E E E E
 E E { ^ ( · ) _ ^ ^ ^ = ( · ) ^ ^ ( + · · · R E E E E
-E E [ - X · Y - - - - - X · Y - - X · · · & R E E E E
-E E L · · · · V · · · V · · · · · · · · 3 4 R E E E E
+E E [ - X · Y - - - - - X · Y - - X · · · 2 R E E E E
+E E L · · · · V · · · V · · · · · · · · £ 4 R E E E E
 E E L · · · · F · · · F · · · · · · · · 5 6 R E E E E
 E E L · · · · f c u · f · · · · · · · K # # < E E E E
 E E L · C C · · · · · · · · · · C C · R E E E E E E E
 E E L v q w y · · · · · · · · v q w y R E E E E E E E
 E E L v a s y · · · · · · · · v a s y R E E E E E E E
-E E L · g g · · · · · · & · · · g g · R E E E E E E E
+E E L · g g · · · · · · 1 · · · g g · R E E E E E E E
 E E > # # # # # # # # # # # # # # # # < E E E E E E E
 E E E E E E E E E E { ^ } E E E E E E E E E E E E E E
 E E E E E E E E E E L D R E E E E E E E E E E E E E E
@@ -204,14 +209,14 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <BedBot {...position} />
                 </Fragment>
             );
-        case '1':
+        case '¡':
             return (
                 <Fragment key={key}>
                     {bot_wall}
                     <BookShelfTop {...position} />
                 </Fragment>
             );
-        case '2':
+        case '™':
             return (
                 <Fragment key={key}>
                     {floor}
@@ -255,7 +260,7 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     </GameObject>
                 </Fragment>
             );
-        case '3':
+        case '£':
             return (
                 <Fragment key={key}>
                     {floor}
@@ -486,11 +491,32 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
                     <Chair {...position} />
                 </Fragment>
             );
-        case '&':
+        case '0':
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} />
+                    <Lever {...position} leverId={0} />
+                </Fragment>
+            );
+        case '1':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={1} />
+                </Fragment>
+            );
+        case '2':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={2} />
+                </Fragment>
+            );
+        case '3':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={3} />
                 </Fragment>
             );
         case 'E':
@@ -524,11 +550,9 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
     return <></>
 }
 
-export default function HallOfLeversScene() {
-    const { setChapter } = useQuestion();
-    setChapter("6 and 7");
+export default function HallOfLeversScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ShowDelayedDialog />
                 <ambientLight />
@@ -537,19 +561,19 @@ export default function HallOfLeversScene() {
             <GameObject x={5} y={15}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="bedroom/exit" room={id} />
             </GameObject>
             <GameObject x={13} y={15}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" />
+                <ScenePortal name="entrance2" enterDirection={[0, -1]} target="room2/exit" room={id} />
             </GameObject>
             <GameObject x={11} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="greathall/entrance" room={id} />
             </GameObject>
             <Player x={5} y={15} />
-        </>
+        </Scene>
     );
 }

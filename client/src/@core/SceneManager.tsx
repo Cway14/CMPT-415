@@ -1,8 +1,9 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { SceneExitEvent, ScenePreExitEvent } from './Scene';
 import useGame from './useGame';
 import { SceneStoreProvider } from './useGameObjectStore';
 import waitForMs from './utils/waitForMs';
+import { usePlayer } from 'context/PlayerContext';
 
 export interface SceneManagerContextValue {
     currentScene: string;
@@ -26,7 +27,7 @@ export default function SceneManager({ defaultScene, children }: Props) {
     const { publish } = useGame();
     // support scene string format: 'sceneId:level'
     const [initialScene, initialLevel = 0] = defaultScene.split(':');
-    const [currentScene, setScene] = useState(initialScene);
+    const { currentRoom: currentScene, setCurrentRoom: setScene } = usePlayer();
     const prevLevel = useRef(-1);
     const currentLevel = useRef(Number(initialLevel));
     const sceneStore = useRef(new Map<string, any>());

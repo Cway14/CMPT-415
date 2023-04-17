@@ -17,6 +17,7 @@ import spriteData from '../../spriteData';
 import globalStyles from '../../styles/global';
 import { useDialog } from "../../context/DialogContext";
 import { QuestionProvider } from '../../context/QuestionContext';
+import { usePlayer } from 'context/PlayerContext';
 
 
 const urls = [
@@ -28,6 +29,9 @@ const urls = [
 export default function GameView() {
     const [width, height] = useWindowSize();
     const [showProfileModal, setShowProfileModal] = React.useState(false);
+    const { currentRoom } = usePlayer();
+
+    if (!currentRoom) return <></>;
 
     return (
         <>
@@ -38,25 +42,25 @@ export default function GameView() {
                         <AssetLoader urls={urls} placeholder="Loading assets ...">
                             <SceneManager defaultScene="bedroom">
                                 <Scene id="office">
-                                    <OfficeScene />
+                                    <OfficeScene id="office" chapter="5" />
                                 </Scene>
                                 <Scene id="other">
-                                    <OtherScene />
+                                    <OtherScene id="other" chapter="5" />
                                 </Scene>
                                 <Scene id="bedroom">
-                                    <BedroomScene />
+                                    <BedroomScene id="bedroom" chapter="5" />
                                 </Scene>
                                 <Scene id="room2">
-                                    <Bedroom2Scene />
+                                    <Bedroom2Scene id="room2" chapter="5" />
                                 </Scene>
                                 <Scene id="halloflevers">
-                                    <HallOfLeversScene />
+                                    <HallOfLeversScene id="halloflevers" chapter="5" />
                                 </Scene>
                                 <Scene id="greathall">
-                                    <GreatHallScene />
+                                    <GreatHallScene id="greathall" chapter="6 and 7" />
                                 </Scene>
                                 <Scene id="keyroom">
-                                    <KeyRoomScene />
+                                    <KeyRoomScene id="keyroom" chapter="8" />
                                 </Scene>
                             </SceneManager>
                         </AssetLoader>

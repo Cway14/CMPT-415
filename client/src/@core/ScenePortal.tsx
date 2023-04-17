@@ -7,6 +7,8 @@ import useGameEvent from './useGameEvent';
 import useGameObject from './useGameObject';
 import useInteraction from './useInteraction';
 import useSceneManager from './useSceneManager';
+import { usePlayer } from 'context/PlayerContext';
+import { useDialog } from 'context/DialogContext';
 
 export interface ScenePortalProps {
     name: string;
@@ -15,6 +17,7 @@ export interface ScenePortalProps {
     controlled?: boolean;
     onEnter?: () => void;
     onLeave?: () => void;
+    room: string;
 }
 
 export type ScenePortalRef = ComponentRef<
@@ -34,12 +37,16 @@ export default function ScenePortal({
     controlled = false,
     onEnter,
     onLeave,
+    room,
 }: ScenePortalProps) {
     const { findGameObjectByName, setGameState, getGameState } = useGame();
     const { transform, nodeRef } = useGameObject();
     const { setScene } = useSceneManager();
     const { camera } = useThree();
     const [enterX, enterY] = enterDirection;
+
+    const { completedRoom } = usePlayer();
+    const { showDialog } = useDialog();
 
     const api = useComponentRegistry<ScenePortalRef>('ScenePortal', {
         name,
@@ -57,6 +64,12 @@ export default function ScenePortal({
     useInteraction(async ref => {
         if (controlled) return;
         if (ref.name !== 'player') return;
+        if (name === 'exit' && !completedRoom(room)) {
+            const messages = ["You need to complete the room first.", "Find all levers and interact with them."];
+            showDialog(messages, true);
+            return;
+        }
+
         api.port();
     });
 

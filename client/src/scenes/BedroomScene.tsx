@@ -17,15 +17,20 @@ import Box from '../entities/Box';
 import Table from '../entities/Table';
 import Chair from '../entities/Chair';
 import Lever from '../entities/Lever';
-import { useQuestion } from 'context/QuestionContext';
 import { useDialog } from "../context/DialogContext";
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
 
 const mapData = mapDataString(`
 E E { ^ ^ ^ ^ ^ } E { ^ ^ ^ ^ ^ }
 E E [ - S - 1 1 ] E [ - S - 1 1 ]
 E E L B · · 2 2 R E L B · · 2 2 R
 E E L b · · · · R E L b · · · · R
-E E L & · · · C R E L & · · · C R
+E E L & · · · C R E L | · · · C R
 E E L O · · · T R E L O · · · T R
 E E > # # # # # < E > # # # # # <
 E E E E { ^ } E E E E E { ^ } E E
@@ -269,7 +274,14 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             return (
                 <Fragment key={key}>
                     {floor}
-                    <Lever {...position} />
+                    <Lever {...position} leverId={0} />
+                </Fragment>
+            );
+        case '|':
+            return (
+                <Fragment key={key}>
+                    {floor}
+                    <Lever {...position} leverId={3} />
                 </Fragment>
             );
         default:
@@ -290,11 +302,9 @@ const ShowDelayedDialog = () => { // NOTE: only put in its own component so it d
     return <></>
 }
 
-export default function BedroomScene() {
-    const { setChapter } = useQuestion();
-    setChapter("6 and 7");
+export default function BedroomScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ShowDelayedDialog />
                 <ambientLight />
@@ -303,9 +313,9 @@ export default function BedroomScene() {
             <GameObject x={5} y={5}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance" />
+                <ScenePortal name="exit" enterDirection={[0, 1]} target="halloflevers/entrance" room={id} />
             </GameObject>
             <Player x={5} y={7} />
-        </>
+        </Scene>
     );
 }

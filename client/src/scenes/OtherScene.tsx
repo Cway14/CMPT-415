@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Collider from '../@core/Collider';
 import GameObject from '../@core/GameObject';
 import Interactable from '../@core/Interactable';
@@ -8,7 +8,12 @@ import TileMap, { TileMapResolver } from '../@core/TileMap';
 import { mapDataString } from '../@core/utils/mapUtils';
 import Player from '../entities/Player';
 import spriteData from '../spriteData';
-import { useQuestion } from 'context/QuestionContext';
+import Scene from './Scene';
+
+interface Props {
+    id: string;
+    chapter: string;
+}
 
 const mapData = mapDataString(`
 # # # # # #
@@ -41,11 +46,9 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
     }
 };
 
-export default function OtherScene() {
-    const { setChapter } = useQuestion();
-    setChapter("6 and 7");
+export default function OtherScene({ id, chapter }: Props) {
     return (
-        <>
+        <Scene id={id} chapter={chapter}>
             <GameObject name="map">
                 <ambientLight />
                 <TileMap data={mapData} resolver={resolveMapTile} definesMapSize />
@@ -53,9 +56,9 @@ export default function OtherScene() {
             <GameObject x={0} y={2}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" />
+                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" room={id} />
             </GameObject>
             <Player x={0} y={2} />
-        </>
+        </Scene>
     );
 }

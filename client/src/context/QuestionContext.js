@@ -1,7 +1,7 @@
 import QuestionDialog from "components/Question/QuestionDialog";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { useAuth } from "../auth/AuthContext";
-
+import { useNotification } from "./NotificationContext";
 const QuestionContext = React.createContext();
 
 export function useQuestion() {
@@ -18,6 +18,7 @@ export function QuestionProvider({ children }) {
     const [chapter, setChapter] = useState("5");
     const [isOpen, setIsOpen] = useState(false);
     const { userProfile } = useAuth();
+    const { showNotification } = useNotification();
 
     async function showQuestion() {
         await getQuestion();
@@ -33,6 +34,12 @@ export function QuestionProvider({ children }) {
                 chapter
         );
         const data = await response.json();
+
+        if (data.message) {
+            showNotification(data.message, "error");
+            return;
+        }
+
         const jsData = convertToJS(data);
         setCurrentQuestion(jsData);
     }

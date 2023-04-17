@@ -9,6 +9,7 @@ import {
     reauthenticateWithCredential,
     EmailAuthProvider,
 } from "firebase/auth";
+import { useNotification } from "../context/NotificationContext";
 
 const AuthContext = React.createContext();
 
@@ -24,6 +25,7 @@ export function AuthProvider({ children }) {
         profile_picture: "",
     });
     const [loading, setLoading] = useState(true);
+    const { showNotification } = useNotification();
 
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -34,6 +36,11 @@ export function AuthProvider({ children }) {
     }
 
     function logout() {
+        setUserProfile({
+            name: "John Doe",
+            score: 0,
+            profile_picture: "",
+        });
         return signOut(auth);
     }
 
@@ -70,6 +77,7 @@ export function AuthProvider({ children }) {
             setUserProfile(data);
         } catch (error) {
             console.log("error: ", error);
+            showNotification("An error occurred. Please try again.", "error");
         }
     }
 

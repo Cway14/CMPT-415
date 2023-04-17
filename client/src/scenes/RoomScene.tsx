@@ -40,80 +40,80 @@ const resolveMapTile: TileMapResolver = (type, x, y) => {
             );
         case 'R':
             return (
-                 <GameObject key={key} {...position} layer="wall">
-                     <Collider />
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
                     <Sprite {...spriteData.map} state="wall_right" />
                 </GameObject>
             );
         case 'L':
-                    return (
-                        <GameObject key={key} {...position} layer="wall">
-                            <Collider />
-                            <Sprite {...spriteData.map} state="wall_left" />
-                        </GameObject>
-                    );
+            return (
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
+                    <Sprite {...spriteData.map} state="wall_left" />
+                </GameObject>
+            );
         case '[':
-                    return (
-                        <GameObject key={key} {...position} layer="wall">
-                            <Collider />
-                            <Sprite {...spriteData.map} state="wall_left_top_lower" />
-                        </GameObject>
-                    );     
+            return (
+                <GameObject key={key} {...position} layer="wall">
+                    <Collider />
+                    <Sprite {...spriteData.map} state="wall_left_top_lower" />
+                </GameObject>
+            );
         case ']':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
                     <Sprite {...spriteData.map} state="wall_right_top_lower" />
-                    </GameObject>
-                 );     
+                </GameObject>
+            );
         case '{':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
                     <Sprite {...spriteData.map} state="wall_left_top_upper" />
                 </GameObject>
-            );   
+            );
         case '}':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_right_top_upper" />
+                    <Sprite {...spriteData.map} state="wall_right_top_upper" />
                 </GameObject>
-            );   
+            );
         case '-':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_top_lower" />
+                    <Sprite {...spriteData.map} state="wall_top_lower" />
                 </GameObject>
-            );   
+            );
         case '^':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_top_upper" />
+                    <Sprite {...spriteData.map} state="wall_top_upper" />
                 </GameObject>
             );
         case '>':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_left_bottom" />
+                    <Sprite {...spriteData.map} state="wall_left_bottom" />
                 </GameObject>
             );
         case '<':
             return (
                 <GameObject key={key} {...position} layer="wall">
                     <Collider />
-                        <Sprite {...spriteData.map} state="wall_right_bottom" />
+                    <Sprite {...spriteData.map} state="wall_right_bottom" />
                 </GameObject>
-            );   
+            );
         default:
             return null;
     }
 };
 
-export default function RoomScene() {
+export default function RoomScene({ id }: { id: string }) {
     return (
         <>
             <GameObject name="map">
@@ -123,7 +123,7 @@ export default function RoomScene() {
             <GameObject x={0} y={2}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" />
+                <ScenePortal name="start" enterDirection={[1, 0]} target="office/exit" room={id} />
             </GameObject>
             <Player x={4} y={5} />
         </>
