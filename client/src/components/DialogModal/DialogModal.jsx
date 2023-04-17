@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import "./DialogModal.css";
 // Dialog modal component
 
-const DialogModal = ({ messages, onClose }) => {
+const DialogModal = ({ messages, closeModal, onClose }) => {
     let currentMessage = -1;
     const speed = 35;
     const nextActionButton = (
@@ -38,9 +38,14 @@ const DialogModal = ({ messages, onClose }) => {
         nextMessage();
     }, [messages]);
 
+    const close = () => {
+        onClose?.();
+        closeModal();
+    };
+
     const nextMessage = () => {
         currentMessage++;
-        if (currentMessage === messages.length) onClose();
+        if (currentMessage === messages.length) close();
         else typeWriter(currentMessage);
     };
 

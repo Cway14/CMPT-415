@@ -14,14 +14,18 @@ export function DialogProvider({ children }) {
 
     // pass array of messages to showDialog, and it will display them one by one
 
-    function showDialog(newMessages, forceShow = false) {
+    function showDialog(newMessages, forceShow = false, onClose = undefined) {
         if (!forceShow) {
             // if forceShow is true, it will show the dialog even player has seen it before
             if (hasEnteredRoom(currentRoom)) return;
         }
 
         setDialogModal(
-            <DialogModal messages={newMessages} onClose={closeModal} />
+            <DialogModal
+                messages={newMessages}
+                closeModal={closeModal}
+                onClose={onClose}
+            />
         );
     }
 

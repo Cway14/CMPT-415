@@ -19,7 +19,7 @@ function EndGameScript() {
         // if all levers completed
         if (isAllLeverComplete()) {
             // show end game modal
-            showDialog(['I finally escaped the Castle!!'], true);
+            showDialog(['I finally escaped the Castle!!'], true, () => window.location.pathname = '/leaderboard');
         } else {
             showDialog(['You need to complete all the levers first!'], true);
         }
