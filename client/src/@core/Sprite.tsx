@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState, RefObject, useRef } from 're
 import { Position } from './GameObject';
 import Graphic, { GraphicProps } from './Graphic';
 import useComponentRegistry, { ComponentRef } from './useComponentRegistry';
+import * as THREE from "three";
 
 export type SpriteRef = ComponentRef<
     'Sprite',

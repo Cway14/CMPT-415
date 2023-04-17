@@ -10,6 +10,7 @@ import { createPortal } from 'react-three-fiber';
 import useGame from './useGame';
 import useSceneManager from './useSceneManager';
 import { PubSubEvent } from './utils/createPubSub';
+import * as THREE from "three";
 
 export type SceneInitEvent = PubSubEvent<'scene-init', string>;
 export type SceneReadyEvent = PubSubEvent<'scene-ready', string>;
