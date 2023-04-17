@@ -1,3 +1,12 @@
+create table rooms (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name text not null,
+    created_at date default now(),
+    updated_at date default now()
+);
+
+INSERT INTO rooms (name) VALUES ('bedroom'), ('keyroom'), ('halloflevers'), ('room2'), ('greathall');
+
 create table
     users (
         id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -18,7 +27,8 @@ create table
         chapter VARCHAR(255) NOT NULL,
         question TEXT NOT NULL,
         options TEXT NOT NULL,
-        answers TEXT NOT NULL
+        answers TEXT NOT NULL,
+        feedback TEXT NOT NULL DEFAULT 'Incorrect',
     );
 
 create table answers (
@@ -30,8 +40,29 @@ create table answers (
     created_at date default now(),
     updated_at date default now(),
     UNIQUE (user_id, question_id, answer),
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (question_id) REFERENCES questions (id)
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions (id) ON DELETE CASCADE
+);
+
+create table levers_completed (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id int NOT NULL,
+    lever_id int NOT NULL,
+    created_at date default now(),
+    updated_at date default now(),
+    UNIQUE (user_id, lever_id),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+create table rooms_entered (
+    id int NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id int NOT NULL,
+    room_id int NOT NULL,
+    created_at date default now(),
+    updated_at date default now(),
+    UNIQUE (user_id, room_id),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES rooms (id) ON DELETE CASCADE
 );
 
 create table levers_completed (

@@ -10,13 +10,6 @@
     width: 100vw;
 }
 
-.question-container h2 {
-    font-size: 2rem;
-    border-bottom: 2px dashed white;
-    padding-bottom: 2rem;
-    margin-bottom: 0;
-}
-
 .question-container {
     background-color: var(--bg-brown);
     display: flex;
@@ -32,8 +25,9 @@
 }
 
 .question {
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    padding: 2rem;
+    border-bottom: 2px dashed white;
 }
 
 .options-container {
@@ -45,7 +39,7 @@
 }
 
 .option {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 1.5rem;
     cursor: pointer;
     transition: all 0.02s ease-in-out;
@@ -60,8 +54,7 @@
 }
 
 .feedback-container {
-    margin-top: 2rem;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     text-align: center;
     display: none;
 }

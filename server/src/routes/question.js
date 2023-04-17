@@ -61,7 +61,8 @@ router.post("/submit", async (req, res) => {
     const { id: question_id } = req.query;
     try {
         const query = {
-            text: `INSERT INTO answers (user_id, question_id, answer, is_correct)
+            text: `
+            INSERT INTO answers (user_id, question_id, answer, is_correct)
             VALUES (${uid}, ${question_id}, '${answer}', ((
                 SELECT EXISTS (
                   SELECT *
@@ -77,6 +78,20 @@ router.post("/submit", async (req, res) => {
         };
 
         const response = await db.query(query);
+        if (!response[0].rows[0].is_correct) {
+            // if answer is wrong, get feedback
+            const feedbackQuery = {
+                text: `SELECT feedback FROM questions WHERE id = ${question_id}`,
+            };
+            const feedbackResponse = await db.query(feedbackQuery);
+
+            res.json({
+                isCorrect: response[0].rows[0].is_correct,
+                feedback: feedbackResponse.rows[0].feedback,
+            });
+            return;
+        }
+
         res.json({ isCorrect: response[0].rows[0].is_correct });
     } catch (err) {
         console.error("ERROR: ", err);
