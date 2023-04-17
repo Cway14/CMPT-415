@@ -40,8 +40,7 @@ export default function GameView() {
                 <div style={{ "display": "flex", "width": `${width - (width % 2)}px`, "height": `${height - (height % 2)}px`, "justifyContent": "center", "alignItems": "center" }}>
                     <Game cameraZoom={80} showProfileModal={showProfileModal} setShowProfileModal={setShowProfileModal}>
                         <AssetLoader urls={urls} placeholder="Loading assets ...">
-                            {/* <ShowDelayedDialog /> */}
-                            <SceneManager defaultScene={currentRoom}>
+                            <SceneManager defaultScene="bedroom">
                                 <Scene id="office">
                                     <OfficeScene id="office" chapter="5" />
                                 </Scene>

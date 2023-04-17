@@ -1,0 +1,46 @@
+
+.endingModalContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.endingModal {
+    width: 90%;
+    height: 80%;
+    background-image: url("../../assets/castle.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    border: 2px solid var(--bg-gold);
+    padding: 1.5rem;
+    position: relative;
+    max-height: 80vh;
+}
+
+.endingModalHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.endingModalBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+
+.endingModalInfo {
+    display: flex;
+}
+
