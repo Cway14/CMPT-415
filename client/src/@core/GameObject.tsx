@@ -15,6 +15,7 @@ import useGameObject from './useGameObject';
 import useGameObjectStore from './useGameObjectStore';
 import useStateFromProp from './useStateFromProp';
 import createPubSub, { PubSub } from './utils/createPubSub';
+import * as THREE from "three";
 
 export interface Position {
     x: number;

@@ -17,6 +17,7 @@ import useGameObject from '../@core/useGameObject';
 import useGameObjectEvent from '../@core/useGameObjectEvent';
 import soundData from '../soundData';
 import spriteData from '../spriteData';
+import * as THREE from "three";
 
 interface Props {
     interactionSound?: React.ReactElement;
