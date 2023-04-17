@@ -3,7 +3,7 @@ import { useAuth } from "../../auth/AuthContext";
 import "./QuestionDialog.css";
 import { useQuestion } from "context/QuestionContext";
 
-const QuestionDialog = ({ question }) => {
+const QuestionDialog = ({ question, getQuestion }) => {
     const [selected, setSelected] = useState([]);
     const [feedback, setFeedback] = useState("");
 
@@ -21,6 +21,12 @@ const QuestionDialog = ({ question }) => {
         }
     };
 
+    const nextQuestion = () => {
+        setFeedback("");
+        setSelected([]);
+        getQuestion();
+    };
+
     const handleSubmit = async () => {
         // send the question to the server to update the user's progress
         const response = await fetch(
@@ -30,13 +36,16 @@ const QuestionDialog = ({ question }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ uid: userProfile.id, answer: selected }),
+                body: JSON.stringify({
+                    uid: userProfile.id,
+                    answer: JSON.stringify(selected),
+                }),
             }
         );
 
         const data = await response.json();
 
-        const { isCorrect } = data;
+        const { isCorrect, feedback: serverFeedback } = data;
 
         if (isCorrect) {
             setFeedback("Correct!");
@@ -49,7 +58,15 @@ const QuestionDialog = ({ question }) => {
             // update lever status
             changeLeverState();
         } else {
-            setFeedback("Incorrect, try again!");
+            const selectedElements =
+                document.getElementsByClassName("selected");
+
+            Array.from(selectedElements).forEach((element) => {
+                element.style = "color: red";
+            });
+
+            setFeedback(serverFeedback || "Incorrect!");
+            setSelected([]);
         }
     };
 
@@ -60,7 +77,7 @@ const QuestionDialog = ({ question }) => {
                 <div className="options-container">
                     {question.options?.map((option, index) => (
                         <in
-                            key={index}
+                            key={index + option.slice(0, 3)}
                             className={`option ${
                                 selected.includes(option) ? "selected" : ""
                             }`}
@@ -70,9 +87,15 @@ const QuestionDialog = ({ question }) => {
                         </in>
                     ))}
                 </div>
-                <button onClick={handleSubmit}>Submit</button>
+                {!feedback && <button onClick={handleSubmit}>Submit</button>}
                 <div className={`feedback-container ${feedback ? "show" : ""}`}>
+                    <h2>
+                        <u>
+                            <strong>Feedback:</strong>
+                        </u>
+                    </h2>
                     {feedback}
+                    <button onClick={nextQuestion}>Try a new question</button>
                 </div>
             </div>
         </div>

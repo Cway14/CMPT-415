@@ -10,7 +10,7 @@ export function useQuestion() {
 
 const convertToJS = (question) => ({
     ...question,
-    options: question.options.split(","),
+    options: JSON.parse(question.options),
 });
 
 export function QuestionProvider({ children }) {
@@ -20,6 +20,11 @@ export function QuestionProvider({ children }) {
     const { userProfile } = useAuth();
 
     async function showQuestion() {
+        await getQuestion();
+        setIsOpen(true);
+    }
+
+    async function getQuestion() {
         const response = await fetch(
             process.env.REACT_APP_API +
                 "/questions/getQuestion?uid=" +
@@ -30,7 +35,6 @@ export function QuestionProvider({ children }) {
         const data = await response.json();
         const jsData = convertToJS(data);
         setCurrentQuestion(jsData);
-        setIsOpen(true);
     }
 
     const value = {
@@ -42,7 +46,12 @@ export function QuestionProvider({ children }) {
 
     return (
         <QuestionContext.Provider value={value}>
-            {isOpen && <QuestionDialog question={currentQuestion} />}
+            {isOpen && (
+                <QuestionDialog
+                    question={currentQuestion}
+                    getQuestion={getQuestion}
+                />
+            )}
             {children}
         </QuestionContext.Provider>
     );
