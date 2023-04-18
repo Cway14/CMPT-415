@@ -65,20 +65,20 @@ export function AuthProvider({ children }) {
     }
 
     async function getUserProfile() {
-        try {
-            const url = process.env.REACT_APP_API + "/users/" + currentUser.uid;
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            const data = await response.json();
-            setUserProfile(data);
-        } catch (error) {
-            console.log("error: ", error);
-            showNotification("An error occurred. Please try again.", "error");
-        }
+        // try {
+        const url = process.env.REACT_APP_API + "/users?id=" + currentUser.uid;
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        setUserProfile(data);
+        // } catch (error) {
+        //     console.log("error: ", error);
+        //     showNotification("An error occurred. Please try again.", "error");
+        // }
     }
 
     useEffect(() => {
@@ -92,6 +92,7 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         if (!currentUser) return;
+        if (userProfile && userProfile.firebase_uid === currentUser.uid) return;
         getUserProfile();
     }, [currentUser]);
 
@@ -106,6 +107,7 @@ export function AuthProvider({ children }) {
         updateUserPassword,
         reauthenticate,
         getUserProfile,
+        setUserProfile,
     };
 
     return (
