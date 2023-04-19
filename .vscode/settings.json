@@ -9,6 +9,26 @@
             "database": "orange",
             "username": "root",
             "password": "root"
+        },
+        {
+            "previewLimit": 50,
+            "server": "bwrjiexv3tfbmspd4pn8-postgresql.services.clever-cloud.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Clever Cloud",
+            "username": "upljbecjuva2a2jrkexw",
+            "password": "UDdZ5Lf72qD84lFwtNwefWo2UQ0kDB",
+            "database": "bwrjiexv3tfbmspd4pn8"
+        },
+        {
+            "previewLimit": 50,
+            "server": "bnczt6vx77261cpu8uxv-postgresql.services.clever-cloud.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Clever Cloud",
+            "password": "lwWBSrXxZkthT2JCaV16wes6QIFk1B",
+            "database": "bnczt6vx77261cpu8uxv",
+            "username": "upjvupdoqgmzxot9gtno"
         }
     ]
 }

@@ -400,7 +400,7 @@ export default function KeyRoomScene({ id, chapter }: Props) {
             <GameObject x={24} y={14}>
                 <Collider />
                 <Interactable />
-                <ScenePortal name="entrance" enterDirection={[0, 1]} target="greathall/exit" room={id} />
+                <ScenePortal name="entrance" enterDirection={[0, -1]} target="greathall/exit" room={id} />
             </GameObject>
             <Player x={24} y={14} />
         </Scene>

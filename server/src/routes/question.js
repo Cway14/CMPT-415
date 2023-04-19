@@ -46,6 +46,7 @@ router.get("/getQuestion", async (req, res) => {
 
         if (response.rows.length === 0) {
             res.json({ message: "ERROR: No more questions in this chapter" });
+            return;
         }
 
         const randomIndex = Math.floor(Math.random() * response.rows.length);

@@ -53,7 +53,7 @@ export function QuestionProvider({ children }) {
 
     return (
         <QuestionContext.Provider value={value}>
-            {isOpen && (
+            {isOpen && currentQuestion && (
                 <QuestionDialog
                     question={currentQuestion}
                     getQuestion={getQuestion}

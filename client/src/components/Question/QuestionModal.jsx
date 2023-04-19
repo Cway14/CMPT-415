@@ -16,7 +16,7 @@ function QuestionModal({ chapter, showModal }) {
         // and update the state using setQuestions
         const fetchQuestions = async () => {
             const response = await fetch(
-                "http://localhost:5000/questions/getquestions"
+                process.env.REACT_APP_API + "/questions/getquestions"
             );
             const data = await response.json();
             const jsData = convertToJS(data);

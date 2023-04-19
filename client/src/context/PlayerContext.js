@@ -22,7 +22,7 @@ export function PlayerProvider({ children }) {
             case "bedroom":
                 return [0];
             case "halloflevers":
-                return [1, 2];
+                return [1, 2, 3];
             case "room2":
                 return [3];
             case "greathall":

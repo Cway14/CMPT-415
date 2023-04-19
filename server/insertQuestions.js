@@ -23,7 +23,6 @@ async function insertQuestions() {
     query.text += ";";
 
     try {
-        console.log(query.text);
         const response = await db.query(query);
         console.log(response);
     } catch (error) {
