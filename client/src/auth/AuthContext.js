@@ -66,7 +66,12 @@ export function AuthProvider({ children }) {
 
     async function getUserProfile() {
         // try {
-        const url = process.env.REACT_APP_API + "/users?id=" + currentUser.uid;
+        const url =
+            process.env.REACT_APP_API +
+            "/users?id=" +
+            currentUser.uid +
+            "&name=" +
+            currentUser.displayName;
         const response = await fetch(url, {
             method: "GET",
             headers: {
