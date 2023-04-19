@@ -22,7 +22,7 @@ router.post("/new-user", async (req, res) => {
     const { name, firebase_uid, profile_pic } = req.body;
     try {
         const query = {
-            text: "insert into users (created_at, name, score, firebase_uid, profile_picture) values (now(), $1, 0, $2, $3) returning *",
+            text: "insert into users (created_at, name, score, firebase_uid, profile_picture, current_room_id) values (now(), $1, 0, $2, $3, 1) returning *",
             values: [name, firebase_uid, profile_pic],
         };
         const response = await db.query(query);
